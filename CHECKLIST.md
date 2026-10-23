@@ -3,6 +3,7 @@
 One line per standard. Tick on the live domain, not on a preview. Details and commands are in each standard's "Check" section.
 
 ## Before the first deploy
+- [ ] Accounts on free tiers that upgrade in place, owned by the business, with 2FA (17)
 - [ ] Site lives in `site/` (or root guard + `_routes.json`); business material is in a private repo (01, 16)
 - [ ] AGENTS.md, CLAUDE.md, TODO.md from the templates; exceptions written down (16)
 - [ ] `_headers` with preview noindex, security headers and a CSP built from real origins (01, 02)

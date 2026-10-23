@@ -24,4 +24,4 @@ Accessible sites reach more people, rank better, and meet legal expectations (AD
 - `outline: none` without a replacement focus style.
 - Placeholder text instead of labels.
 - Scroll-jacking that breaks the keyboard, find-in-page or the back button.
-- Accessibility overlay widgets: they do not fix the code and are often flagged by audits and lawsuits.
+- Accessibility overlay widgets: they do not fix the underlying code, and an overlay does not make a site compliant.
