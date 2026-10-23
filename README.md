@@ -1,16 +1,21 @@
 # Site Standards
 
-**Everything a marketing website needs under the hood, written so your AI coding agent can build it.**
+**Everything a business website needs under the hood, written so your AI coding agent can build it.**
 
-Brand, colors and scroll animations are yours. What's here is the part every site should share: fast, secure, visible to Google *and* to ChatGPT, Claude and Perplexity, compliant with privacy rules, measured properly, and solid enough that visitors assume a serious company is behind it. All of it on free tiers, for the price of a domain.
+- Did you know a professional-grade site can cost **less than $15 a year** to run? That's the domain. Hosting, security, analytics and booking can all be free. [See the stack →](standards/17-stack-costs.md)
+- When someone asks ChatGPT or Perplexity for a business like yours, **can it even read your site?** Many sites block AI crawlers without knowing it. [Check yours →](standards/07-ai-visibility.md)
+- Your cookie banner might be **decoration**. If analytics loads before the visitor clicks, the banner isn't doing its job. [Fix it →](standards/09-analytics-consent.md)
+- Does your copy say "seamless", "unlock" and "elevate"? Readers notice. [The AI-slop list →](standards/14-content-quality.md)
 
-These are lessons learned building and running real business sites with AI coding agents, kept up to date as new ones come in.
+Brand, colors and scroll animations are yours. What's here is what every site should share, in any industry: fast, secure, visible to Google *and* AI assistants, privacy-compliant, measured properly, built to convert, and solid enough that visitors assume a serious company is behind it.
+
+These are lessons learned building and running real business sites with AI coding agents, kept up to date as new ones come in. Free to use.
 
 ## Why point your agent here
 Coding agents are good at writing a site and bad at remembering everything a site needs. Ask one for a landing page and you get a nice hero, but usually no security headers, a preview copy indexed by Google, a cookie banner that doesn't block anything, AI crawlers silently blocked by the CDN, and copy full of "seamless" and "unlock". Nothing looks broken, so nobody notices.
 
 Point the agent at this repo and it gets:
-- **A checklist it can't skip.** 17 standards, each with exact rules instead of "consider adding".
+- **A checklist it can't skip.** 17 standards plus optional modules (booking, payments), each with exact rules instead of "consider adding".
 - **Working starter files.** Headers, robots.txt with current AI bot names, llms.txt, security.txt, a consent banner, analytics that waits for consent, and JSON-LD.
 - **A way to check its own work.** Every standard ends with the commands that prove it is done, and `check-site.mjs` runs the static checks in CI.
 - **A list of mistakes to avoid.** Outdated advice, invented bot names, soft 404s, and AI-sounding copy, with ways to detect each one.
@@ -52,6 +57,16 @@ It works with any agent that reads files: Claude Code, Codex, Cursor, OpenCode, 
 | 16 | [Repo and agent setup](standards/16-repo-agents.md) | AGENTS.md, TODO.md, deploy policy |
 | 17 | [Stack and costs](standards/17-stack-costs.md) | The free stack, what each piece does, and why free is still robust |
 
+## Modules: add what your business needs
+The standards above apply to every site. Modules are optional features, each with tool choices, costs and the rules that keep them safe.
+
+| Module | Use it when |
+|---|---|
+| [Booking](modules/booking.md) | Visitors should book a call or appointment: Cal.com, TidyCal, Calendly, with UTMs and paid-booking patterns |
+| [Payments](modules/payments.md) | You sell a consultation, deposit, course or product: Stripe (US, Europe), Mollie (Europe), Wompi (Colombia), Mercado Pago (Latin America), merchants of record for worldwide digital sales |
+
+Tell your agent: *"Add the booking module from site-standards"* and it has everything it needs.
+
 ## What "done" looks like
 On the live domain:
 - securityheaders.com grades it **A** or better, and SSL Labs grades it **A**.
@@ -83,7 +98,12 @@ The privacy, consent and accessibility standards describe common good practice, 
 Found something outdated, or a lesson worth adding? Open an issue or a pull request. Keep it specific, checkable and free of hype (see [AGENTS.md](AGENTS.md) for the format).
 
 ## Who made this
-Built and maintained by **Eddie** ([@eddie85u](https://github.com/eddie85u)), founder of [Strategy & Stack](https://strategyandstack.com), which builds sales systems and AI automation for service businesses. If you want this applied to your site, or a site built on it, [book a call](https://strategyandstack.com).
+Built and maintained by **Eddie Bello**, founder of [Strategy & Stack](https://strategyandstack.com), which builds sales systems and AI automation for service businesses.
+
+- LinkedIn: [linkedin.com/in/eddiebello](https://www.linkedin.com/in/eddiebello/)
+- GitHub: [@eddie85u](https://github.com/eddie85u)
+
+Want this applied to your site, or a new site built on it? [Book a call](https://strategyandstack.com). Found it useful? A star helps others find it.
 
 ## License
 MIT. Use it, fork it, adapt it.
