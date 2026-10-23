@@ -1,4 +1,5 @@
 # 17 · Stack and costs
+**Applies to:** every site.
 
 ## Why
 Many business owners assume a professional website costs thousands up front and hundreds a month. A fast, secure, well-measured marketing site can run for the price of a domain. The money goes into the work (your time, or AI tokens and a coding-agent subscription), not into hosting.
@@ -21,8 +22,8 @@ Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing 
 | Analytics | Google Analytics 4 | Free | Traffic sources, key events, funnels, AI-assistant traffic | |
 | Behaviour | Microsoft Clarity | Free | Heatmaps, session recordings, rage clicks, AI-bot visibility | No traffic cap |
 | Search | Google Search Console, Bing Webmaster Tools | Free | Indexing, queries, errors; Bing also feeds Copilot and other AI answers | |
-| Booking | Cal.com or TidyCal ([module](../modules/booking.md)) | Free plan, or a one-time TidyCal license | Booking calls into a calendar | Payments and team features may need a paid tier |
-| Payments | Stripe, Mollie, Wompi, Mercado Pago ([module](../modules/payments.md)) | No monthly fee; a percentage per transaction | Taking payment for consultations, deposits, courses | Fees vary by country and payment method |
+| Booking | Cal.com or TidyCal ([18](18-booking.md)) | Free plan, or a one-time TidyCal license | Booking calls into a calendar | Payments and team features may need a paid tier |
+| Payments | Stripe, Mollie, Wompi, Mercado Pago ([19](19-payments.md)) | No monthly fee; a percentage per transaction | Taking payment for consultations, deposits, courses | Fees vary by country and payment method |
 | Quality checks | PageSpeed Insights, Lighthouse CI, securityheaders.com, SSL Labs, Rich Results Test | Free | The graders behind "done" in the README | |
 | Building | A coding agent (Claude Code, Codex, OpenCode, Cursor) | A subscription or pay-per-token | Writes and maintains the code with you | This is the real cost, and it scales with how much you build |
 

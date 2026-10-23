@@ -1,4 +1,5 @@
 # 02 · Security headers
+**Applies to:** every site.
 
 ## Why
 Headers are free, invisible to visitors, and the first thing a security-minded buyer (or scanner) checks. An A on securityheaders.com signals a company that knows what it is doing.

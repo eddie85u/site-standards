@@ -1,4 +1,5 @@
 # 12 · Forms and email
+**Applies to:** sites with a contact form or email on their own domain (almost every site).
 
 ## Why
 The contact form is where the money is. It has to work every time, stay free of spam, and its emails have to land in the inbox.

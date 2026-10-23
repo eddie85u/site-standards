@@ -1,4 +1,5 @@
 # 13 · Guardrail tests
+**Applies to:** every site.
 
 ## Why
 Every standard here can be broken by one careless edit, often by an AI agent. Cheap automated checks catch that before it ships.

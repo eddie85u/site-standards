@@ -1,4 +1,5 @@
 # 16 · Repo and agent setup
+**Applies to:** every site.
 
 ## Why
 A site is maintained by many sessions, people and AI tools over years. Plain-text rules in the repo keep every one of them consistent.

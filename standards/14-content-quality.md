@@ -1,4 +1,5 @@
 # 14 · Content quality and AI slop
+**Applies to:** every site.
 
 ## Why
 Visitors, buyers and search engines have learned to spot generated filler. It makes a business look small, lazy or fake. Specific, plain, checkable copy reads as a company that knows its work.

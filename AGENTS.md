@@ -10,7 +10,7 @@ Keep the "Who made this" and "Live examples" sections in README.md. The live exa
 - Legal claims stated as fact for a specific situation, or advice to evade a law, a platform policy or a bot protection. Per-site status and gaps live in each site's own TODO.md (and the owner's private admin repo).
 
 ## How each standard file is written
-Every file in `standards/` and `modules/` uses the same sections, in this order:
+Every file in `standards/` uses the same sections, in this order:
 1. **Why** — one or two sentences on what it buys.
 2. **Rules** — numbered, specific enough that an agent can build it without guessing. Say "must" or "should" honestly.
 3. **How to build it** — steps and the template to start from.

@@ -1,4 +1,5 @@
 # 05 · Structured data
+**Applies to:** every site.
 
 ## Why
 JSON-LD tells search engines and AI assistants, unambiguously, who the business is, what it sells and how to reach it. It is the cheapest "big company" signal there is.

@@ -1,4 +1,5 @@
 # 03 · Performance
+**Applies to:** every site.
 
 ## Why
 Speed is the first impression and a ranking signal. A slow site reads as a small company; a fast one reads as a well-run one.

@@ -1,4 +1,5 @@
 # 08 · Trust files
+**Applies to:** every site.
 
 ## Why
 Small files that real companies have and hobby sites do not: a way to report a vulnerability, a proper icon on every device, and a manifest.

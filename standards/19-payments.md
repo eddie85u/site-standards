@@ -1,6 +1,6 @@
-# Module · Payments
+# 19 · Payments
 
-Optional. Use it to sell something from the site: a paid consultation, a deposit, a course, a product or a package. None of these gateways charge a monthly fee on their standard plans; you pay per transaction.
+**Applies to:** sites that sell something online: a paid consultation, a deposit, a course, a product or a package. None of these gateways charge a monthly fee on their standard plans; you pay per transaction.
 
 ## Why
 Taking payment on the site removes a step between "yes" and "paid". With hosted checkout it also keeps card data off your site, so there is little security or compliance burden.

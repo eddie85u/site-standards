@@ -1,4 +1,5 @@
 # 10 · Privacy and compliance
+**Applies to:** every site.
 
 ## Why
 A privacy policy, an honest cookie banner and disciplined claims protect the business from regulators and ad platforms, and they are part of looking established.

@@ -1,4 +1,5 @@
 # 09 · Analytics and consent
+**Applies to:** every site.
 
 ## Why
 You cannot improve what you do not measure, and in most markets you cannot measure without consent. Done right, analytics loads only for visitors who agreed, only on the real domain, and tracks the few actions that mean money.

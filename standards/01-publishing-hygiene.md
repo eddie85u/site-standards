@@ -1,4 +1,5 @@
 # 01 · Publishing hygiene
+**Applies to:** every site.
 
 ## Why
 The fastest way to look amateur, or to leak something, is to publish files that were never meant to be public: internal notes, tests, AGENTS.md, a preview copy of the site that outranks the real one.

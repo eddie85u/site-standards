@@ -1,4 +1,5 @@
 # 07 · AI visibility
+**Applies to:** every site.
 
 ## Why
 More and more buyers ask ChatGPT, Claude, Perplexity, Gemini or Copilot instead of searching. Those assistants can only recommend a business they are allowed to read and can understand quickly.

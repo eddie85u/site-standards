@@ -1,4 +1,5 @@
 # 15 · Zone and domain
+**Applies to:** every site.
 
 ## Why
 DNS and the registrar are the foundation. Mistakes here take the site or email down, and the fixes are free.

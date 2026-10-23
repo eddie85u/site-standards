@@ -1,4 +1,5 @@
 # 04 · Search basics
+**Applies to:** every site.
 
 ## Why
 Search engines and AI answer engines both start from the same signals: clean titles, one canonical URL per page, a sitemap, and a verified owner.

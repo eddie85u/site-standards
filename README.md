@@ -11,11 +11,24 @@ Brand, colors and scroll animations are yours. What's here is what every site sh
 
 These are lessons learned building and running real business sites with AI coding agents, kept up to date as new ones come in. Free to use.
 
+## What are you building?
+Pick your goal and read only what it needs. Every site should end up with the **baseline** (01–17); the rest depends on how your business makes money.
+
+| I want to… | Start with | Then |
+|---|---|---|
+| **Launch a site that looks like a serious company** | [CHECKLIST.md](CHECKLIST.md) | The baseline, 01–17 |
+| **Be recommended by ChatGPT, Claude and Perplexity** | [07 AI visibility](standards/07-ai-visibility.md) | [05 Structured data](standards/05-structured-data.md), [04 Search](standards/04-search.md) |
+| **Get booked calls or appointments** | [18 Booking](standards/18-booking.md) | [09 Analytics](standards/09-analytics-consent.md), to know which page and campaign booked them |
+| **Get paid online** (consultations, deposits, courses) | [19 Payments](standards/19-payments.md) | [18 Booking](standards/18-booking.md) for paid calls, [10 Privacy](standards/10-privacy-compliance.md) for terms and refunds |
+| **Collect leads with a form** | [12 Forms and email](standards/12-forms-email.md) | [09 Analytics](standards/09-analytics-consent.md) for UTMs on every lead |
+| **Spend as little as possible** | [17 Stack and costs](standards/17-stack-costs.md) | |
+| **Check a site I already have** | The audit prompt below | Each gap goes to your TODO.md |
+
 ## Why point your agent here
 Coding agents are good at writing a site and bad at remembering everything a site needs. Ask one for a landing page and you get a nice hero, but usually no security headers, a preview copy indexed by Google, a cookie banner that doesn't block anything, AI crawlers silently blocked by the CDN, and copy full of "seamless" and "unlock". Nothing looks broken, so nobody notices.
 
 Point the agent at this repo and it gets:
-- **A checklist it can't skip.** 17 standards plus optional modules (booking, payments), each with exact rules instead of "consider adding".
+- **A checklist it can't skip.** 19 standards, each tagged with what it applies to, each with exact rules instead of "consider adding".
 - **Working starter files.** Headers, robots.txt with current AI bot names, llms.txt, security.txt, a consent banner, analytics that waits for consent, and JSON-LD.
 - **A way to check its own work.** Every standard ends with the commands that prove it is done, and `check-site.mjs` runs the static checks in CI.
 - **A list of mistakes to avoid.** Outdated advice, invented bot names, soft 404s, and AI-sounding copy, with ways to detect each one.
@@ -35,37 +48,30 @@ It works with any agent that reads files: Claude Code, Codex, Cursor, OpenCode, 
 
 **Launch day:** [CHECKLIST.md](CHECKLIST.md) is the one-page version.
 
-## The standards
+## All the standards
+Each one is self-contained: tell your agent *"Apply standard 18 from site-standards"* and it has everything it needs.
 
-| # | Standard | What it gets you |
-|---|---|---|
-| 01 | [Publishing hygiene](standards/01-publishing-hygiene.md) | Only the site is public; previews stay out of search; real 404s |
-| 02 | [Security headers](standards/02-security-headers.md) | HTTPS, HSTS, CSP; an A on securityheaders.com |
-| 03 | [Performance](standards/03-performance.md) | Core Web Vitals in the green on a mid-range phone |
-| 04 | [Search basics](standards/04-search.md) | Titles, canonicals, sitemaps, hreflang, Search Console and Bing |
-| 05 | [Structured data](standards/05-structured-data.md) | Organization, WebSite, Service, FAQ in JSON-LD |
-| 06 | [Social previews](standards/06-social-previews.md) | A proper preview card on every share |
-| 07 | [AI visibility](standards/07-ai-visibility.md) | AI crawlers allowed, llms.txt, Content-Signal, text readable without JavaScript |
-| 08 | [Trust files](standards/08-trust-files.md) | security.txt, web app manifest, icons |
-| 09 | [Analytics and consent](standards/09-analytics-consent.md) | GA4 + Clarity that wait for consent, key events, UTMs, AI traffic channel |
-| 10 | [Privacy and compliance](standards/10-privacy-compliance.md) | Privacy policy, an honest cookie banner, claims to never make |
-| 11 | [Accessibility](standards/11-accessibility.md) | WCAG 2.2 AA floors and reduced motion |
-| 12 | [Forms and email](standards/12-forms-email.md) | Spam-free forms; SPF, DKIM, DMARC |
-| 13 | [Guardrail tests](standards/13-guardrail-tests.md) | Automated checks so none of this silently breaks |
-| 14 | [Content quality and AI slop](standards/14-content-quality.md) | What reads as generated, and how to find and fix it |
-| 15 | [Zone and domain](standards/15-zone-domain.md) | DNS, DNSSEC, registrar, Crawler Hints |
-| 16 | [Repo and agent setup](standards/16-repo-agents.md) | AGENTS.md, TODO.md, deploy policy |
-| 17 | [Stack and costs](standards/17-stack-costs.md) | The free stack, what each piece does, and why free is still robust |
-
-## Modules: add what your business needs
-The standards above apply to every site. Modules are optional features, each with tool choices, costs and the rules that keep them safe.
-
-| Module | Use it when |
-|---|---|
-| [Booking](modules/booking.md) | Visitors should book a call or appointment: Cal.com, TidyCal, Calendly, with UTMs and paid-booking patterns |
-| [Payments](modules/payments.md) | You sell a consultation, deposit, course or product: Stripe (US, Europe), Mollie (Europe), Wompi (Colombia), Mercado Pago (Latin America), merchants of record for worldwide digital sales |
-
-Tell your agent: *"Add the booking module from site-standards"* and it has everything it needs.
+| # | Standard | Applies to | What it gets you |
+|---|---|---|---|
+| 01 | [Publishing hygiene](standards/01-publishing-hygiene.md) | Every site | Only the site is public; previews stay out of search; real 404s |
+| 02 | [Security headers](standards/02-security-headers.md) | Every site | HTTPS, HSTS, CSP; an A on securityheaders.com |
+| 03 | [Performance](standards/03-performance.md) | Every site | Core Web Vitals in the green on a mid-range phone |
+| 04 | [Search basics](standards/04-search.md) | Every site | Titles, canonicals, sitemaps, hreflang, Search Console and Bing |
+| 05 | [Structured data](standards/05-structured-data.md) | Every site | Organization, WebSite, Service, FAQ in JSON-LD |
+| 06 | [Social previews](standards/06-social-previews.md) | Every site | A preview card that works on LinkedIn *and* WhatsApp |
+| 07 | [AI visibility](standards/07-ai-visibility.md) | Every site | AI crawlers allowed, llms.txt, Content-Signal, text readable without JavaScript |
+| 08 | [Trust files](standards/08-trust-files.md) | Every site | security.txt, web app manifest, icons |
+| 09 | [Analytics and consent](standards/09-analytics-consent.md) | Every site | GA4 + Clarity that wait for consent, key events, UTMs, AI traffic channel |
+| 10 | [Privacy and compliance](standards/10-privacy-compliance.md) | Every site | Privacy policy, an honest cookie banner, claims to never make |
+| 11 | [Accessibility](standards/11-accessibility.md) | Every site | WCAG 2.2 AA floors and reduced motion |
+| 12 | [Forms and email](standards/12-forms-email.md) | Sites with a form or own-domain email | Spam-free forms; SPF, DKIM, DMARC |
+| 13 | [Guardrail tests](standards/13-guardrail-tests.md) | Every site | Checks so none of this silently breaks |
+| 14 | [Content quality and AI slop](standards/14-content-quality.md) | Every site | What reads as generated, and how to find and fix it |
+| 15 | [Zone and domain](standards/15-zone-domain.md) | Every site | DNS, DNSSEC, registrar, Crawler Hints |
+| 16 | [Repo and agent setup](standards/16-repo-agents.md) | Every site | AGENTS.md, TODO.md, deploy policy |
+| 17 | [Stack and costs](standards/17-stack-costs.md) | Every site | The free stack, what each piece does, and why free is still robust |
+| 18 | [Booking](standards/18-booking.md) | If you take bookings | Cal.com, TidyCal, Calendly; UTMs on every meeting; paid-booking patterns |
+| 19 | [Payments](standards/19-payments.md) | If you sell online | Stripe (US, Europe), Mollie (Europe), Wompi (Colombia), Mercado Pago (Latin America), merchants of record for worldwide digital sales |
 
 ## What "done" looks like
 On the live domain:

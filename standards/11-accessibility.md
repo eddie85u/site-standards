@@ -1,4 +1,5 @@
 # 11 · Accessibility
+**Applies to:** every site.
 
 ## Why
 Accessible sites reach more people, rank better, and meet legal expectations (ADA in the US, the European Accessibility Act since 2025). Most of it is also just good craft.

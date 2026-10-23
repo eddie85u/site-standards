@@ -1,6 +1,6 @@
-# Module · Booking
+# 18 · Booking
 
-Optional. Use it when visitors should book a call, a consultation or an appointment straight from the site. Paid bookings combine this module with [payments](payments.md).
+**Applies to:** sites that take bookings (calls, consultations, appointments). Paid bookings combine this with [19 · Payments](19-payments.md).
 
 ## Why
 A booking page turns "contact us" into a meeting on the calendar, with no back-and-forth email. Done well, it also tells you which page and campaign produced each meeting.
@@ -31,7 +31,7 @@ Default pick: Cal.com, for the free tier, the embed quality and the API.
 ## Paid bookings
 Pick the simplest pattern that fits:
 1. **Built-in payment** (Cal.com Stripe app, TidyCal with Stripe/PayPal): the tool takes payment before confirming. No code. Use it whenever your gateway is supported.
-2. **Your own gateway** (for example Wompi in Colombia, which booking tools don't support): make the event "requires confirmation"; after booking, send the visitor to a Worker that creates the checkout; the gateway's webhook calls the Worker; the Worker verifies the signature and confirms the booking through the booking tool's API. Unpaid bookings expire on a schedule (a cron Worker). See [payments](payments.md) for the gateway rules.
+2. **Your own gateway** (for example Wompi in Colombia, which booking tools don't support): make the event "requires confirmation"; after booking, send the visitor to a Worker that creates the checkout; the gateway's webhook calls the Worker; the Worker verifies the signature and confirms the booking through the booking tool's API. Unpaid bookings expire on a schedule (a cron Worker). See [19 · Payments](19-payments.md) for the gateway rules.
 
 ## Check
 - Book a test meeting from a URL with `?utm_source=test`: the booking shows the UTM, the confirmation page loads, and GA4 Realtime shows `booking_confirmed`.
