@@ -1,4 +1,7 @@
 # Cloudflare Pages response headers. This file is read by Pages, not served.
+# It does not apply to responses from Pages Functions: a Function sets its own headers.
+# When several rules match, the same header is joined with a comma, not replaced,
+# so set each header in one rule only (or remove it with "! Header-Name").
 
 # Preview and alias hosts serve the same site: keep them out of search.
 https://{{PROJECT}}.pages.dev/*
@@ -14,11 +17,13 @@ https://:branch.{{PROJECT}}.pages.dev/*
   Referrer-Policy: strict-origin-when-cross-origin
   Cross-Origin-Opener-Policy: same-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
-  # Add only the origins this site uses (standard 02, rule 3).
+  # Pages adds "Access-Control-Allow-Origin: *" by default; a marketing site rarely needs it.
+  ! Access-Control-Allow-Origin
+  # Add only the origins this site uses (standard 15, rule 3).
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
 
+# Versioned assets only (bump ?v= or the file name when they change).
+# HTML needs no rule: Pages already sends "public, max-age=0, must-revalidate",
+# and page URLs never end in .html on Pages, so a /*.html rule never matches.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
-
-/*.html
-  Cache-Control: public, max-age=0, must-revalidate

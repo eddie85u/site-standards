@@ -1,4 +1,8 @@
 # Cloudflare Pages redirects. HTTP to HTTPS and www to apex are zone rules,
 # not lines here (Pages ignores domain-level rules in this file).
+# Always write the status: a line without one is a 302 (temporary).
+# Sources cannot match a query string. Limits: 2,000 static and 100 dynamic rules.
 
 /.well-known/security.txt /security.txt 200
+# Example of a moved page:
+# /old-page /new-page 301

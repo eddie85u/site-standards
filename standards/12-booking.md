@@ -1,6 +1,6 @@
-# 18 · Booking
+# 12 · Booking
 
-**Applies to:** sites that take bookings (calls, consultations, appointments). Paid bookings combine this with [19 · Payments](19-payments.md).
+**Applies to:** sites that take bookings (calls, consultations, appointments). Paid bookings combine this with [13 · Payments](13-payments.md).
 
 ## Why
 A booking page turns "contact us" into a meeting on the calendar, with no back-and-forth email. Done well, it also tells you which page and campaign produced each meeting.
@@ -19,19 +19,23 @@ Default pick: Cal.com, for the free tier, the embed quality and the API.
 
 ## Rules
 1. **One booking entry point.** Every "Book a call" button goes through one function or link builder, so the URL can change in one place.
+   *Why:* booking tools change URLs and event slugs; one builder means one edit instead of a hunt across pages.
 2. **Embed inline** on your own `/book` page (not a pop-up from every page), so the page can load fast elsewhere and the booking page can be measured.
 3. **Keep the source.** Pass UTM parameters and the page of origin into the booking (Cal.com accepts them as query parameters and stores them as booking metadata), so every meeting shows where it came from.
+   *Why:* a meeting with no source cannot be credited to the page or campaign that earned it.
 4. **Land on your own confirmation page** after booking (redirect setting in the tool). Fire the GA4 key event there (`booking_confirmed`), mark it `noindex`, and say what happens next.
+   *Why:* the tool's own thank-you page is invisible to your analytics, so bookings never show as conversions.
 5. **Ask little.** Name, email and one qualifying question. Every extra field costs bookings.
 6. **Show the visitor's time zone** and the meeting length on the page.
 7. **Reminders on**, with an email the day before and an hour before, to cut no-shows.
-8. Add the tool's origins to the CSP `frame-src` and `script-src` (standard 02), and to the privacy policy's processor list (standard 10).
+8. Add the tool's origins to the CSP `frame-src` and `script-src` (standard 15), and to the privacy policy's processor list (standard 18).
 9. In regions where people prefer messaging (much of Latin America), offer a WhatsApp link next to the booking button, using a `wa.me` link with a pre-filled message.
+   *Why:* in much of Latin America a WhatsApp message converts better than a calendar, and a plain link loads no widget script (standard 19, rule 11).
 
 ## Paid bookings
 Pick the simplest pattern that fits:
 1. **Built-in payment** (Cal.com Stripe app, TidyCal with Stripe/PayPal): the tool takes payment before confirming. No code. Use it whenever your gateway is supported.
-2. **Your own gateway** (for example Wompi in Colombia, which booking tools don't support): make the event "requires confirmation"; after booking, send the visitor to a Worker that creates the checkout; the gateway's webhook calls the Worker; the Worker verifies the signature and confirms the booking through the booking tool's API. Unpaid bookings expire on a schedule (a cron Worker). See [19 · Payments](19-payments.md) for the gateway rules.
+2. **Your own gateway** (for example Wompi in Colombia, which booking tools don't support): make the event "requires confirmation"; after booking, send the visitor to a Worker that creates the checkout; the gateway's webhook calls the Worker; the Worker verifies the signature and confirms the booking through the booking tool's API. Unpaid bookings expire on a schedule (a cron Worker). See [13 · Payments](13-payments.md) for the gateway rules.
 
 ## Check
 - Book a test meeting from a URL with `?utm_source=test`: the booking shows the UTM, the confirmation page loads, and GA4 Realtime shows `booking_confirmed`.

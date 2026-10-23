@@ -12,7 +12,8 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{BRAND}}">
 <meta property="og:url" content="https://{{DOMAIN}}/{{path}}">
-<meta property="og:title" content="{{Page topic}} | {{BRAND}}">
+<!-- og:title without the brand: og:site_name already carries it (Meta and Apple advice) -->
+<meta property="og:title" content="{{Page topic}}">
 <meta property="og:description" content="{{Same idea as the meta description}}">
 <meta property="og:image" content="https://{{DOMAIN}}/assets/og/{{page}}.jpg">
 <meta property="og:image:width" content="1200">
@@ -22,12 +23,15 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="icon" href="/favicon.ico" sizes="32x32">
+<!-- Google Search shows a raster icon of 48px or more; it does not list SVG as supported -->
+<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="{{#HEX}}">
 
-<!-- Only the one or two fonts used above the fold -->
+<!-- Only the one or two fonts used above the fold. Font preloads need crossorigin, which
+     Pages skips for Early Hints; to hint a font, add a Link header in _headers instead. -->
 <link rel="preload" href="/assets/fonts/{{main-font}}.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/styles.css">
 <script type="module" src="/assets/js/main.js"></script>

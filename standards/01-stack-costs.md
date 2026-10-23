@@ -1,4 +1,4 @@
-# 17 · Stack and costs
+# 01 · Stack and costs
 **Applies to:** every site.
 
 ## Why
@@ -22,8 +22,8 @@ Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing 
 | Analytics | Google Analytics 4 | Free | Traffic sources, key events, funnels, AI-assistant traffic | |
 | Behaviour | Microsoft Clarity | Free | Heatmaps, session recordings, rage clicks, AI-bot visibility | No traffic cap |
 | Search | Google Search Console, Bing Webmaster Tools | Free | Indexing, queries, errors; Bing also feeds Copilot and other AI answers | |
-| Booking | Cal.com or TidyCal ([18](18-booking.md)) | Free plan, or a one-time TidyCal license | Booking calls into a calendar | Payments and team features may need a paid tier |
-| Payments | Stripe, Mollie, Wompi, Mercado Pago ([19](19-payments.md)) | No monthly fee; a percentage per transaction | Taking payment for consultations, deposits, courses | Fees vary by country and payment method |
+| Booking | Cal.com or TidyCal ([12](12-booking.md)) | Free plan, or a one-time TidyCal license | Booking calls into a calendar | Payments and team features may need a paid tier |
+| Payments | Stripe, Mollie, Wompi, Mercado Pago ([13](13-payments.md)) | No monthly fee; a percentage per transaction | Taking payment for consultations, deposits, courses | Fees vary by country and payment method |
 | Quality checks | PageSpeed Insights, Lighthouse CI, securityheaders.com, SSL Labs, Rich Results Test | Free | The graders behind "done" in the README | |
 | Building | A coding agent (Claude Code, Codex, OpenCode, Cursor) | A subscription or pay-per-token | Writes and maintains the code with you | This is the real cost, and it scales with how much you build |
 
@@ -32,11 +32,18 @@ Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing 
 ## Why free is still robust
 The free tiers here are the same infrastructure large companies pay for. Cloudflare serves a meaningful share of the web's traffic from hundreds of cities, so a free Pages site gets the same global network, automatic HTTPS and DDoS protection as an enterprise one. GitHub keeps every version of the site, so nothing is lost when a laptop dies. Static files have almost nothing to break or patch, unlike a hosted CMS with plugins. Google and Microsoft offer their analytics free because the data improves their products, not because it is a trial. The free limits sit far above what a small business site uses, and if one is ever reached, the paid tier is a switch in the same dashboard, not a migration.
 
+## Pages or Workers?
+Cloudflare now suggests starting new projects on **Workers with static assets**; Pages is not deprecated and is what this guide assumes. Pages still does more for a static site out of the box: automatic 404 handling, noindex on branch previews, `_headers`, `_redirects`, branch build controls and Early Hints. If you choose Workers, set `not_found_handling = "404-page"` yourself, check how it redirects `/page.html` and `/page/`, and add noindex to preview URLs, because those defaults differ ([migration guide](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)). Existing Pages sites have no reason to move.
+
 ## Rules
-1. Choose free tiers that can be upgraded in place. Avoid free hosting that would force a move later.
-2. Every account belongs to the business (or to the person who owns the infrastructure), with 2FA on, and nothing depends on one person's laptop.
-3. Write down in the site's AGENTS.md which services the site uses, so the CSP, privacy policy and cost list stay in sync.
-4. Read the pricing page before relying on a limit, and note the date you checked.
+1. **Free tiers that upgrade in place.** Avoid free hosting that would force a move later.
+   *Why:* migrations are where sites break and rankings dip; an upgrade is a switch in the same dashboard.
+2. **Every account belongs to the business,** with 2FA on, and nothing depends on one person's laptop.
+   *Why:* moving analytics, DNS or a domain between owners later is slow and sometimes impossible.
+3. **One list of services, in the site's AGENTS.md.**
+   *Why:* the CSP (standard 15), the privacy policy's processor list (standard 18) and this cost table all have to match it.
+4. **Read the pricing page before relying on a limit,** and note the date you checked.
+   *Why:* free tiers change, and the limit you remember may be a year old.
 
 ## Avoid
 - Website builders that charge monthly for hosting a static site.

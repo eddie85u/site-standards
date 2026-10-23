@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Static guardrail checks for a site (site-standards 13). No dependencies.
+// Static guardrail checks for a site (site-standards 20). No dependencies.
 //
 //   node tests/check-site.mjs --root site --domain example.com [--slop] [--strict-slop]
 //
@@ -161,7 +161,7 @@ for (const file of htmlFiles) {
   }
 
   const text = visibleText(html);
-  for (const re of [/lorem ipsum/i, /\{\{[^}]*\}\}/, /\bexample\.com\b/i]) {
+  for (const re of [/lorem ipsum/i, /\{\{[^}]*\}\}/, /\bexample\.com\b/i, /\[NEED:[^\]]*\]/]) {
     const hit = text.match(re); if (hit) fail(rel, `placeholder text: "${hit[0]}"`);
   }
   for (const re of forbidden) { const hit = text.match(re); if (hit) fail(rel, `forbidden term: "${hit[0]}"`); }

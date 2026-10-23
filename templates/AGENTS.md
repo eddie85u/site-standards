@@ -27,8 +27,11 @@ When you learn something new about a standard while working here, add a short da
 node tests/check-site.mjs --root {{site}} --domain {{domain}}
 ```
 
+## Services in use
+{{Every third-party service the site loads or sends data to.}} Adding or removing one means updating, in the same change: the CSP in `_headers`, the privacy policy's processor list, and this list.
+
 ## Deploy policy
-Branch → checks pass → merge to `main`. No manual uploads for site changes.
+Branch → checks pass → merge to `main`. No manual uploads for site changes. A bad deploy is rolled back first (Pages → Deployments → an earlier production deployment → Rollback), then fixed on a branch.
 
 ## Accounts
 {{Where analytics, search and DNS live, and who owns them. Keep IDs here, not in public repos.}}

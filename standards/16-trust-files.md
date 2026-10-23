@@ -1,8 +1,8 @@
-# 08 · Trust files
+# 16 · Trust files
 **Applies to:** every site.
 
 ## Why
-Small files that real companies have and hobby sites do not: a way to report a vulnerability, a proper icon on every device, and a manifest.
+Small files that real companies have and hobby sites do not: a way to report a vulnerability, a proper icon on every device and in search results, and a manifest. Scanners and security-minded buyers look for them, and an expired or bouncing one looks worse than none.
 
 ## Rules
 1. **security.txt** (RFC 9116, template: `templates/security.txt`) at `/.well-known/security.txt`:
@@ -10,7 +10,8 @@ Small files that real companies have and hobby sites do not: a way to report a v
    - `Expires:` an ISO date **less than a year away**, required. Put a reminder in the site's TODO.md one month before it.
    - `Preferred-Languages:` and `Canonical:` (the full URL of the file)
    - served as `text/plain`
-2. **Icons:** `favicon.ico` (32×32), `favicon.svg`, `apple-touch-icon.png` (180×180), and 192×192 + 512×512 PNGs for the manifest, one of them with a maskable safe zone.
+2. **Icons:** `favicon.ico` (32×32), `favicon.svg`, a raster favicon of at least 48×48 (the template uses `favicon-96.png`), `apple-touch-icon.png` (180×180), and 192×192 + 512×512 PNGs for the manifest, one of them with a maskable safe zone. Keep icon URLs stable and fetchable by Googlebot.
+   *Why:* Google Search shows a raster icon next to your result and does not list SVG as supported; with only a 32px ICO or an SVG, results often show a generic globe.
 3. **Web app manifest** `site.webmanifest` (template: `templates/site.webmanifest`) with `name`, `short_name`, `start_url`, `display`, `background_color`, `theme_color` and the icons; linked with `<link rel="manifest">`.
 4. **humans.txt** (optional): team, thanks and tech, no personal emails.
 

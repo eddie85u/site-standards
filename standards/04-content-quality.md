@@ -1,15 +1,25 @@
-# 14 · Content quality and AI slop
+# 04 · Content quality and AI slop
 **Applies to:** every site.
 
 ## Why
-Visitors, buyers and search engines have learned to spot generated filler. It makes a business look small, lazy or fake. Specific, plain, checkable copy reads as a company that knows its work.
+Visitors, buyers and search engines have learned to spot generated filler, and it makes a business look small, lazy or fake. Assistants also skip it: a sentence any competitor could publish gives them nothing to quote. Specific, plain, checkable copy reads as a company that knows its work, and it is what gets repeated in AI answers (standard 03).
 
 ## Rules
 1. **Specific over impressive.** Every claim answers "how much, for whom, by when, compared to what". If it cannot, cut it.
-2. **Plain words.** Short sentences. One idea per paragraph. Write the way the owner would explain it on a call.
-3. **Real proof only:** named clients (with permission), real numbers with a source, real photos of real people and places.
-4. **One voice per site**, written down in the site's AGENTS.md (tone, words to use, words never to use).
-5. **Human review** of every page of copy before it goes live, even when an agent drafted it.
+2. **Three tests for every sentence:**
+   - *Swap:* could a competitor publish it unchanged? Then it says nothing about you.
+   - *Picture:* can the reader see it happening? "Logins on day one and a 30-minute walkthrough" passes; "seamless onboarding" does not.
+   - *Falsifiable:* could it be proven wrong? Claims that cannot be are filler.
+
+   *Why:* these catch the generic sentences a slop list misses.
+3. **Agents mark missing proof instead of inventing or dropping it.** When a claim needs evidence the agent does not have, it writes `[NEED: review export]`, `[NEED: certificate]` or `[NEED: real number]` and the owner fills it in. The guardrail script flags any `[NEED:` left in the site.
+   *Why:* agents otherwise either invent a number (a legal problem) or quietly delete the strongest claim on the page.
+4. **Plain words.** Short sentences, one idea per paragraph, written the way the owner would say it on a call.
+5. **Real proof only:** named clients (with permission), real numbers with a source and a date ("4.8 on Google, Oct 2026"), real photos of real people and places.
+   *Why:* undated numbers look invented, and invented ones are a regulator's favourite target (standard 18).
+6. **One voice per site,** written in the site's AGENTS.md: tone, words to use, words never to use.
+   *Why:* without it, every agent session drifts toward its own default voice.
+7. **Human review** of every page of copy before it goes live, even when an agent drafted it.
 
 ## The slop list
 The guardrail script reads `templates/slop-terms.txt`. A hit is not always wrong, but each one must be a deliberate choice.

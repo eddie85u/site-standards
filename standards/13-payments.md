@@ -1,4 +1,4 @@
-# 19 · Payments
+# 13 · Payments
 
 **Applies to:** sites that sell something online: a paid consultation, a deposit, a course, a product or a package. None of these gateways charge a monthly fee on their standard plans; you pay per transaction.
 
@@ -25,13 +25,16 @@ Hosted options (1 and 2) keep you at the lightest PCI level (card data never tou
 
 ## Rules
 1. **The browser never decides the price.** The amount comes from a price list in the Worker, keyed by product ID. Never trust an amount sent from the page.
+   *Why:* anyone can change a request in DevTools; a price taken from the page is a price the visitor chooses.
 2. **Signatures and secrets live in the Worker**, stored as secrets, never in front-end code or the repo. Some gateways use several different keys (public key, private key, integrity secret, events secret); label each one clearly, because mixing them up breaks checkout or webhooks.
 3. **The webhook is the truth, not the redirect.** Mark an order paid only when a webhook with a valid signature says so. The "thank you" redirect can be faked or skipped.
 4. **Webhooks are idempotent.** Gateways retry; processing the same event twice must not confirm twice or email twice. Store the event or transaction ID and ignore repeats.
 5. **Test mode first.** Run every path (success, decline, abandoned checkout, refund) with the gateway's test keys and test cards before switching to live keys.
-6. **Show the full price** with currency, taxes and what is included before checkout, and link the refund policy and terms (standard 10).
+   *Why:* declines, abandoned checkouts and refunds are the paths nobody clicks by hand and the ones customers hit.
+6. **Show the full price** with currency, taxes and what is included before checkout, and link the refund policy and terms (standard 18).
 7. **Receipts and confirmation:** the gateway's receipt email on, plus your own confirmation page (`noindex`) that fires the GA4 `purchase` or `booking_paid` key event with the value.
-8. **CSP and privacy:** add the checkout origin to `form-action`/`frame-src` as needed (standard 02) and the gateway to the privacy policy's processors (standard 10).
+   *Why:* with the value attached, GA4 shows revenue per channel and campaign, not just visits.
+8. **CSP and privacy:** add the checkout origin to `form-action`/`frame-src` as needed (standard 15) and the gateway to the privacy policy's processors (standard 18).
 9. **Europe:** cards need 3-D Secure (Strong Customer Authentication); hosted checkouts handle it for you.
 
 ## Check

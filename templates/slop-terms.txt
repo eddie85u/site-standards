@@ -1,4 +1,4 @@
-# Shared AI-slop list (standard 14). One term or JavaScript regex per line,
+# Shared AI-slop list (standard 04). One term or JavaScript regex per line,
 # matched case-insensitively against visible page text. Lines starting with #
 # are comments. A hit is not always wrong; each one must be a deliberate choice.
 in today's fast-paced
