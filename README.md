@@ -81,7 +81,7 @@ On the live domain:
 These sites run on this stack and are being brought up to every standard. Each one's progress feeds the notes here.
 - [strategyandstack.com](https://strategyandstack.com): B2B sales systems and AI automation
 - [remoteaccountingteam.com](https://remoteaccountingteam.com): remote accounting teams for US businesses
-- [regeneraxis.com](https://regeneraxis.com): a bilingual regenerative medicine and longevity clinic
+- [regeneraxis.com](https://regeneraxis.com): a bilingual longevity and regeneration center
 
 ## Tools worth knowing
 - **PageSpeed Insights, securityheaders.com, SSL Labs, Rich Results Test, opengraph.xyz:** free graders for the checks above.

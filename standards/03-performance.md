@@ -32,3 +32,4 @@ Speed is the first impression and a ranking signal. A slow site reads as a small
 
 ## Notes from real sites
 - 2026-10: a site preloaded six font files; dropping to the two used above the fold is a free LCP win.
+- 2026-10: with `Cache-Control: immutable` on `*.js`, a changed script without a new URL (`main.js?v=2`) never reaches returning visitors for a year. Bump the version in every tag that references it (the `modulepreload` link and the `script` tag must match).

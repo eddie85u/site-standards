@@ -47,4 +47,4 @@ Hosted options (1 and 2) keep you at the lightest PCI level (card data never tou
 - Building a full cart for one or two products: a payment link is enough.
 
 ## Notes from real sites
-- 2026-10: a Colombian clinic site takes paid valuations through Wompi Web Checkout. A Worker signs the transaction (integrity secret), Wompi calls the Worker's webhook (events secret), and the Worker confirms the Cal.com booking. Keeping the keys clearly named in the Worker settings avoided a class of "signature invalid" errors.
+- 2026-10: a Colombian longevity center's site takes paid valuations through Wompi Web Checkout. A Worker signs the transaction (integrity secret), Wompi calls the Worker's webhook (events secret), and the Worker confirms the Cal.com booking. Keeping the keys clearly named in the Worker settings avoided a class of "signature invalid" errors.

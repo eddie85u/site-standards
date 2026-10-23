@@ -29,4 +29,4 @@ Copy the template, fill the placeholders, and keep the Organization block identi
 - Empty `sameAs: []`. Leave the property out until there are real profiles.
 
 ## Notes from real sites
-- 2026-10: the most complete graph (Organization + WebSite + WebPage + Service) came from a B2B services site; a clinic site had FAQPage only and is the next one to fill out.
+- 2026-10: the most complete graph (Organization + WebSite + WebPage + Service) came from a B2B services site; a longevity center's site had FAQPage only and is the next one to fill out.

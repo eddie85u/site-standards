@@ -35,3 +35,4 @@ Search engines and AI answer engines both start from the same signals: clean tit
 
 ## Notes from real sites
 - 2026-10: after moving a domain's DNS to a new Cloudflare account, Search Console verification had to be redone because the TXT record lived in the old zone.
+- 2026-10: a site set `document.title` from JavaScript on load, which silently replaced the approved HTML title in browsers and for crawlers that run JS. Keep the `<title>` in the HTML as the only source; never set it from scripts on a static site.

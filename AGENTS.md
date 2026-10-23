@@ -6,7 +6,7 @@ Rules for any AI agent or person editing this repo. This repo is **public**: it 
 Keep the "Who made this" and "Live examples" sections in README.md. The live examples are the owner's own sites; never add other companies' sites without their permission.
 
 ## Never put here
-- Account emails, IDs (GA4, GTM, Clarity), IP addresses, prices, internal decisions, or any site's status. Outside the README's credit and live-examples sections, refer to sites generically ("a clinic site").
+- Account emails, IDs (GA4, GTM, Clarity), IP addresses, prices, internal decisions, or any site's status. Outside the README's credit and live-examples sections, refer to sites generically ("a longevity center").
 - Legal claims stated as fact for a specific situation, or advice to evade a law, a platform policy or a bot protection. Per-site status and gaps live in each site's own TODO.md (and the owner's private admin repo).
 
 ## How each standard file is written

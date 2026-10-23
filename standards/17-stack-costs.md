@@ -44,4 +44,4 @@ The free tiers here are the same infrastructure large companies pay for. Cloudfl
 - Mixing personal and business accounts. Moving a property between accounts later is slow and sometimes impossible.
 
 ## Notes from real sites
-- 2026-10: three live business sites (a B2B services firm, an accounting firm, a clinic) run on this stack. Their only fixed costs are the domains and, for two, a mailbox.
+- 2026-10: three live business sites (a B2B services firm, an accounting firm, a longevity center) run on this stack. Their only fixed costs are the domains and, for two, a mailbox.
