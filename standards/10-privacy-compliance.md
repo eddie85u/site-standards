@@ -24,3 +24,4 @@ A privacy policy, an honest cookie banner and disciplined claims protect the bus
 - Ad-platform-sensitive wording in regulated fields (health: drug or compound names, "cure", "anti-aging", weight-loss promises; finance: guaranteed returns). These get ads rejected even when true.
 
 ## Notes from real sites
+- None yet. Add the first dated lesson here.

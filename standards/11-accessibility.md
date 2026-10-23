@@ -28,3 +28,4 @@ Accessible sites reach more people, rank better, and meet legal expectations (AD
 - Accessibility overlay widgets: they do not fix the underlying code, and an overlay does not make a site compliant.
 
 ## Notes from real sites
+- None yet. Add the first dated lesson here.

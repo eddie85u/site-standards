@@ -28,3 +28,4 @@ The contact form is where the money is. It has to work every time, stay free of 
 - Deploying Workers from a laptop with settings that exist only in the dashboard. Capture them first, test on a separate Worker name, then switch.
 
 ## Notes from real sites
+- None yet. Add the first dated lesson here.
