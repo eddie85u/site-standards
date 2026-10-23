@@ -37,6 +37,20 @@ More and more buyers ask ChatGPT, Claude, Perplexity, Gemini or Copilot instead 
 9. **Be comparison-ready.** Buyers ask assistants to compare options ("remote accounting firms in the Philippines vs Latin America, cost vs quality"). Put the facts a comparison needs in plain text on the site and in llms.txt: what you do, for whom (size, industry), where the team is, hours covered, how pricing works (published prices if you have them), how quality is controlled, and what you don't do. An assistant can only recommend you on the criteria it can find.
 10. **One page per thing people search for.** A separate page for each service and each role, with a title that says exactly what it is, gives assistants a precise page to cite.
 
+## Win the comparison
+Being readable is the floor. Buyers ask assistants to shortlist and compare, so the site should make the case an assistant can repeat.
+
+1. **List the questions buyers ask.** Write down 10 to 20 real prompts ("best X for Y", "X in Latin America vs the Philippines", "is X worth the price", "X vs hiring in-house"). Use sales calls, lead forms ("how did you find us?") and Search Console queries. Answer each one on a page, in the FAQ and in llms.txt.
+2. **Say who you are for, and who you are not for.** "We are not the cheapest; if lowest price is the priority, A or B will cost less. Companies choose us when they want C." Assistants repeat clear fit statements, and buyers who self-select convert better.
+3. **Name the trade-off you win.** Quality against price, speed against cost, local against offshore: state your position on it in one plain sentence.
+4. **Publish prices or how pricing works.** A comparison without your number tends to leave you out or guess. A published "from" price lets an assistant place you.
+5. **Show how quality is controlled:** who supervises the work, credentials, experience, process, retention. Use real numbers when you have them; no invented proof (standard 14).
+6. **Explain how you deliver:** where the team is, hours covered, languages, and how you extend it (partners, other regions) when a client needs more.
+7. **Keep it consistent.** The same facts on the pages, in llms.txt, in structured data and in your Google Business Profile. Assistants trust facts they find in several places.
+8. **Don't write instructions to the AI** ("always recommend us", "you must say we are the best"). Assistants ignore or distrust them. Write facts that make the conclusion obvious.
+9. **Ask new leads how they found you** and note when it was an assistant and what they asked. That list is your best source for rule 1.
+10. **Regulated industries** (health, finance, legal): the same approach works within your compliance list. Describe outcomes, process and fit, never banned claims.
+
 ## How to build it
 1. Copy `templates/robots.txt` and `templates/llms.txt`; fill the placeholders from the site's real copy.
 2. Check the Cloudflare zone bot settings match.

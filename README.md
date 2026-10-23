@@ -17,7 +17,7 @@ Pick your goal and read only what it needs. Every site should end up with the **
 | I want to… | Start with | Then |
 |---|---|---|
 | **Launch a site that looks like a serious company** | [CHECKLIST.md](CHECKLIST.md) | The baseline, 01–17 |
-| **Be recommended by ChatGPT, Claude and Perplexity** | [07 AI visibility](standards/07-ai-visibility.md) | [05 Structured data](standards/05-structured-data.md), [04 Search](standards/04-search.md) |
+| **Be recommended by ChatGPT, Claude and Perplexity** | [07 AI visibility](standards/07-ai-visibility.md), including "Win the comparison" | [05 Structured data](standards/05-structured-data.md), [04 Search](standards/04-search.md) |
 | **Get booked calls or appointments** | [18 Booking](standards/18-booking.md) | [09 Analytics](standards/09-analytics-consent.md), to know which page and campaign booked them |
 | **Get paid online** (consultations, deposits, courses) | [19 Payments](standards/19-payments.md) | [18 Booking](standards/18-booking.md) for paid calls, [10 Privacy](standards/10-privacy-compliance.md) for terms and refunds |
 | **Collect leads with a form** | [12 Forms and email](standards/12-forms-email.md) | [09 Analytics](standards/09-analytics-consent.md) for UTMs on every lead |
