@@ -1,0 +1,40 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://{{DOMAIN}}/#organization",
+      "name": "{{BRAND}}",
+      "url": "https://{{DOMAIN}}/",
+      "logo": { "@type": "ImageObject", "url": "https://{{DOMAIN}}/logo-512.png", "width": 512, "height": 512 },
+      "description": "{{One factual sentence}}",
+      "contactPoint": { "@type": "ContactPoint", "contactType": "sales", "url": "https://{{DOMAIN}}/contact", "availableLanguage": ["English"] },
+      "sameAs": ["{{https://www.linkedin.com/company/...}}"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://{{DOMAIN}}/#website",
+      "url": "https://{{DOMAIN}}/",
+      "name": "{{BRAND}}",
+      "publisher": { "@id": "https://{{DOMAIN}}/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://{{DOMAIN}}/{{path}}#webpage",
+      "url": "https://{{DOMAIN}}/{{path}}",
+      "name": "{{Page title}}",
+      "isPartOf": { "@id": "https://{{DOMAIN}}/#website" },
+      "about": { "@id": "https://{{DOMAIN}}/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Service",
+      "@id": "https://{{DOMAIN}}/{{service-path}}#service",
+      "name": "{{Service name}}",
+      "provider": { "@id": "https://{{DOMAIN}}/#organization" },
+      "areaServed": "{{Country or Worldwide}}",
+      "description": "{{One factual sentence}}"
+    }
+  ]
+}

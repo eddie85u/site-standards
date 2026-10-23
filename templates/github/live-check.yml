@@ -1,0 +1,37 @@
+# Optional. Copy to .github/workflows/live-check.yml. Weekly check of the live
+# domain; a failure emails the repo owner through GitHub's default notifications.
+name: Live check
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # Mondays 12:00 UTC
+  workflow_dispatch:
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    env:
+      SITE: https://{{domain}}
+    steps:
+      - name: Key pages return 200
+        run: |
+          for p in / /robots.txt /sitemap.xml /llms.txt /.well-known/security.txt; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE$p")
+            echo "$p $code"; test "$code" = 200
+          done
+      - name: Unknown and repo-only paths return 404
+        run: |
+          for p in /this-should-404 /AGENTS.md /TODO.md /package.json; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE$p")
+            echo "$p $code"; test "$code" = 404
+          done
+      - name: AI crawlers are not blocked
+        run: |
+          for ua in "GPTBot/1.2" "ClaudeBot/1.0" "PerplexityBot/1.0"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -A "$ua" "$SITE/")
+            echo "$ua $code"; test "$code" = 200
+          done
+      - name: security.txt has not expired
+        run: |
+          exp=$(curl -s "$SITE/.well-known/security.txt" | sed -n 's/^Expires: *//p' | cut -c1-10)
+          echo "Expires $exp"; test "$(date -u +%F)" \< "$exp"

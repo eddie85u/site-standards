@@ -1,0 +1,23 @@
+# {{BRAND}}
+
+> {{One or two sentences: what the business does, for whom, and where.}}
+
+{{BRAND}} {{a short paragraph of plain facts: services, who it serves, languages, locations, how engagements work.}}
+
+How to engage: {{book a call at URL / write to EMAIL / WhatsApp}}. {{What it does not do, if buyers often ask.}}
+
+## Services
+
+- [{{Service name}}](https://{{DOMAIN}}/{{path}}): {{one line on what it is and who it is for}}
+- [{{Service name}}](https://{{DOMAIN}}/{{path}}): {{one line}}
+
+## Company
+
+- [About](https://{{DOMAIN}}/about): {{team, history, where it operates}}
+- [Contact](https://{{DOMAIN}}/contact): {{how to reach the team}}
+- [Privacy policy](https://{{DOMAIN}}/privacy)
+
+## Optional
+
+- [{{Spanish version}}](https://{{DOMAIN}}/es/): {{same content in Spanish}}
+- [Full text for language models](https://{{DOMAIN}}/llms-full.txt)

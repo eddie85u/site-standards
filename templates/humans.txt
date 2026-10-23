@@ -1,0 +1,9 @@
+/* TEAM */
+{{BRAND}}
+Site: https://{{DOMAIN}}
+Location: {{CITY, COUNTRY}}
+
+/* SITE */
+Last update: {{YYYY-MM-DD}}
+Language: {{English}}
+Standards: HTML5, CSS3, ES modules

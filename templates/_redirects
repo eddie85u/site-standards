@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects. HTTP to HTTPS and www to apex are zone rules,
+# not lines here (Pages ignores domain-level rules in this file).
+
+/.well-known/security.txt /security.txt 200

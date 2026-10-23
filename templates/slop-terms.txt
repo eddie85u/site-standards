@@ -1,0 +1,31 @@
+# Shared AI-slop list (standard 14). One term or JavaScript regex per line,
+# matched case-insensitively against visible page text. Lines starting with #
+# are comments. A hit is not always wrong; each one must be a deliberate choice.
+in today's fast-paced
+ever-evolving landscape
+look no further
+\bunlock(s|ing)? (the|your)\b
+\bunleash
+\belevate (your|the)\b
+\bempower(s|ing)?\b
+\bsupercharge
+\brevolutioni[sz]e
+\bharness(ing)? the power
+\bleverag(e|ing) (our|your|the)\b
+\bdelve
+\bseamless(ly)?\b
+\brobust\b
+cutting-edge
+state-of-the-art
+world-class
+best-in-class
+next-level
+game-?chang(er|ing)
+\bsynerg(y|ies)\b
+\btapestry\b
+navigate the complexit
+at the forefront
+in the realm of
+it's not just
+lorem ipsum
+your company name

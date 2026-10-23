@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "include": [
+    "/AGENTS.md",
+    "/CLAUDE.md",
+    "/TODO.md",
+    "/README.md",
+    "/.gitignore",
+    "/package.json",
+    "/package-lock.json",
+    "/forbidden-terms.txt",
+    "/functions/*",
+    "/scripts/*",
+    "/tests/*",
+    "/worker/*"
+  ],
+  "exclude": []
+}

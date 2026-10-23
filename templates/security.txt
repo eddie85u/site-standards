@@ -1,0 +1,4 @@
+Contact: mailto:security@{{DOMAIN}}
+Expires: {{YYYY-MM-DD, under one year from today}}T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://{{DOMAIN}}/.well-known/security.txt
