@@ -46,6 +46,11 @@ A site meets the standards when, on the live domain:
 - `/robots.txt`, `/sitemap.xml`, `/llms.txt` and `/.well-known/security.txt` return 200 with the right content type.
 - The guardrail tests pass in CI.
 
+## Tools worth knowing
+- **PageSpeed Insights, securityheaders.com, SSL Labs, Rich Results Test, opengraph.xyz:** the free graders behind "done" above.
+- **Cloudflare security-audit skill** (github.com/cloudflare/security-audit-skill): an agent-run vulnerability audit for Workers and Pages Functions. Worth running on anything that handles payments or webhooks. Run it in a sandbox; it executes code.
+- **Cloudflare ai-brand-visibility-template:** checks whether AI models mention a brand for chosen prompts. Workers AI models fit the free allowance; third-party models cost credits.
+
 ## Assumptions
 Static HTML/CSS/JS (no framework required) on Cloudflare Pages with the domain's DNS on Cloudflare. Most of it applies to any static host; where a rule is Cloudflare-specific it says so.
 
