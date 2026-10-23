@@ -16,4 +16,6 @@ Links get shared in WhatsApp, LinkedIn, Slack and email. A crisp, page-specific 
 - Relative `og:image` URLs (most crawlers ignore them).
 - One shared image for every page: every share then looks the same.
 - Cached old previews: after changing an image, re-scrape it in each platform's debugger.
+
+## Notes from real sites
 - 2026-10: a site referenced `/og-image.png` for months while the file never existed; every share showed no preview and nobody noticed. `check-site.mjs` catches this, so run it before launch.
