@@ -1,4 +1,4 @@
-Contact: mailto:security@{{DOMAIN}}
+Contact: mailto:{{an inbox that exists, e.g. info@DOMAIN}}
 Expires: {{YYYY-MM-DD, under one year from today}}T00:00:00.000Z
-Preferred-Languages: en
+Preferred-Languages: {{en, es}}
 Canonical: https://{{DOMAIN}}/.well-known/security.txt

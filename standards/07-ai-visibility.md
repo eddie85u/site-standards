@@ -60,3 +60,5 @@ Then ask two or three assistants "What does <brand> do and who is it for?" and c
 ## Notes from real sites
 - 2026-10: one site's robots.txt allowed every AI bot while its Cloudflare zone returned 403 to GPTBot, ClaudeBot and PerplexityBot. The zone setting wins. Always test with a bot user agent.
 - 2026-10: the most complete llms.txt among our sites still used `#` comment lines as a header and had no link lists; it is being rewritten to the llmstxt.org shape.
+- 2026-10 (sweep across three sites): one site's robots.txt listed five bot names that are retired or never existed, while the other two had a two-line file that named no AI bots at all. All three now use the template. None had Cloudflare's managed robots.txt switched on; if it is, Cloudflare adds its own block to the top of the file, so always read the live file, not the repo copy.
+- 2026-10: llms.txt is a discovery surface like the homepage. Sites with rules about where prices may appear should link to the pages that show prices instead of repeating them, so the file never contradicts the site.
