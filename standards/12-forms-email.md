@@ -26,3 +26,5 @@ The contact form is where the money is. It has to work every time, stay free of 
 - SPF still including a service you stopped using (for example an old email-routing setup).
 - Forms that `mailto:`: unreliable and expose the address to scrapers.
 - Deploying Workers from a laptop with settings that exist only in the dashboard. Capture them first, test on a separate Worker name, then switch.
+
+## Notes from real sites

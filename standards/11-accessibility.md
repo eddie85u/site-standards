@@ -26,3 +26,5 @@ Accessible sites reach more people, rank better, and meet legal expectations (AD
 - Placeholder text instead of labels.
 - Scroll-jacking that breaks the keyboard, find-in-page or the back button.
 - Accessibility overlay widgets: they do not fix the underlying code, and an overlay does not make a site compliant.
+
+## Notes from real sites

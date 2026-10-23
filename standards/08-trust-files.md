@@ -28,4 +28,6 @@ curl -s https://example.com/.well-known/security.txt   # Contact and a future Ex
 - An `Expires` date that has passed: scanners then report the file as invalid, which looks worse than not having one.
 - A security contact address that nobody reads, or that does not exist on the mail server.
 - `"purpose": "maskable"` on an icon with the logo touching the edges (it gets cropped). Use `"any"` for full-bleed icons and a separate maskable one.
+
+## Notes from real sites
 - 2026-10: root-served sites often keep allowlists of their published files (a dev-server regex, a build file list, a completeness test). A new root file like `llms.txt` or `security.txt` has to be added to every one of them, or it works live but fails locally or in the export.

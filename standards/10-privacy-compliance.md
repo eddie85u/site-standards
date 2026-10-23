@@ -22,3 +22,5 @@ A privacy policy, an honest cookie banner and disciplined claims protect the bus
 - "SOC 2", "ISO 27001", "HIPAA compliant", "certified partner" or award badges the business does not actually hold.
 - Invented numbers: "500+ clients", "98% satisfaction" without a source you could show a regulator.
 - Ad-platform-sensitive wording in regulated fields (health: drug or compound names, "cure", "anti-aging", weight-loss promises; finance: guaranteed returns). These get ads rejected even when true.
+
+## Notes from real sites

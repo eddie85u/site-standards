@@ -18,3 +18,5 @@ A site is maintained by many sessions, people and AI tools over years. Plain-tex
 curl -s -o /dev/null -w "%{http_code}\n" https://example.com/AGENTS.md   # 404
 curl -s -o /dev/null -w "%{http_code}\n" https://example.com/TODO.md     # 404
 ```
+
+## Notes from real sites

@@ -48,3 +48,5 @@ Then read the page out loud. Anything you would not say to a client on a call go
 ## Avoid
 - Running a "humanizer" tool over generated text: it swaps synonyms and keeps the emptiness.
 - Banning words without replacing them with facts: the result is shorter slop.
+
+## Notes from real sites
