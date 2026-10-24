@@ -4,6 +4,8 @@
 ## Why
 Links get shared in WhatsApp, LinkedIn, Slack and email, often before anyone visits the site. A crisp, page-specific preview card looks like a real company; a missing or generic one looks like a template. Previews fail silently: the tags look right in the code while every share shows a blank card, so this standard is mostly about checking from the platforms' side.
 
+There is no rigorous recent study on preview cards; most "X% more clicks" figures come from tool vendors. The case is the one you can see yourself: paste your link into WhatsApp and LinkedIn and look at what a prospect sees.
+
 ## Rules
 1. Every indexable page sets `og:type`, `og:url` (canonical), `og:title`, `og:description`, `og:image` (absolute HTTPS URL), `og:image:width`, `og:image:height`, `og:image:alt`, `og:site_name`, `og:locale` (+ `og:locale:alternate` on bilingual sites), and `twitter:card` = `summary_large_image`. `og:title` is the page topic **without** the brand; `og:site_name` carries it.
    *Why:* width and height let the first share render a large card instead of a small one; Meta and Apple both show the site name separately, so a brand in the title appears twice.

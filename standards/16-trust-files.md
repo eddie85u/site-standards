@@ -4,6 +4,8 @@
 ## Why
 Small files that real companies have and hobby sites do not: a way to report a vulnerability, a proper icon on every device and in search results, and a manifest. Scanners and security-minded buyers look for them, and an expired or bouncing one looks worse than none.
 
+Only about 1% of websites publish a security.txt ([Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)), and at least a quarter of those are invalid under the standard ([Web Almanac, 2025](https://almanac.httparchive.org/en/2025/security)). A valid one is a cheap way to look more careful than almost everyone.
+
 ## Rules
 1. **security.txt** (RFC 9116, template: `templates/security.txt`) at `/.well-known/security.txt`:
    - `Contact:` a monitored address, required. Use an inbox that already exists and is read (for example the `info@` or `privacy@` address the site publishes). Only use `security@` if that mailbox or forwarding rule really exists; a bouncing contact is worse than none. An `https://` link to the contact page is also valid.

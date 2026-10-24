@@ -4,6 +4,8 @@
 ## Why
 More buyers ask ChatGPT, Claude, Perplexity, Gemini or Copilot instead of searching. Those assistants can only recommend a business they are allowed to fetch and can read without effort. Many sites block them by accident at the CDN, or hide their text behind JavaScript, and never find out. This standard makes the site readable; standard 03 makes it the one they pick.
 
+How common the accidental block is: since July 2025, new Cloudflare domains block AI crawlers by default, and more than a million customers had already turned on the one-click block ([Cloudflare, 2025](https://www.cloudflare.com/press/press-releases/2025/cloudflare-just-changed-how-ai-crawlers-scrape-the-internet-at-large/)). Many of those owners want to be recommended and never made that choice on purpose.
+
 ## Rules
 1. **Decide the policy per site and write it in the site's AGENTS.md.** For a business that wants to be found: allow search crawlers, AI answer and search bots, and AI training crawlers; block pure scrapers.
    *Why:* the default on some CDNs and templates is to block AI bots "for security", which quietly removes you from answers.

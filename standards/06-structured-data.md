@@ -4,6 +4,8 @@
 ## Why
 JSON-LD tells search engines and AI assistants, unambiguously, who the business is, what it sells and how to reach it. It decides the site name Google shows above your result, and it gives assistants the same facts your pages state in a form they cannot misread. Google says it is not required for AI features, so treat it as consistency and eligibility, not a ranking trick. It is still the cheapest "big company" signal there is.
 
+Google's own published results: Rotten Tomatoes saw a 25% higher click-through rate on pages with structured data, Food Network 35% more visits, and Nestlé an 82% higher click-through rate on rich results ([Google Search Central](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data); case studies from about 2019 to 2021).
+
 ## Rules
 1. One `<script type="application/ld+json">` per page holding an `@graph` (template: `templates/jsonld-organization.json`):
    - **Organization** (or a specific subtype: `ProfessionalService`, `MedicalBusiness`, `LocalBusiness`) with `@id` `https://example.com/#organization`, `name`, `url`, `logo` (absolute URL, square, at least 112×112), `description`, `contactPoint`, `sameAs` (real social profiles only)

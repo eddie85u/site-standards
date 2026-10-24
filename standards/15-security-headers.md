@@ -4,6 +4,8 @@
 ## Why
 Headers are free and invisible to visitors. They stop a hijacked script or an injected tag from running on your pages, stop other sites from framing yours, and force HTTPS. They are also the first thing a security-minded buyer or scanner checks: an A on securityheaders.com reads as a company that knows what it is doing. Most of them never need touching again; only the Content Security Policy (CSP) has to follow the stack, and rule 7 keeps that from getting in your way.
 
+Few sites bother, which is why it stands out: only 34% of pages send HSTS and 19% send a Content Security Policy ([HTTP Archive Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)).
+
 ## Rules
 1. **Send these on every HTML response** (template: `templates/_headers`):
    - `Strict-Transport-Security: max-age=31536000; includeSubDomains`

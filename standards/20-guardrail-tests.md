@@ -4,6 +4,8 @@
 ## Why
 Every standard here can be broken by one careless edit, very often by an AI agent that was asked to change something else. Nothing looks broken, so nobody notices for months. A fast static check that runs on every change is the only thing that reliably catches it.
 
+66% of developers say their top frustration with AI tools is output that is "almost right, but not quite", and 45% say debugging AI-generated code takes longer ([Stack Overflow survey, 2025](https://survey.stackoverflow.co/2025/ai)). On a website, "almost right" is a missing canonical or a deleted consent check that nobody sees.
+
 ## Rules
 1. **Every site runs `templates/tests/check-site.mjs`** (no dependencies, Node 20+) before merging to production. It checks:
    - each HTML page: `lang`, `<title>`, meta description, canonical, exactly one `<h1>`, `og:image` present and the file exists, every `<img>` has `alt`

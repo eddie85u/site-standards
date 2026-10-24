@@ -4,6 +4,10 @@
 ## Why
 The fastest way to look amateur, or to leak something, is to publish files that were never meant to be public: internal notes, tests, AGENTS.md, or a preview copy of the site that outranks the real one. Static hosts serve whatever is in the folder, and every past deploy stays online at its own address, so a leak outlives the fix unless you clean up.
 
+This is not hypothetical:
+- Attackers scanned more than 230 million targets, harvested exposed `.env` files from 110,000 domains, and used the 7,000 cloud credentials inside to extort the owners. The cause was misconfiguration, not a software flaw ([Unit 42, 2024](https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/)).
+- A scan of 3.5 million hosts found 28,000 publicly exposed `.git` folders holding 400 AWS keys and 107 Stripe keys ([Intruder, 2026](https://intruder.io/research/api-keys-bank-details-disciplinary-files-what-28-000-exposed-git-repos-gave-up)).
+
 ## Rules
 1. **Only the site is served.** Put it in a dedicated output folder (for example `site/`) and set that as the publish directory (Cloudflare Pages: *Settings → Build → Build output directory*; with no build command, Pages serves the folder as-is).
    *Why:* nothing outside the folder can leak, so no guard or test is needed.

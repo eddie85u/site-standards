@@ -5,6 +5,8 @@
 ## Why
 Taking payment on the site removes a step between "yes" and "paid". With hosted checkout it also keeps card data off your site, so there is little security or compliance burden.
 
+Checkout is where most buyers drop: documented cart abandonment averages 70%, and the top reasons after "just browsing" are surprise costs (40%), not trusting the site with card details (19%), forced account creation (18%) and a long checkout (17%) ([Baymard Institute](https://baymard.com/lists/cart-abandonment-rate)). Hosted checkout and full prices up front address three of the four.
+
 ## Choose a gateway
 Pick by three things: where the business is registered and banks, where the customers are, and which payment methods they expect. Fees and coverage as of 2026-10; check each pricing page.
 
@@ -42,6 +44,7 @@ Hosted options (1 and 2) keep you at the lightest PCI level (card data never tou
 - A webhook with a wrong signature is rejected with an error status.
 - Changing the amount in the browser's dev tools does not change what is charged.
 - Live mode: one real low-value purchase, then a refund.
+- Before going live, run an independent security review of the Worker and webhook code, for example Cloudflare's [security-audit skill](https://github.com/cloudflare/security-audit-skill), which runs a multi-phase audit with independently verified findings. Run it in a sandbox, since it executes code, and run it even on code another model already reviewed.
 
 ## Avoid
 - Computing a payment signature or hash in JavaScript on the page: anyone can read the secret.

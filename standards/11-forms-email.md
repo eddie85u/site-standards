@@ -4,6 +4,8 @@
 ## Why
 The contact form is where the money is. It has to work every time, stay free of spam, and its emails have to land in the inbox.
 
+Mailbox providers now enforce this: Gmail requires authentication from anyone sending over 5,000 messages a day, and after it began requiring basic authentication on all mail, unauthenticated messages fell 75% ([Google, 2023](https://blog.google/products/gmail/gmail-security-authentication-spam-protection/)). Yet 52% of top domains still publish no DMARC record ([EasyDMARC, 2025](https://betanews.com/2025/05/29/less-than-eight-percent-of-top-domains-implement-the-toughest-dmarc-protection/)).
+
 ## Rules
 1. **Server-side handling:** forms post to a Worker (or function) you control, which validates input, rate-limits, and sends the email or stores the lead. No secrets or signatures in browser code.
    *Why:* anything in the browser can be read and replayed, so keys and validation in front-end code protect nothing.

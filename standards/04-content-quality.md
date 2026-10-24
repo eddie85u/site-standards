@@ -4,6 +4,8 @@
 ## Why
 Visitors, buyers and search engines have learned to spot generated filler, and it makes a business look small, lazy or fake. Assistants also skip it: a sentence any competitor could publish gives them nothing to quote. Specific, plain, checkable copy reads as a company that knows its work, and it is what gets repeated in AI answers (standard 03).
 
+Google says its March 2024 update cut low-quality, unoriginal content in results by 45% ([Google, via Search Engine Roundtable](https://www.seroundtable.com/google-march-2024-core-update-finished-april-19-37299.html)). Generic copy is what that filter is built to remove.
+
 ## Rules
 1. **Specific over impressive.** Every claim answers "how much, for whom, by when, compared to what". If it cannot, cut it.
 2. **Three tests for every sentence:**

@@ -4,6 +4,10 @@
 ## Why
 Speed is the first impression and a ranking signal. Most visitors arrive on a mid-range phone over mobile data, and every extra second on the first screen loses some of them before they read a word. A slow site reads as a small company; a fast one reads as a well-run one. Static sites start fast, so most losses here come from a few avoidable habits.
 
+The evidence:
+- A 0.1-second improvement in mobile speed raised retail conversions by 8.4% and average order value by 9.2% across 37 brands ([Deloitte for Google, 2020](https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html)).
+- Vodafone's A/B test: 31% better LCP produced 8% more sales and a 15% better lead-to-visit rate ([web.dev, 2021](https://web.dev/case-studies/vodafone)).
+
 ## Rules
 1. **Core Web Vitals targets** (75th percentile, mobile): LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1. Lab target: PageSpeed Insights mobile Performance ≥ 90.
    *Why:* these are the field metrics Google uses; the lab score is only a proxy you can test before launch.
@@ -35,6 +39,7 @@ Speed is the first impression and a ranking signal. Most visitors arrive on a mi
 - Lighthouse CI on pull requests (see standard 20) to catch regressions.
 
 ## Avoid
+- Quoting "53% of visitors leave after 3 seconds". The 2016 source says visits are "likely to be abandoned", based on benchmark data with no published definition; use the Deloitte or Vodafone numbers instead.
 - Preloading every font weight: each preload competes with the LCP image. Detect: more than two `rel="preload" as="font"` in the head.
 - `loading="lazy"` on the LCP image (delays it).
 - Animation libraries loaded for one effect that CSS can do.

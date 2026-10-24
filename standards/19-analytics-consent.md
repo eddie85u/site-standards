@@ -8,6 +8,8 @@ Tracking without consent is no longer a theoretical risk for small sites:
 - **EU and UK:** the rule covers anything stored on or read from the device, including pixels, not only cookies ([EDPB 2/2023](https://www.edpb.europa.eu/documents/guideline/guidelines-22023-on-technical-scope-of-art-53-of-eprivacy-directive_en)).
 - **The platforms themselves:** Google's and Microsoft's terms require a privacy policy and valid consent, and both can suspend the account. Google Ads measures EEA traffic only with Consent Mode v2 signals, and Clarity has enforced consent for EEA, UK and Swiss visitors since 2025-10-31.
 
+Most banners fail anyway: a study of banners from the five most popular consent platforms on top UK sites found only 11.8% met minimal EU requirements ([Nouwens et al., CHI 2020](https://arxiv.org/abs/2001.02479)). The same study is honest about the cost: removing Reject from the first screen raised acceptance by about 22 points. That gain is exactly what regulators call a dark pattern, and rule 10 is how to recover visibility legitimately.
+
 The good news: done the way below, the cost in visibility is small (rule 10). Not legal advice; laws differ by market.
 
 ## Rules

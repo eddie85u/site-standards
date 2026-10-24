@@ -4,6 +4,8 @@
 ## Why
 Many business owners assume a professional website costs thousands up front and hundreds a month. A fast, secure, well-measured marketing site can run for the price of a domain. The money goes into the work (your time, or AI tokens and a coding-agent subscription), not into hosting.
 
+Fewer moving parts also means less to break: WordPress plugins produced 91% of the 11,334 new WordPress-ecosystem vulnerabilities found in 2025, and the typical one was being mass-exploited within 5 hours of disclosure ([Patchstack, 2026](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/)). A static site has no plugins to patch.
+
 ## The stack
 Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing page before you rely on a limit.
 

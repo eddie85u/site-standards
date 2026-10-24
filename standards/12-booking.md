@@ -5,6 +5,8 @@
 ## Why
 A booking page turns "contact us" into a meeting on the calendar, with no back-and-forth email. Done well, it also tells you which page and campaign produced each meeting.
 
+Reminders alone change attendance: in a randomized trial of about 9,800 patients, no-shows were 23.1% with no reminder, 17.3% with automated reminders and 13.6% with staff calls ([Am J Med, 2010](https://pubmed.ncbi.nlm.nih.gov/20569761/)). The tools below send them for free.
+
 ## Choose a tool
 Prices as of 2026-10; check before you commit.
 

@@ -4,6 +4,8 @@
 ## Why
 Google, Bing and the AI answer engines built on them start from the same signals: a clear title, one canonical URL per page, a sitemap that tells the truth, and a verified owner who sees the errors. Get these wrong and nothing else in this guide is found. Most mistakes here are invisible on the page and only show up weeks later in Search Console.
 
+For scale: 96.55% of the 14 billion pages in one large study get no Google traffic at all ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). The basics below do not guarantee traffic, but skipping them nearly guarantees none.
+
 ## Rules
 1. **Every indexable page has:**
    - a unique `<title>`: the topic first, brand last (`Topic | Brand`), around 50–60 characters

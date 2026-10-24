@@ -4,6 +4,12 @@
 ## Why
 Buyers no longer search one keyword and click ten links. They ask Google or an assistant to shortlist and compare ("best X for Y", "X in Latin America vs the Philippines, cost vs quality"). You win when your pages state, in plain text, the facts that comparison needs and make a case an assistant can repeat. Most sites never find out what those questions are, so they write about themselves instead of answering them. Everything below is free.
 
+The numbers behind the shift:
+- When Google shows an AI summary, users click a regular result in 8% of visits, against 15% without one, and click a link inside the summary in only 1% ([Pew Research, 2025](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/)).
+- Visits to US retail sites from AI assistants grew about 1,200% in seven months; those visitors viewed 12% more pages and bounced 23% less than other visitors ([Adobe Analytics, 2025](https://blog.adobe.com/en/publish/2025/03/17/adobe-analytics-traffic-to-us-retail-websites-from-generative-ai-sources-jumps-1200-percent)).
+
+Fewer clicks overall, better visitors from the answers: the business the answer names takes the click.
+
 ## Before: find the questions
 1. **Seed list.** Write 5 to 10 short head terms: the service, the problem, the audience, the place ("remote bookkeeper", "longevity Medellín").
    *Why:* short seeds return the most suggestions in every tool below.
