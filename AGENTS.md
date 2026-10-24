@@ -12,7 +12,9 @@ Keep the "Who made this" and "Live examples" sections in README.md. The live exa
 ## How each standard file is written
 Every file in `standards/` uses the same sections, in this order:
 1. **Why** — one or two sentences on what it buys.
-2. **Rules** — numbered, specific enough that an agent can build it without guessing. Say "must" or "should" honestly. Each rule that is not self-evident ends with a one-line *Why:* that names the concrete consequence, so an agent can tell when an exception is safe. No why that only restates the rule.
+2. **Rules** — numbered, specific enough that an agent can build it without guessing. Say "must" or "should" honestly. Each rule that is not self-evident ends with a *Why:* that names the concrete consequence, so an agent can tell when an exception is safe. One line when one line does it; a short list of examples when that makes the case stronger. No why that only restates the rule, and no padding.
+
+Numbers make a why credible: when a study, case study or enforcement action backs a rule, cite it with the source, a link and the year. Prefer primary sources, say when a figure is old or self-reported, and never repeat a famous statistic you cannot trace to its origin.
 3. **How to build it** — steps and the template to start from.
 4. **Check** — exact commands or tools, with the expected result.
 5. **Avoid** — common mistakes and outdated advice, and how to detect them.
