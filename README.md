@@ -3,6 +3,7 @@
 **Everything a business website needs under the hood, written so your AI coding agent can build it.**
 
 - A professional-grade site can cost **less than $15 a year** to run. That's the domain; hosting, security, analytics and booking can all be free. [See the stack →](standards/01-stack-costs.md)
+- In October 2026, two critical PHP flaws let attackers **take over PHP websites without a password**, with over 5 million servers exposed ([BleepingComputer](https://bleepingcomputer.com/news/security/php-ships-emergency-patches-for-critical-php2shell-flaws)). WordPress runs on PHP. The sites built with this guide had **nothing to patch**. [Why static wins →](standards/01-stack-costs.md)
 - When Google shows an AI summary, people click a result **half as often** (8% of visits against 15%, [Pew, 2025](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/)). Being the business the answer names is the new page one. [Win the comparison →](standards/03-win-the-comparison.md)
 - Since July 2025, new Cloudflare sites **block AI crawlers by default**, and over a million owners had already switched the block on ([Cloudflare](https://www.cloudflare.com/press/press-releases/2025/cloudflare-just-changed-how-ai-crawlers-scrape-the-internet-at-large/)). If ChatGPT can't fetch your site, it can't recommend you. [Check yours →](standards/07-ai-visibility.md)
 - Attackers harvested exposed `.env` files from **110,000 domains** and used the keys inside to extort the owners ([Unit 42, 2024](https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/)). On many hosts, every old deploy also stays online at its own address. [Lock it down →](standards/14-publishing-hygiene.md)
@@ -42,31 +43,26 @@ They are numbered in the order you would build a site: **Plan** (01–03: stack,
 
 | # | Standard | Applies to | What it gets you |
 |---|---|---|---|
-| 01 | [Stack and costs](standards/01-stack-costs.md) | Every site | A professional setup for the price of a domain, and why free is not flimsy |
-| 02 | [Repo and agent setup](standards/02-repo-agents.md) | Every site | Written rules every AI session follows, and a one-click undo for bad releases |
-| 03 | [Win the comparison](standards/03-win-the-comparison.md) | Every site | Find what buyers ask Google and AI, answer it, and check whether you get named |
-| 04 | [Content quality and AI slop](standards/04-content-quality.md) | Every site | Copy that sounds like a company that knows its work, not like a chatbot |
-| 05 | [Search basics](standards/05-search.md) | Every site | The basics Google and Bing need to find, understand and show every page |
-| 06 | [Structured data](standards/06-structured-data.md) | Every site | Hidden labels that tell search engines and AI exactly who you are and what you sell |
-| 07 | [AI visibility](standards/07-ai-visibility.md) | Every site | ChatGPT, Claude and Perplexity can actually read your site |
-| 08 | [Social previews](standards/08-social-previews.md) | Every site | A sharp preview card when your link is shared on WhatsApp, LinkedIn or Slack |
-| 09 | [Accessibility](standards/09-accessibility.md) | Every site | A site everyone can use, including people with disabilities, and less lawsuit risk |
-| 10 | [Performance](standards/10-performance.md) | Every site | Fast on an ordinary phone, where most of your visitors are |
-| 11 | [Forms and email](standards/11-forms-email.md) | Sites with a form or own-domain email | Forms that never lose a lead, and email that lands in the inbox |
-| 12 | [Booking](standards/12-booking.md) | If you take bookings | Visitors book themselves into your calendar, and you see which page brought them |
-| 13 | [Payments](standards/13-payments.md) | If you sell online | Take payments safely, with the right provider for your country |
-| 14 | [Publishing hygiene](standards/14-publishing-hygiene.md) | Every site | Nothing private gets published by accident, now or in old versions |
-| 15 | [Security headers](standards/15-security-headers.md) | Every site | Browser-level protection against hijacked scripts and fake look-alike pages |
-| 16 | [Trust files](standards/16-trust-files.md) | Every site | The small files real companies have: a security contact, proper icons |
-| 17 | [Zone and domain](standards/17-zone-domain.md) | Every site | Your domain and email settings, protected and never lapsing |
-| 18 | [Privacy and compliance](standards/18-privacy-compliance.md) | Every site | A privacy policy and claims that keep regulators and ad platforms happy |
-| 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Measure your marketing without the lawsuits, and lose little data doing it |
-| 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Automatic checks so an edit never quietly undoes any of this |
-
-<details><summary>Using an older link? The standards were renumbered on 2026-10-23.</summary>
-
-Old → new: 01→14, 02→15, 03→10, 04→05, 05→06, 06→08, 07→07, 08→16, 09→19, 10→18, 11→09, 12→11, 13→20, 14→04, 15→17, 16→02, 17→01, 18→12, 19→13. "Win the comparison" moved out of 07 into the new 03.
-</details>
+| 01 | [Stack and costs](standards/01-stack-costs.md) | Every site | A professional setup for the price of a domain, and why free is not flimsy.<br><sub>Cloudflare Pages, Workers, Turnstile, GA4, Clarity, Search Console; Pages vs Workers static assets</sub> |
+| 02 | [Repo and agent setup](standards/02-repo-agents.md) | Every site | Written rules every AI session follows, and a one-click undo for bad releases.<br><sub>AGENTS.md, CLAUDE.md, TODO.md, branch deploys, rollbacks, build skips</sub> |
+| 03 | [Win the comparison](standards/03-win-the-comparison.md) | Every site | Find what buyers ask Google and AI, answer it, and check whether you get named.<br><sub>Search Console regex, autocomplete, PAA, prompt runs, fact families, AI Overviews and Bing AI reports</sub> |
+| 04 | [Content quality and AI slop](standards/04-content-quality.md) | Every site | Copy that sounds like a company that knows its work, not like a chatbot.<br><sub>Slop list, swap/picture/falsifiable tests, `[NEED:]` markers, dated proof</sub> |
+| 05 | [Search basics](standards/05-search.md) | Every site | The basics Google and Bing need to find, understand and show every page.<br><sub>Titles, canonicals, extensionless URLs, sitemap `lastmod`, hreflang, 301s, IndexNow-ready</sub> |
+| 06 | [Structured data](standards/06-structured-data.md) | Every site | Hidden labels that tell search engines and AI exactly who you are and what you sell.<br><sub>JSON-LD `@graph`: Organization, WebSite (site name), Service, LocalBusiness, FAQPage, BreadcrumbList</sub> |
+| 07 | [AI visibility](standards/07-ai-visibility.md) | Every site | ChatGPT, Claude and Perplexity can actually read your site.<br><sub>robots.txt bot table, CDN bot settings, Content-Signal, llms.txt, no-JS rendering</sub> |
+| 08 | [Social previews](standards/08-social-previews.md) | Every site | A sharp preview card when your link is shared on WhatsApp, LinkedIn or Slack.<br><sub>Open Graph, 1200×630 center-safe images, cache-busting names, preview-bot access</sub> |
+| 09 | [Accessibility](standards/09-accessibility.md) | Every site | A site everyone can use, including people with disabilities, with less lawsuit risk.<br><sub>WCAG 2.2 AA, contrast, focus, 24px targets, `prefers-reduced-motion`, axe</sub> |
+| 10 | [Performance](standards/10-performance.md) | Every site | Fast on an ordinary phone, where most of your visitors are.<br><sub>Core Web Vitals (LCP, INP, CLS), AVIF/WebP, font subsetting, Early Hints</sub> |
+| 11 | [Forms and email](standards/11-forms-email.md) | Sites with a form or own-domain email | Forms that never lose a lead, and email that lands in the inbox.<br><sub>Worker endpoints, Turnstile, honeypot, SPF, DKIM, DMARC</sub> |
+| 12 | [Booking](standards/12-booking.md) | If you take bookings | Visitors book themselves into your calendar, and you see which page brought them.<br><sub>Cal.com, TidyCal, UTMs into bookings, confirmation key events, paid-booking flow</sub> |
+| 13 | [Payments](standards/13-payments.md) | If you sell online | Take payments safely, with the right provider for your country.<br><sub>Stripe, Mollie, Wompi, Mercado Pago, hosted checkout, signed idempotent webhooks</sub> |
+| 14 | [Publishing hygiene](standards/14-publishing-hygiene.md) | Every site | Nothing private gets published by accident, now or in old versions.<br><sub>Output folder, `_routes.json` guard, `pages.dev` noindex, real 404s, old deployments</sub> |
+| 15 | [Security headers](standards/15-security-headers.md) | Every site | Browser-level protection against hijacked scripts and fake look-alike pages.<br><sub>HSTS, CSP (report-only first), frame-ancestors, Permissions-Policy, `_headers` gotchas</sub> |
+| 16 | [Trust files](standards/16-trust-files.md) | Every site | The small files real companies have: a security contact and proper icons.<br><sub>security.txt (RFC 9116), favicons for Google results, web app manifest</sub> |
+| 17 | [Zone and domain](standards/17-zone-domain.md) | Every site | Your domain and email settings, protected and never lapsing.<br><sub>DNSSEC, Full (strict) TLS, CAA, Crawler Hints, registrar transfers</sub> |
+| 18 | [Privacy and compliance](standards/18-privacy-compliance.md) | Every site | A privacy policy and claims that keep regulators and ad platforms happy.<br><sub>Privacy policy contents, banned claims, testimonial consent, sensitive data</sub> |
+| 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Measure your marketing without the lawsuits, and lose little data doing it.<br><sub>Consent Mode v2 (Basic), consent-gated GA4 and Clarity, CIPA, UTMs on leads, AI channel</sub> |
+| 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Automatic checks so an edit never quietly undoes any of this.<br><sub>`check-site.mjs`, owner decisions as tests, CI, exit codes, live checks</sub> |
 
 ## What are you building?
 Not every site needs all 20. Find your goal, start with the first link, then add the rest. Every site should end up with the **baseline**: everything except 12 Booking and 13 Payments, which depend on how you make money.

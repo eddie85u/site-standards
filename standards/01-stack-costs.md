@@ -6,7 +6,9 @@ Most owners assume a professional website costs thousands up front and hundreds 
 
 Free does not mean flimsy. The free plans below run on the same networks big companies pay for: your site is copied to data centers around the world, gets HTTPS automatically, and is shielded from floods of fake traffic. Every version of the site is kept, so nothing is lost when a laptop dies.
 
-Fewer moving parts also means less to break into. A static site is plain files, with no admin login or plugins to patch. On WordPress, plugins caused 91% of the 11,334 new security holes found in 2025, and the typical one was being attacked at scale within 5 hours of becoming public ([Patchstack, 2026](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/)).
+Fewer moving parts also means less to break into. A static site is plain files: no server code, no admin login, no plugins to patch. That difference decides who has a bad week when the next big flaw lands:
+- In October 2026 ("Black October"), two critical flaws in PHP itself, nicknamed PHP2Shell, let anyone take over a PHP website without logging in. Every PHP installation serving web pages was affected, over 5 million servers were exposed, and emergency patches had to go out on 2026-10-21 ([BleepingComputer, 2026](https://bleepingcomputer.com/news/security/php-ships-emergency-patches-for-critical-php2shell-flaws)). PHP runs WordPress, Drupal, Joomla and most shared hosting. A static site had nothing to patch.
+- On WordPress, plugins caused 91% of the 11,334 new security holes found in 2025, and the typical one was being attacked at scale within 5 hours of becoming public ([Patchstack, 2026](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/)).
 
 ## The stack
 Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing page before you rely on a limit.
