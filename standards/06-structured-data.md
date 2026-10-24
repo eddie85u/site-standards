@@ -2,9 +2,9 @@
 **Applies to:** every site.
 
 ## Why
-JSON-LD tells search engines and AI assistants, unambiguously, who the business is, what it sells and how to reach it. It decides the site name Google shows above your result, and it gives assistants the same facts your pages state in a form they cannot misread. Google says it is not required for AI features, so treat it as consistency and eligibility, not a ranking trick. It is still the cheapest "big company" signal there is.
+Structured data is a short, hidden block of code (written in a format called JSON-LD) that tells search engines and AI assistants, without any guessing, who the business is, what it sells, where it is and how to reach it. It decides the site name Google shows above your result, and it repeats your key facts in a form machines cannot misread. Google says it is not required for its AI features, so treat it as accuracy and eligibility, not a ranking trick. It is still the cheapest "big company" signal there is.
 
-Google's own published results: Rotten Tomatoes saw a 25% higher click-through rate on pages with structured data, Food Network 35% more visits, and Nestlé an 82% higher click-through rate on rich results ([Google Search Central](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data); case studies from about 2019 to 2021).
+Google's own published results: Rotten Tomatoes saw a 25% higher click-through rate on pages with structured data, Food Network 35% more visits, and Nestlé an 82% higher click-through rate on its enhanced results ([Google Search Central](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data); case studies from about 2019 to 2021).
 
 ## Rules
 1. One `<script type="application/ld+json">` per page holding an `@graph` (template: `templates/jsonld-organization.json`):
@@ -40,5 +40,3 @@ Copy the template, fill the placeholders, and keep the Organization block identi
 - `HowTo` markup: Google dropped those rich results.
 - Empty `sameAs: []`. Leave the property out until there are real profiles.
 
-## Notes from real sites
-- 2026-10: the most complete graph (Organization + WebSite + WebPage + Service) came from a B2B services site; a longevity center's site had FAQPage only and is the next one to fill out.

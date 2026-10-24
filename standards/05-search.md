@@ -2,7 +2,7 @@
 **Applies to:** every site.
 
 ## Why
-Google, Bing and the AI answer engines built on them start from the same signals: a clear title, one canonical URL per page, a sitemap that tells the truth, and a verified owner who sees the errors. Get these wrong and nothing else in this guide is found. Most mistakes here are invisible on the page and only show up weeks later in Search Console.
+Google, Bing and the AI answer engines built on them start from the same basics: a clear title on every page, one official address per page (the "canonical"), a map of your pages (the sitemap), and a verified owner who can see errors. Get these wrong and nothing else in this guide gets found. Most mistakes here are invisible on the page and only show up weeks later in Search Console, Google's free dashboard for site owners.
 
 For scale: 96.55% of the 14 billion pages in one large study get no Google traffic at all ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). The basics below do not guarantee traffic, but skipping them nearly guarantees none.
 
@@ -54,7 +54,3 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - Setting `document.title` from JavaScript on a static site: it silently replaces the approved title.
 - Near-identical pages per city or per service variant, or footers listing dozens of cities: Google treats them as doorway pages. Each page needs its own real facts.
 
-## Notes from real sites
-- 2026-10: after moving a domain's DNS to a new Cloudflare account, Search Console verification had to be redone because the TXT record lived in the old zone.
-- 2026-10: a site set `document.title` from JavaScript on load, which replaced the approved HTML title for browsers and for crawlers that run JS.
-- 2026-10: a site generated canonicals, sitemap and internal links with `.html` URLs, which Pages 308-redirects to the extensionless form; every internal link cost a redirect.

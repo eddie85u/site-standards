@@ -49,5 +49,3 @@ Pick the simplest pattern that fits:
 - Pop-up booking widgets loaded on every page: they slow every page for the few who book.
 - Long intake forms before the time slots.
 
-## Notes from real sites
-- 2026-10: a longevity center's site uses Cal.com "requires confirmation" events plus a Worker and Wompi, because Cal.com has no Wompi integration. Events stay pending until the payment webhook confirms them.

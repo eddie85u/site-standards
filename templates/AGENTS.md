@@ -9,7 +9,7 @@ Rules for any AI agent or person working in this repo. Read this, then `TODO.md`
 This site follows **site-standards** (github.com/eddie85u/site-standards). Use its `standards/` files and `templates/` when building or changing anything they cover. Deliberate exceptions for this site:
 - {{e.g. "No cookie banner: the site loads no trackers."}}
 
-When you learn something new about a standard while working here, add a short dated note to that standard's "Notes from real sites" in site-standards (or to TODO.md if it is not cloned). Do not run a cross-site sweep unless the owner asks for one.
+When you learn something new about a standard while working here, add it to that standard in site-standards, in the rule's why or its Avoid list (or to TODO.md if it is not cloned). Do not run a cross-site sweep unless the owner asks for one.
 
 ## Publishing
 - Host: {{Cloudflare Pages project NAME}}, git-connected: a branch push builds a preview, a merge to `main` deploys production.

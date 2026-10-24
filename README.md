@@ -21,7 +21,7 @@ Point the agent at this repo and it gets:
 - **Working starter files.** Headers, robots.txt with current AI bot names, llms.txt, security.txt, a consent banner, analytics that waits for consent, and JSON-LD.
 - **A way to check its own work.** Every standard ends with the commands that prove it is done, and `check-site.mjs` runs the static checks in CI.
 - **A list of mistakes to avoid.** Outdated advice, invented bot names, soft 404s, and AI-sounding copy, with ways to detect each one.
-- **Lessons from production.** Dated notes from live sites, including the things that broke.
+- **Lessons from production.** What broke on real sites, written into the rules and the mistakes to avoid.
 
 It works with any agent that reads files: Claude Code, Codex, Cursor, OpenCode, Copilot.
 
@@ -42,26 +42,26 @@ They are numbered in the order you would build a site: **Plan** (01–03: stack,
 
 | # | Standard | Applies to | What it gets you |
 |---|---|---|---|
-| 01 | [Stack and costs](standards/01-stack-costs.md) | Every site | The free stack, what each piece does, and why free is still robust |
-| 02 | [Repo and agent setup](standards/02-repo-agents.md) | Every site | AGENTS.md, TODO.md, deploy and rollback policy |
-| 03 | [Win the comparison](standards/03-win-the-comparison.md) | Every site | Find what buyers ask Google and AI, answer it, and measure whether you are named |
-| 04 | [Content quality and AI slop](standards/04-content-quality.md) | Every site | Copy that is specific, provable and quotable |
-| 05 | [Search basics](standards/05-search.md) | Every site | Titles, canonicals, sitemaps, hreflang, Search Console and Bing |
-| 06 | [Structured data](standards/06-structured-data.md) | Every site | Organization, WebSite, Service, FAQ in JSON-LD; the site name Google shows |
-| 07 | [AI visibility](standards/07-ai-visibility.md) | Every site | AI crawlers allowed, llms.txt, Content-Signal, text readable without JavaScript |
-| 08 | [Social previews](standards/08-social-previews.md) | Every site | A preview card that works on LinkedIn *and* WhatsApp |
-| 09 | [Accessibility](standards/09-accessibility.md) | Every site | WCAG 2.2 AA floors and reduced motion |
-| 10 | [Performance](standards/10-performance.md) | Every site | Core Web Vitals in the green on a mid-range phone |
-| 11 | [Forms and email](standards/11-forms-email.md) | Sites with a form or own-domain email | Spam-free forms; SPF, DKIM, DMARC |
-| 12 | [Booking](standards/12-booking.md) | If you take bookings | Cal.com, TidyCal, Calendly; UTMs on every meeting; paid-booking patterns |
-| 13 | [Payments](standards/13-payments.md) | If you sell online | Stripe, Mollie, Wompi, Mercado Pago, merchants of record |
-| 14 | [Publishing hygiene](standards/14-publishing-hygiene.md) | Every site | Only the site is public; previews stay out of search; real 404s |
-| 15 | [Security headers](standards/15-security-headers.md) | Every site | HTTPS, HSTS, a CSP that does not get in your way; an A on securityheaders.com |
-| 16 | [Trust files](standards/16-trust-files.md) | Every site | security.txt, web app manifest, icons in browsers and search results |
-| 17 | [Zone and domain](standards/17-zone-domain.md) | Every site | DNS, DNSSEC, registrar, custom-domain gotchas |
-| 18 | [Privacy and compliance](standards/18-privacy-compliance.md) | Every site | Privacy policy, an honest banner, claims to never make |
-| 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Tracking that waits for consent, the real liabilities, and how to lose little data |
-| 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Checks so none of this silently breaks |
+| 01 | [Stack and costs](standards/01-stack-costs.md) | Every site | A professional setup for the price of a domain, and why free is not flimsy |
+| 02 | [Repo and agent setup](standards/02-repo-agents.md) | Every site | Written rules every AI session follows, and a one-click undo for bad releases |
+| 03 | [Win the comparison](standards/03-win-the-comparison.md) | Every site | Find what buyers ask Google and AI, answer it, and check whether you get named |
+| 04 | [Content quality and AI slop](standards/04-content-quality.md) | Every site | Copy that sounds like a company that knows its work, not like a chatbot |
+| 05 | [Search basics](standards/05-search.md) | Every site | The basics Google and Bing need to find, understand and show every page |
+| 06 | [Structured data](standards/06-structured-data.md) | Every site | Hidden labels that tell search engines and AI exactly who you are and what you sell |
+| 07 | [AI visibility](standards/07-ai-visibility.md) | Every site | ChatGPT, Claude and Perplexity can actually read your site |
+| 08 | [Social previews](standards/08-social-previews.md) | Every site | A sharp preview card when your link is shared on WhatsApp, LinkedIn or Slack |
+| 09 | [Accessibility](standards/09-accessibility.md) | Every site | A site everyone can use, including people with disabilities, and less lawsuit risk |
+| 10 | [Performance](standards/10-performance.md) | Every site | Fast on an ordinary phone, where most of your visitors are |
+| 11 | [Forms and email](standards/11-forms-email.md) | Sites with a form or own-domain email | Forms that never lose a lead, and email that lands in the inbox |
+| 12 | [Booking](standards/12-booking.md) | If you take bookings | Visitors book themselves into your calendar, and you see which page brought them |
+| 13 | [Payments](standards/13-payments.md) | If you sell online | Take payments safely, with the right provider for your country |
+| 14 | [Publishing hygiene](standards/14-publishing-hygiene.md) | Every site | Nothing private gets published by accident, now or in old versions |
+| 15 | [Security headers](standards/15-security-headers.md) | Every site | Browser-level protection against hijacked scripts and fake look-alike pages |
+| 16 | [Trust files](standards/16-trust-files.md) | Every site | The small files real companies have: a security contact, proper icons |
+| 17 | [Zone and domain](standards/17-zone-domain.md) | Every site | Your domain and email settings, protected and never lapsing |
+| 18 | [Privacy and compliance](standards/18-privacy-compliance.md) | Every site | A privacy policy and claims that keep regulators and ad platforms happy |
+| 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Measure your marketing without the lawsuits, and lose little data doing it |
+| 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Automatic checks so an edit never quietly undoes any of this |
 
 <details><summary>Using an older link? The standards were renumbered on 2026-10-23.</summary>
 
@@ -84,22 +84,22 @@ Not every site needs all 20. Find your goal, start with the first link, then add
 | **Check a site you already have** | The audit prompt in [How to use it](#how-to-use-it) | Each gap goes to your TODO.md |
 
 ## What "done" looks like
-On the live domain:
-- securityheaders.com grades it **A** or better, and SSL Labs grades it **A**.
-- PageSpeed Insights (mobile) scores **90+** in Performance, Accessibility, Best Practices and SEO.
-- Any unknown path returns **404**, and so does every repo file that is not part of the site.
-- The Rich Results Test finds the Organization graph with no errors.
-- `/robots.txt`, `/sitemap.xml`, `/llms.txt` and `/.well-known/security.txt` return 200.
-- AI crawlers (GPTBot, ClaudeBot, PerplexityBot) get a 200, not a 403.
-- `check-site.mjs` passes in CI.
+Free public graders, run on your live site, tell you when you are there:
+- **Security:** securityheaders.com grades it **A** or better, and SSL Labs (which tests the encryption) grades it **A**.
+- **Speed and quality:** Google's PageSpeed Insights scores **90+** on mobile in all four categories.
+- **Nothing private is public:** a made-up address shows your 404 page, and so does every internal file.
+- **Search engines understand you:** Google's Rich Results Test reads your business details with no errors.
+- **AI assistants can read you:** ChatGPT's, Claude's and Perplexity's crawlers get your pages, not a "blocked" error.
+- **The basics exist:** `/robots.txt`, `/sitemap.xml`, `/llms.txt` and `/.well-known/security.txt` all load.
+- **It stays that way:** `check-site.mjs` passes on every change.
 
 ## Live examples
-These sites run on this stack and are being brought up to every standard. Each one's progress feeds the notes here.
+These sites run on this stack and are being brought up to every standard. What breaks or works on them is written back into the standards.
 - [strategyandstack.com](https://strategyandstack.com): B2B sales systems and AI automation
 - [remoteaccountingteam.com](https://remoteaccountingteam.com): remote accounting teams for US businesses
 - [regeneraxis.com](https://regeneraxis.com): a bilingual longevity and regeneration center
 
-**Used this guide on your own site?** [Open an issue](https://github.com/eddie85u/site-standards/issues/new?title=Built%20with%20site-standards) with the link and what changed: a better PageSpeed score, an assistant that now names you, a cleaner audit. With your permission we will list it here, and what you learned may become a dated note in the standards.
+**Used this guide on your own site?** [Open an issue](https://github.com/eddie85u/site-standards/issues/new?title=Built%20with%20site-standards) with the link and what changed: a better PageSpeed score, an assistant that now names you, a cleaner audit. With your permission we will list it here, and what you learned may improve the standards.
 
 ## Sources we watch
 Vendors change things monthly, so every rule links its source where it is not obvious. These are the feeds we follow to keep the standards current (RSS unless noted). Follow them too if you maintain sites:

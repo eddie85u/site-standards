@@ -2,9 +2,15 @@
 **Applies to:** every site.
 
 ## Why
-Headers are free and invisible to visitors. They stop a hijacked script or an injected tag from running on your pages, stop other sites from framing yours, and force HTTPS. They are also the first thing a security-minded buyer or scanner checks: an A on securityheaders.com reads as a company that knows what it is doing. Most of them never need touching again; only the Content Security Policy (CSP) has to follow the stack, and rule 7 keeps that from getting in your way.
+Security headers are short instructions your site sends to every visitor's browser along with each page. Visitors never see them, and they cost nothing. They tell the browser:
+- always use the encrypted (HTTPS) version of the site, even if someone types or clicks the plain one (this header is called HSTS);
+- run scripts only from the places you list, so a hijacked or injected script is refused (the Content Security Policy, CSP);
+- never show this site inside someone else's page, which stops look-alike pages that trick people into clicking;
+- do not leak the full address of the page someone came from, and do not use the camera, microphone or location.
 
-Few sites bother, which is why it stands out: only 34% of pages send HSTS and 19% send a Content Security Policy ([HTTP Archive Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)).
+The script rule matters most, because the usual attack does not touch your site at all. It compromises something your site loads. In 2024 the domain behind polyfill.io, a free script embedded on more than 100,000 websites, was bought by a new owner and started sending visitors to scam and betting sites ([Sansec, 2024](https://sansec.io/research/polyfill-supply-chain-attack)). Sites that hosted their own copy, or allowed only the sources they named, were unaffected.
+
+Headers are also the first thing a security-minded buyer or scanner checks, and few sites bother: only 34% of pages force HTTPS this way and 19% send a script policy ([HTTP Archive Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)). An A on securityheaders.com stands out. Only the script policy needs updating as your tools change, and rule 7 keeps that painless.
 
 ## Rules
 1. **Send these on every HTML response** (template: `templates/_headers`):
@@ -18,7 +24,7 @@ Few sites bother, which is why it stands out: only 34% of pages send HSTS and 19
 
    *Why:* every line except the CSP is set-and-forget; none of them breaks when you add a tool.
 2. **One CSP, in the header,** never also in a `<meta>` tag.
-   *Why:* browsers enforce both, so the effective policy is the stricter overlap; the two drift until something breaks, and `frame-ancestors` does not work in a meta tag anyway.
+   *Why:* browsers enforce both, so the effective policy is the stricter overlap; the two drift until something breaks (we had to make every change twice on one site), and `frame-ancestors` does not work in a meta tag anyway.
 3. **Build the CSP from what the site actually loads.** Start from `default-src 'self'` and add only the origins in use. Typical additions:
    - GA4 / GTM: `script-src https://www.googletagmanager.com`; `connect-src https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com`; `img-src https://*.google-analytics.com https://www.googletagmanager.com`
    - Microsoft Clarity: `script-src https://www.clarity.ms https://*.clarity.ms`; `connect-src https://*.clarity.ms https://c.bing.com`
@@ -31,13 +37,13 @@ Few sites bother, which is why it stands out: only 34% of pages send HSTS and 19
 5. **Drop `'unsafe-inline'` from `script-src`** by moving inline scripts to files. If you must keep some, keep them few and say why in a comment.
    *Why:* inline-script permission is what turns an HTML injection into running code.
 6. **Remove `Access-Control-Allow-Origin: *`.** Cloudflare Pages adds it to every response by default; the template removes it with `! Access-Control-Allow-Origin`.
-   *Why:* a marketing site has no reason to let any origin read its responses, and scanners flag it.
+   *Why:* a marketing site has no reason to let any origin read its responses, and scanners flag it. All three of our sites sent it without anyone choosing it.
 7. **The CSP never surprises you:**
    - New CSPs start as `Content-Security-Policy-Report-Only` on a preview; switch to enforcing once the console is clean on every page type, form, embed and consent choice.
    - The site's AGENTS.md says: "adding a third-party script, font, embed or form target means adding its origin to `_headers` in the same change."
    - When a tool is removed, its origin leaves the CSP in the same change.
 
-   *Why:* the only real cost of a CSP is a new tool silently blocked. Report-only first and a rule in AGENTS.md make that a one-line fix instead of a mystery.
+   *Why:* the only real cost of a CSP is a new tool silently blocked. Report-only first and a rule in AGENTS.md make that a one-line fix instead of a mystery. On one of our sites this took a single session from no headers to an A+; on another, the report-only pass caught two sources that a code search had missed (an analytics beacon the host injects and a third-party image host).
 8. **Pages specifics:**
    - `_headers` does not apply to responses from Pages Functions; a Function must set its own security headers.
    - When several rules match a path, the same header is joined with a comma, not replaced. Set each header in exactly one matching rule, or remove it with `! Header-Name`.
@@ -67,8 +73,3 @@ curl -sI https://example.com/ | grep -iE "strict-transport|content-security|x-co
 - Allowing whole public CDNs (`https://unpkg.com`, `https://cdnjs.cloudflare.com`) in `script-src`: anyone can publish a package there. Self-host the library.
 - A CSP copied from another site, with origins this site does not use.
 
-## Notes from real sites
-- 2026-10: a site had both a header CSP and a meta CSP; the meta one lacked `frame-ancestors` and a later embed origin, so changes had to be made twice. Keep only the header.
-- 2026-10: an owner worried a CSP would get in the way as the stack changes. What settled it: everything but the CSP is set-and-forget, the CSP starts in report-only mode, and the AGENTS.md rule makes "new tool, new origin" part of the same change.
-- 2026-10: an accounting firm's site went from no security headers to an A+ on securityheaders.com in one session: the report-only CSP showed no violations across the page types (only the Cal.com embed is third-party), so it switched to enforcing the same day.
-- 2026-10: all three of our live sites sent `Access-Control-Allow-Origin: *` without anyone choosing it; it is the Pages default.

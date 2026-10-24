@@ -31,5 +31,3 @@ Enforcement reaches small and mid-size businesses, not just big tech: GoodRx pai
 - Invented numbers: "500+ clients", "98% satisfaction" without a source you could show a regulator.
 - Ad-platform-sensitive wording in regulated fields (health: drug or compound names, "cure", "anti-aging", weight-loss promises; finance: guaranteed returns). These get ads rejected even when true.
 
-## Notes from real sites
-- None yet. Add the first dated lesson here.

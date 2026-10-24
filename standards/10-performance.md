@@ -2,11 +2,11 @@
 **Applies to:** every site.
 
 ## Why
-Speed is the first impression and a ranking signal. Most visitors arrive on a mid-range phone over mobile data, and every extra second on the first screen loses some of them before they read a word. A slow site reads as a small company; a fast one reads as a well-run one. Static sites start fast, so most losses here come from a few avoidable habits.
+Speed is the first impression and a ranking signal. Most visitors arrive on a mid-range phone over mobile data, and every extra second before the main image or headline appears loses some of them before they read a word. A slow site reads as a small company; a fast one reads as a well-run one. Static sites start fast, so most losses come from a few avoidable habits: oversized images, too many fonts, and scripts that block the page.
 
 The evidence:
 - A 0.1-second improvement in mobile speed raised retail conversions by 8.4% and average order value by 9.2% across 37 brands ([Deloitte for Google, 2020](https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html)).
-- Vodafone's A/B test: 31% better LCP produced 8% more sales and a 15% better lead-to-visit rate ([web.dev, 2021](https://web.dev/case-studies/vodafone)).
+- Vodafone's A/B test: making the main content appear 31% faster produced 8% more sales and a 15% better lead-to-visit rate ([web.dev, 2021](https://web.dev/case-studies/vodafone)).
 
 ## Rules
 1. **Core Web Vitals targets** (75th percentile, mobile): LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1. Lab target: PageSpeed Insights mobile Performance ≥ 90.
@@ -46,6 +46,3 @@ The evidence:
 - Unused JS and CSS from templates or earlier designs. Detect: DevTools → Coverage.
 - Layout shift from banners (cookie consent, announcement bars) that push content down. Overlay them instead.
 
-## Notes from real sites
-- 2026-10: a site preloaded six font files; dropping to the two used above the fold is a free LCP win.
-- 2026-10: with `Cache-Control: immutable` on `*.js`, a changed script without a new URL (`main.js?v=2`) never reaches returning visitors for a year. Bump the version in every tag that references it (the `modulepreload` link and the `script` tag must match).

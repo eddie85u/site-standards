@@ -3,7 +3,7 @@
 
 ## Why
 Tracking without consent is no longer a theoretical risk for small sites:
-- **US:** California's wiretap law (CIPA) lets anyone sue for up to $5,000 per violation, with no size threshold. Thousands of suits and demand letters since 2022 target exactly what small sites install: session replay, chat widgets and ad pixels that start before the visitor agrees. Courts have said consent must come *before* recording starts ([Javier v. Assurance IQ](https://www.mayerbrown.com/en/insights/publications/2025/07/cipa-claims-stumble-at-summary-judgment)).
+- **US:** California's wiretap law (CIPA) lets anyone sue for up to $5,000 per violation, with no size threshold. Thousands of suits and demand letters since 2022 target exactly what small sites install: session recording tools (which replay a visitor's clicks and typing), chat widgets and ad tracking pixels that start before the visitor agrees. Courts have said consent must come *before* recording starts ([Javier v. Assurance IQ](https://www.mayerbrown.com/en/insights/publications/2025/07/cipa-claims-stumble-at-summary-judgment)).
 - **Colombia and similar laws:** consent must be prior and provable, and silence or "keep browsing" never counts (Decreto 1377 de 2013, art. 7 and 8). The regulator treats cookies as personal data, and its fines reach hundreds of millions of pesos.
 - **EU and UK:** the rule covers anything stored on or read from the device, including pixels, not only cookies ([EDPB 2/2023](https://www.edpb.europa.eu/documents/guideline/guidelines-22023-on-technical-scope-of-art-53-of-eprivacy-directive_en)).
 - **The platforms themselves:** Google's and Microsoft's terms require a privacy policy and valid consent, and both can suspend the account. Google Ads measures EEA traffic only with Consent Mode v2 signals, and Clarity has enforced consent for EEA, UK and Swiss visitors since 2025-10-31.
@@ -73,7 +73,3 @@ The good news: done the way below, the cost in visibility is small (rule 10). No
 - Server-side tagging to avoid consent: it moves the tags, not the obligation, and costs money to host.
 - Copying a GA4 channel group and only reordering: copied channels are defined by the default group, so order alone changes nothing. Add an explicit source-regex condition.
 
-## Notes from real sites
-- 2026-10: the cleanest setup among our sites is a small `consent.js` (localStorage choice, `consent:change` event) plus an `analytics.js` that only acts on that event and the live hostname. Generic copies are in `templates/js/`.
-- 2026-10: an internal-traffic filter left in *Testing* mode does not exclude anything from reports.
-- 2026-10: an owner asked what they would lose by adding a banner to a site that already got good traffic. What settled it: Cloudflare Web Analytics and Search Console keep the totals and queries, UTMs on the lead keep every enquiry's source, and only per-visitor GA4 detail for people who decline goes missing. Consent Mode modeling would not have helped at that traffic level.

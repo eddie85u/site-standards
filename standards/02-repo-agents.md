@@ -29,5 +29,3 @@ curl -s -o /dev/null -w "%{http_code}\n" https://example.com/AGENTS.md   # 404
 curl -s -o /dev/null -w "%{http_code}\n" https://example.com/TODO.md     # 404
 ```
 
-## Notes from real sites
-- None yet. Add the first dated lesson here.

@@ -2,9 +2,9 @@
 **Applies to:** sites with a contact form or email on their own domain (almost every site).
 
 ## Why
-The contact form is where the money is. It has to work every time, stay free of spam, and its emails have to land in the inbox.
+The contact form is where the money is. It has to work every time, keep spam out, and its emails have to land in the inbox instead of the spam folder.
 
-Mailbox providers now enforce this: Gmail requires authentication from anyone sending over 5,000 messages a day, and after it began requiring basic authentication on all mail, unauthenticated messages fell 75% ([Google, 2023](https://blog.google/products/gmail/gmail-security-authentication-spam-protection/)). Yet 52% of top domains still publish no DMARC record ([EasyDMARC, 2025](https://betanews.com/2025/05/29/less-than-eight-percent-of-top-domains-implement-the-toughest-dmarc-protection/)).
+Inboxes now check that mail really comes from the domain it claims to come from. Three DNS records prove it: SPF (which servers may send for you), DKIM (a signature on each message) and DMARC (what to do with mail that fails). Gmail requires them from anyone sending over 5,000 messages a day, and after it began requiring basic checks on all mail, unverified messages fell 75% ([Google, 2023](https://blog.google/products/gmail/gmail-security-authentication-spam-protection/)). Without them, anyone can send email pretending to be you, yet 52% of top domains still publish no DMARC record ([EasyDMARC, 2025](https://betanews.com/2025/05/29/less-than-eight-percent-of-top-domains-implement-the-toughest-dmarc-protection/)).
 
 ## Rules
 1. **Server-side handling:** forms post to a Worker (or function) you control, which validates input, rate-limits, and sends the email or stores the lead. No secrets or signatures in browser code.
@@ -34,5 +34,3 @@ Mailbox providers now enforce this: Gmail requires authentication from anyone se
 - Forms that `mailto:`: unreliable and expose the address to scrapers.
 - Deploying Workers from a laptop with settings that exist only in the dashboard. Capture them first, test on a separate Worker name, then switch.
 
-## Notes from real sites
-- None yet. Add the first dated lesson here.

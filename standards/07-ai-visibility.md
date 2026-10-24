@@ -2,9 +2,9 @@
 **Applies to:** every site.
 
 ## Why
-More buyers ask ChatGPT, Claude, Perplexity, Gemini or Copilot instead of searching. Those assistants can only recommend a business they are allowed to fetch and can read without effort. Many sites block them by accident at the CDN, or hide their text behind JavaScript, and never find out. This standard makes the site readable; standard 03 makes it the one they pick.
+More buyers ask ChatGPT, Claude, Perplexity, Gemini or Copilot instead of searching. Those assistants can only recommend a business whose pages they are allowed to fetch and can read quickly. Many sites block them by accident, through a setting at their hosting or security provider, or hide their text behind code that the assistants do not run, and never find out. This standard makes the site readable; standard 03 makes it the one they pick.
 
-How common the accidental block is: since July 2025, new Cloudflare domains block AI crawlers by default, and more than a million customers had already turned on the one-click block ([Cloudflare, 2025](https://www.cloudflare.com/press/press-releases/2025/cloudflare-just-changed-how-ai-crawlers-scrape-the-internet-at-large/)). Many of those owners want to be recommended and never made that choice on purpose.
+How common the accidental block is: since July 2025, new sites on Cloudflare block AI crawlers by default, and more than a million owners had already switched on the one-click block ([Cloudflare, 2025](https://www.cloudflare.com/press/press-releases/2025/cloudflare-just-changed-how-ai-crawlers-scrape-the-internet-at-large/)). We found one ourselves: a site whose robots.txt welcomed every AI assistant while its Cloudflare setting turned them all away.
 
 ## Rules
 1. **Decide the policy per site and write it in the site's AGENTS.md.** For a business that wants to be found: allow search crawlers, AI answer and search bots, and AI training crawlers; block pure scrapers.
@@ -64,9 +64,6 @@ curl -s https://example.com/some-page | grep -c "<p"                            
 - **`#` comment lines at the top of llms.txt.** A line starting with `# ` is a heading, so a comment header creates several H1s. `grep -c "^# " llms.txt` must print 1.
 - Prices, guarantees or claims in llms.txt that the visible site does not make, or that go stale.
 - Blocking AI bots at the CDN "for security" and forgetting it.
+- Trusting the repo copy of robots.txt: if Cloudflare's managed robots.txt is on, Cloudflare adds its own block to the top of the live file. Always read the live one.
+- Repeating prices in llms.txt on sites with rules about where prices may appear: link to the pages that show them instead, so the file never contradicts the site.
 
-## Notes from real sites
-- 2026-10: one site's robots.txt allowed every AI bot while its Cloudflare zone returned 403 to GPTBot, ClaudeBot and PerplexityBot. The zone setting wins. Always test with a bot user agent.
-- 2026-10: the most complete llms.txt among our sites still used `#` comment lines as a header and had no link lists; it was rewritten to the llmstxt.org shape.
-- 2026-10 (sweep across three sites): one site's robots.txt listed five retired or invented bot names, while the other two named no AI bots at all. All three now use the template. If Cloudflare's managed robots.txt is on, Cloudflare adds its own block to the top of the file, so always read the live file, not the repo copy.
-- 2026-10: llms.txt is a discovery surface like the homepage. Sites with rules about where prices may appear should link to the pages that show prices instead of repeating them.

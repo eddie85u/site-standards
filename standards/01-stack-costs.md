@@ -2,9 +2,11 @@
 **Applies to:** every site.
 
 ## Why
-Many business owners assume a professional website costs thousands up front and hundreds a month. A fast, secure, well-measured marketing site can run for the price of a domain. The money goes into the work (your time, or AI tokens and a coding-agent subscription), not into hosting.
+Most owners assume a professional website costs thousands up front and hundreds a month. A fast, secure, well-measured marketing site can run for the price of its domain name. The money goes into the work (your time, or a coding agent), not into hosting. Our own three live sites pay only for their domains and, for two of them, a mailbox.
 
-Fewer moving parts also means less to break: WordPress plugins produced 91% of the 11,334 new WordPress-ecosystem vulnerabilities found in 2025, and the typical one was being mass-exploited within 5 hours of disclosure ([Patchstack, 2026](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/)). A static site has no plugins to patch.
+Free does not mean flimsy. The free plans below run on the same networks big companies pay for: your site is copied to data centers around the world, gets HTTPS automatically, and is shielded from floods of fake traffic. Every version of the site is kept, so nothing is lost when a laptop dies.
+
+Fewer moving parts also means less to break into. A static site is plain files, with no admin login or plugins to patch. On WordPress, plugins caused 91% of the 11,334 new security holes found in 2025, and the typical one was being attacked at scale within 5 hours of becoming public ([Patchstack, 2026](https://www.patchstack.com/whitepaper/state-of-wordpress-security-in-2026/)).
 
 ## The stack
 Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing page before you rely on a limit.
@@ -31,9 +33,6 @@ Prices and limits as of 2026-10. Free tiers change: check each vendor's pricing 
 
 **Typical running cost:** the domain (about $10–15 a year), plus a mailbox if you want one. Everything else above is free at small-business traffic.
 
-## Why free is still robust
-The free tiers here are the same infrastructure large companies pay for. Cloudflare serves a meaningful share of the web's traffic from hundreds of cities, so a free Pages site gets the same global network, automatic HTTPS and DDoS protection as an enterprise one. GitHub keeps every version of the site, so nothing is lost when a laptop dies. Static files have almost nothing to break or patch, unlike a hosted CMS with plugins. Google and Microsoft offer their analytics free because the data improves their products, not because it is a trial. The free limits sit far above what a small business site uses, and if one is ever reached, the paid tier is a switch in the same dashboard, not a migration.
-
 ## Pages or Workers?
 Cloudflare now suggests starting new projects on **Workers with static assets**; Pages is not deprecated and is what this guide assumes. Pages still does more for a static site out of the box: automatic 404 handling, noindex on branch previews, `_headers`, `_redirects`, branch build controls and Early Hints. If you choose Workers, set `not_found_handling = "404-page"` yourself, check how it redirects `/page.html` and `/page/`, and add noindex to preview URLs, because those defaults differ ([migration guide](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)). Existing Pages sites have no reason to move.
 
@@ -53,5 +52,3 @@ Cloudflare now suggests starting new projects on **Workers with static assets**;
 - Paid plugins or page-speed services for problems a static site does not have.
 - Mixing personal and business accounts. Moving a property between accounts later is slow and sometimes impossible.
 
-## Notes from real sites
-- 2026-10: three live business sites (a B2B services firm, an accounting firm, a longevity center) run on this stack. Their only fixed costs are the domains and, for two, a mailbox.

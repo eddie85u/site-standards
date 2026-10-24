@@ -2,9 +2,9 @@
 **Applies to:** every site.
 
 ## Why
-Small files that real companies have and hobby sites do not: a way to report a vulnerability, a proper icon on every device and in search results, and a manifest. Scanners and security-minded buyers look for them, and an expired or bouncing one looks worse than none.
+Small files that real companies have and hobby sites do not: a page that tells security researchers how to report a problem to you (security.txt), a proper icon for every browser, phone home screen and Google result, and a small file that describes the site to phones (the web app manifest). Scanners and security-minded buyers look for them, and an expired or bouncing contact looks worse than none.
 
-Only about 1% of websites publish a security.txt ([Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)), and at least a quarter of those are invalid under the standard ([Web Almanac, 2025](https://almanac.httparchive.org/en/2025/security)). A valid one is a cheap way to look more careful than almost everyone.
+Only about 1% of websites publish a security.txt ([Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)), and at least a quarter of those are invalid ([Web Almanac, 2025](https://almanac.httparchive.org/en/2025/security)). A valid one is a cheap way to look more careful than almost everyone.
 
 ## Rules
 1. **security.txt** (RFC 9116, template: `templates/security.txt`) at `/.well-known/security.txt`:
@@ -19,6 +19,7 @@ Only about 1% of websites publish a security.txt ([Web Almanac, 2024](https://al
 
 ## How to build it
 - On Cloudflare Pages, keep the file at `/security.txt` and add `/.well-known/security.txt /security.txt 200` to `_redirects`, or place it directly in `.well-known/`. Test both URLs on a preview.
+- Root-served sites often keep lists of their published files (a dev-server pattern, a build file list, a completeness test). A new root file like `security.txt` has to be added to every one, or it works live but fails locally.
 - Generate icons from one square SVG with realfavicongenerator.net or a `sharp` script.
 
 ## Check
@@ -32,5 +33,3 @@ curl -s https://example.com/.well-known/security.txt   # Contact and a future Ex
 - A security contact address that nobody reads, or that does not exist on the mail server.
 - `"purpose": "maskable"` on an icon with the logo touching the edges (it gets cropped). Use `"any"` for full-bleed icons and a separate maskable one.
 
-## Notes from real sites
-- 2026-10: root-served sites often keep allowlists of their published files (a dev-server regex, a build file list, a completeness test). A new root file like `llms.txt` or `security.txt` has to be added to every one of them, or it works live but fails locally or in the export.

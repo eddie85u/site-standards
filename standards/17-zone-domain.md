@@ -2,9 +2,9 @@
 **Applies to:** every site.
 
 ## Why
-DNS and the registrar are the foundation. A mistake here takes the site and the email down at once, often while nobody is looking, and the fixes are free. Most outages on small sites are not hosting failures; they are an expired domain, a lost DNS record or a lapsed login.
+Your domain name and its DNS settings (the address book that tells the internet where your site and email live) are the foundation. A mistake here takes the site and the email down at once, often while nobody is looking, and the fixes are free. Most outages on small sites are not hosting failures; they are an expired domain, a lost DNS record or a login nobody can access.
 
-A lapsed domain keeps receiving whatever pointed at it: researchers bought the expired former WHOIS domain of the .mobi registry for about $20 and within days received 2.5 million queries from more than 135,000 systems, including government mail servers ([watchTowr, 2024](https://labs.watchtowr.com/we-spent-20-to-achieve-rce-and-accidentally-became-the-admins-of-mobi/)). Google's spam policies now name expired domains bought and reused for spam ([Google, 2024](https://blog.google/products/search/google-search-update-march-2024/)). Your old domain can become someone else's asset.
+A domain you let lapse keeps receiving whatever still points at it, and anyone can buy it. Researchers bought an expired domain once used by the .mobi registry for about $20 and within days received 2.5 million requests from more than 135,000 systems, including government mail servers ([watchTowr, 2024](https://labs.watchtowr.com/we-spent-20-to-achieve-rce-and-accidentally-became-the-admins-of-mobi/)). Google's spam rules now name expired domains bought and reused for spam ([Google, 2024](https://blog.google/products/search/google-search-update-march-2024/)). Your old domain can become someone else's asset.
 
 ## Rules
 1. **DNS on Cloudflare** (free plan), in one account the business controls, with 2FA on that account and on the registrar.
@@ -33,5 +33,3 @@ A lapsed domain keeps receiving whatever pointed at it: researchers bought the e
 - Moving DNS between accounts without exporting the zone first (TXT verifications, DKIM keys and MX records are easy to lose).
 - Enabling DNSSEC at the registrar with an old DS record after changing DNS provider: the domain stops resolving. Remove the old DS first.
 
-## Notes from real sites
-- 2026-10: moving a zone to a new Cloudflare account worked smoothly by exporting the zone file, importing it, checking every record, and only then switching nameservers at the registrar.

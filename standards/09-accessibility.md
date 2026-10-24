@@ -37,5 +37,3 @@ Meeting the floors below puts a site ahead of almost every competitor.
 - Scroll-jacking that breaks the keyboard, find-in-page or the back button.
 - Accessibility overlay widgets: they do not fix the underlying code, and an overlay does not make a site compliant.
 
-## Notes from real sites
-- None yet. Add the first dated lesson here.

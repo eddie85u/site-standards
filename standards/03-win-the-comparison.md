@@ -10,6 +10,8 @@ The numbers behind the shift:
 
 Fewer clicks overall, better visitors from the answers: the business the answer names takes the click.
 
+We have seen it work. A US company looking for a bookkeeper asked ChatGPT to compare remote accounting services in the Philippines and Latin America on cost against quality. ChatGPT included an accounting firm built on these standards, before it had Search Console or llms.txt. What it had: a name that matched the search, one page per service and per role with plain titles, monthly prices on each role page, location, hours and quality controls in plain text, and all text readable without scripts.
+
 ## Before: find the questions
 1. **Seed list.** Write 5 to 10 short head terms: the service, the problem, the audience, the place ("remote bookkeeper", "longevity Medellín").
    *Why:* short seeds return the most suggestions in every tool below.
@@ -78,9 +80,6 @@ A scheduled tracker (for example Cloudflare's ai-brand-visibility-template) is w
 - **Quoting vendor studies as rules** ("AI cites content under 3 months old 3x more"). These figures shift monthly; test with your own prompts.
 - **Self-serving review markup** and gating reviews (asking "were you happy?" before sending people to Google). Both break Google's policies.
 - **Paid prompt-tracking tools before the free data above is in use.**
-
-## Notes from real sites
-- 2026-10: a US company looking for a bookkeeper asked ChatGPT to compare remote accounting services in the Philippines and Latin America on cost against quality. ChatGPT included an accounting firm built on these standards, before it had Search Console, Bing or llms.txt. What it had: a brand name matching the search, one page per service and per role with plain titles, monthly prices on each role page, location, hours and quality controls in plain text, FAQ and Organization structured data, and all text in the HTML.
 
 ## Sources
 Ideas adapted, not copied, from: Google's [AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide) (CC BY 4.0); [marketingskills](https://github.com/coreyhaines31/marketingskills) and [claude-seo](https://github.com/AgriciDaniel/claude-seo) (MIT); Profound's [skills-marketing-library](https://github.com/retieedra-profound/skills-marketing-library) (MIT); [open-seo](https://github.com/every-app/open-seo) (MIT).

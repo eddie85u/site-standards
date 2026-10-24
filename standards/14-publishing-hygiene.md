@@ -2,11 +2,13 @@
 **Applies to:** every site.
 
 ## Why
-The fastest way to look amateur, or to leak something, is to publish files that were never meant to be public: internal notes, tests, AGENTS.md, or a preview copy of the site that outranks the real one. Static hosts serve whatever is in the folder, and every past deploy stays online at its own address, so a leak outlives the fix unless you clean up.
+Your host publishes whatever is in the folder you give it. If that folder holds internal notes, test files, passwords in a settings file or the project's full history, they are public too, even if no page links to them. Most hosts also keep every past version of the site online at its own address, so a leak outlives the fix unless you clean up. And a preview copy of your site that Google finds can compete with the real one.
 
-This is not hypothetical:
-- Attackers scanned more than 230 million targets, harvested exposed `.env` files from 110,000 domains, and used the 7,000 cloud credentials inside to extort the owners. The cause was misconfiguration, not a software flaw ([Unit 42, 2024](https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/)).
-- A scan of 3.5 million hosts found 28,000 publicly exposed `.git` folders holding 400 AWS keys and 107 Stripe keys ([Intruder, 2026](https://intruder.io/research/api-keys-bank-details-disciplinary-files-what-28-000-exposed-git-repos-gave-up)).
+This is how real breaches happen, with no hacking skill involved:
+- Attackers scanned more than 230 million addresses for forgotten `.env` settings files, found them on 110,000 domains, and used the 7,000 cloud passwords inside to extort the owners. The cause was a publishing mistake, not a software flaw ([Unit 42, 2024](https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/)).
+- A scan of 3.5 million servers found 28,000 sites exposing their whole `.git` project history, holding 400 Amazon Web Services keys and 107 Stripe payment keys ([Intruder, 2026](https://intruder.io/research/api-keys-bank-details-disciplinary-files-what-28-000-exposed-git-repos-gave-up)).
+
+It happened to us too: one of our sites kept serving internal documents from two dozen old deployments long after the main site was fixed.
 
 ## Rules
 1. **Only the site is served.** Put it in a dedicated output folder (for example `site/`) and set that as the publish directory (Cloudflare Pages: *Settings → Build → Build output directory*; with no build command, Pages serves the folder as-is).
@@ -47,6 +49,3 @@ curl -s -o /dev/null -w "%{http_code}\n" https://<old-hash>.<project>.pages.dev/
 - Deleting a file from the latest deploy and forgetting the older deployments that still serve it.
 - A `noindex` page that is also disallowed in robots.txt: crawlers never fetch it, so they never see the noindex.
 
-## Notes from real sites
-- 2026-10: a root-served site leaked internal docs through two dozen old deployments long after the guard was added. Deleting them took a manual session in the dashboard; sampled old URLs returned 404 afterwards.
-- 2026-10: a `site/` output folder is simpler than a guard: nothing outside it can leak, and no test is needed to police the root.
