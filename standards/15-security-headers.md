@@ -70,4 +70,5 @@ curl -sI https://example.com/ | grep -iE "strict-transport|content-security|x-co
 ## Notes from real sites
 - 2026-10: a site had both a header CSP and a meta CSP; the meta one lacked `frame-ancestors` and a later embed origin, so changes had to be made twice. Keep only the header.
 - 2026-10: an owner worried a CSP would get in the way as the stack changes. What settled it: everything but the CSP is set-and-forget, the CSP starts in report-only mode, and the AGENTS.md rule makes "new tool, new origin" part of the same change.
+- 2026-10: an accounting firm's site went from no security headers to an A+ on securityheaders.com in one session: the report-only CSP showed no violations across the page types (only the Cal.com embed is third-party), so it switched to enforcing the same day.
 - 2026-10: all three of our live sites sent `Access-Control-Allow-Origin: *` without anyone choosing it; it is the Pages default.
