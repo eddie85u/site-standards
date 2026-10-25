@@ -25,6 +25,8 @@ The good news: done the way below, the cost in visibility is small (rule 10). No
    *Why:* when a person or agency leaves with the login, the history leaves too, and properties cannot always be moved.
 6. **Measure what matters:** one GA4 key event per real conversion (`contact_submit`, `booking_confirmed`, `whatsapp_click`), mirrored to Clarity (`clarity('event', name)`), and one funnel per main conversion.
    *Why:* page views do not pay the bills; three well-named events beat thirty auto-collected ones.
+   - With GTM: the page pushes `dataLayer.push({event: 'booking_confirmed', ...})`; in GTM add a *Custom Event* trigger with that exact name and a *GA4 Event* tag with the same event name, preview, publish; then in GA4 → Admin → Events mark it as a key event (it appears after the first hit).
+   - Give the owner's admin account access in GTM (Admin → User management) and GA4 (Admin → Access management) on day one, so setup never waits on one login.
 7. **The source travels with the lead:** read `utm_*` and the referrer on landing, keep them in `sessionStorage`, and send them with the form or booking.
    *Why:* this works whether or not the visitor accepted analytics, so every enquiry keeps its source. For a small business it is the most valuable number there is.
 8. **AI traffic is visible:** GA4's default channel group now has an **AI Assistant** channel ([Google](https://support.google.com/analytics/answer/9756891)); check *Source / medium* for assistants it misses and, if any, add a custom channel group with a source regex (`chatgpt|openai|claude|anthropic|perplexity|gemini|copilot|you\.com|meta\.ai|deepseek|mistral`) placed **above** Referral. Clicks from Google's AI Overviews and AI Mode count as Organic, not AI.
