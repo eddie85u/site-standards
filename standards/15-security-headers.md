@@ -72,4 +72,5 @@ curl -sI https://example.com/ | grep -iE "strict-transport|content-security|x-co
 - CSP `img-src https:` (any HTTPS image) when you know the real image origins.
 - Allowing whole public CDNs (`https://unpkg.com`, `https://cdnjs.cloudflare.com`) in `script-src`: anyone can publish a package there. Self-host the library.
 - A CSP copied from another site, with origins this site does not use.
+- **A wildcard immutable cache** (`/*.js` with `max-age=31536000, immutable`) on files imported without a version. `immutable` tells the browser the response "will not be updated while it's fresh" ([MDN, Cache-Control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control)), so when such a module holds page text, a returning visitor keeps the old text for a year and it overwrites a newer prerendered page. Cache immutably only what carries a version (rule 9), or version every import, including dynamic `import()` paths. Detect it: list the `/*.js` rules in `_headers`, then `grep -n "import(" -r site` and check each path has `?v=`.
 

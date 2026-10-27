@@ -55,7 +55,10 @@ curl -s -o /dev/null -w "%{http_code}\n" -A "GPTBot/1.2" https://example.com/   
 curl -s -o /dev/null -w "%{http_code}\n" -A "ClaudeBot/1.0" https://example.com/           # 200
 curl -s -o /dev/null -w "%{http_code}\n" -A "PerplexityBot/1.0" https://example.com/       # 200
 curl -s https://example.com/some-page | grep -c "<p"                                       # real paragraphs without JS
+# The selling text without JS: strip scripts and styles, then look for what buyers ask about
+curl -s https://example.com/ | perl -0pe 's/<(script|style)\b.*?<\/\1>//gis; s/<[^>]+>/ /g' | grep -o '\$[0-9][0-9,]*' | sort -u   # every published price; none means they need JS
 ```
+- The no-JavaScript text holds the prices, the services and the FAQ answers, not just a hero and a footer. A paragraph count passes on a page whose selling sections are empty containers filled by a script; read the stripped text or look for the prices themselves.
 - Cloudflare → AI Crawl Control: the bots you allow show 200s, not 403s.
 - Ask two or three assistants "What does <brand> do and who is it for?" and compare the answer with the site.
 

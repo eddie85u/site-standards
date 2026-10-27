@@ -17,8 +17,8 @@ Google says its March 2024 update cut low-quality, unoriginal content in results
 3. **Agents mark missing proof instead of inventing or dropping it.** When a claim needs evidence the agent does not have, it writes `[NEED: review export]`, `[NEED: certificate]` or `[NEED: real number]` and the owner fills it in. The guardrail script flags any `[NEED:` left in the site.
    *Why:* agents otherwise either invent a number (a legal problem) or quietly delete the strongest claim on the page.
 4. **Plain words.** Short sentences, one idea per paragraph, written the way the owner would say it on a call.
-5. **Real proof only:** named clients (with permission), real numbers with a source and a date ("4.8 on Google, Oct 2026"), real photos of real people and places.
-   *Why:* undated numbers look invented, and invented ones are a regulator's favourite target (standard 18).
+5. **Real proof only:** named clients (with permission), real numbers with a source and a date ("4.8 on Google, Oct 2026"), real photos of real people and places. Results a founder or team member earned at an earlier employer belong to that person: say so by name, keep the wording identical to their public profile and link it (`sameAs`, [06](06-structured-data.md)); the business's own claims stay with facts anyone can check (price, timeline, what the client owns).
+   *Why:* undated numbers look invented, and invented ones are a regulator's favourite target (standard 18). Assistants also check: one called an unsourced "7x faster" line "a marketing claim, not an independently verified result" in its answer about the business, and they compare a founder's claims with the profile they find.
 6. **One voice per site,** written in the site's AGENTS.md: tone, words to use, words never to use.
    *Why:* without it, every agent session drifts toward its own default voice.
 7. **Human review** of every page of copy before it goes live, even when an agent drafted it.

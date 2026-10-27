@@ -93,6 +93,19 @@ Free public graders, run on your live site, tell you when you are there:
 - **The basics exist:** `/robots.txt`, `/sitemap.xml`, `/llms.txt` and `/.well-known/security.txt` all load.
 - **It stays that way:** `check-site.mjs` passes on every change.
 
+## Most costly mistakes
+Found while running the search playbook ([21](standards/21-search-research.md)) on the live examples, ranked by what they cost: lost leads and wrong answers first, then hours.
+1. **Prices and services that only appear after JavaScript runs.** Assistants then tell buyers you publish no prices, and the competitor whose page they can read gets the shortlist. Prevented by [07](standards/07-ai-visibility.md) rule 7 and its no-JavaScript check, and [21](standards/21-search-research.md) step 1.
+2. **No price and no honest "who we're for".** A buyer comparing in an assistant sees a $300 option next to a blank, and the answer goes to whoever states a number. [03](standards/03-win-the-comparison.md) During 3 to 5.
+3. **Writing in your own terms instead of the buyer's.** A page about your branded method answers a search nobody makes. [21](standards/21-search-research.md) rule 5.
+4. **Changing a fact without asking the engines to recrawl.** Assistants keep quoting the old price or claim for weeks. [03](standards/03-win-the-comparison.md) After 3, [21](standards/21-search-research.md) step 13.
+5. **Claims you can't source.** An assistant repeats "unverified marketing claim" next to your name; numbers from an earlier job belong to the person, on their profile. [04](standards/04-content-quality.md) rule 5.
+6. **A translated keyword that means something else there.** The second-language page ranks for software or staffing the business doesn't sell. [21](standards/21-search-research.md) Avoid.
+7. **A year-long cache on files without a version.** Visitors who came before keep seeing the old text after you fix it. [15](standards/15-security-headers.md) rule 9 and Avoid.
+8. **A partner-directory listing without a current certification or the service it implies.** A public claim the business can't back. [22](standards/22-backlinks.md) rule 6.
+9. **A sitemap date that changes on every deploy, or never.** Engines learn to ignore it and recrawl changed pages late. [05](standards/05-search.md) rule 5.
+10. **Scripting search result pages.** Robot checks, blocked tools and an afternoon lost; use Bing's top 10 or a person's browser. [21](standards/21-search-research.md) Avoid.
+
 ## Live examples
 These sites run on this stack and are being brought up to every standard. What breaks or works on them is written back into the standards.
 - [strategyandstack.com](https://strategyandstack.com): B2B sales systems and AI automation
