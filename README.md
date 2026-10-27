@@ -18,7 +18,7 @@ These are lessons learned building and running real business sites with AI codin
 Coding agents are good at writing a site and bad at remembering everything a site needs. Developers feel it too: 66% say their biggest frustration with AI tools is code that is "almost right, but not quite" ([Stack Overflow survey, 2025](https://survey.stackoverflow.co/2025/ai)). Ask one for a landing page and you get a nice hero, but usually no security headers, a preview copy indexed by Google, a cookie banner that doesn't block anything, AI crawlers silently blocked by the CDN, and copy full of "seamless" and "unlock". Nothing looks broken, so nobody notices.
 
 Point the agent at this repo and it gets:
-- **A checklist it can't skip.** 20 standards in the order you build, each rule with its reason, so the agent knows when an exception is safe.
+- **A checklist it can't skip.** 22 standards in the order you build, each rule with its reason, so the agent knows when an exception is safe.
 - **Working starter files.** Headers, robots.txt with current AI bot names, llms.txt, security.txt, a consent banner, analytics that waits for consent, and JSON-LD.
 - **A way to check its own work.** Every standard ends with the commands that prove it is done, and `check-site.mjs` runs the static checks in CI.
 - **A list of mistakes to avoid.** Outdated advice, invented bot names, soft 404s, and AI-sounding copy, with ways to detect each one.
@@ -39,7 +39,7 @@ It works with any agent that reads files: Claude Code, Codex, Cursor, OpenCode, 
 **Launch day:** [CHECKLIST.md](CHECKLIST.md) is the one-page version.
 
 ## All the standards
-They are numbered in the order you would build a site: **Plan** (01–03: stack, repo, and what buyers ask), **Build** (04–10: content, search, structured data, AI visibility, previews, accessibility, speed), **Convert** (11–13: forms, booking, payments), **Protect** (14–19: hygiene, headers, trust files, domain, privacy, consent) and **Maintain** (20: guardrail tests). Each one is self-contained: tell your agent *"Apply standard 12 from site-standards"* and it has everything it needs.
+They are numbered in the order you would build a site: **Plan** (01–03: stack, repo, and what buyers ask), **Build** (04–10: content, search, structured data, AI visibility, previews, accessibility, speed), **Convert** (11–13: forms, booking, payments), **Protect** (14–19: hygiene, headers, trust files, domain, privacy, consent), **Maintain** (20: guardrail tests) and **Grow** (21–22: search research loop, backlinks). New standards are added at the end so the numbers your notes use never change. Each one is self-contained: tell your agent *"Apply standard 12 from site-standards"* and it has everything it needs.
 
 | # | Standard | Applies to | What it gets you |
 |---|---|---|---|
@@ -63,15 +63,18 @@ They are numbered in the order you would build a site: **Plan** (01–03: stack,
 | 18 | [Privacy and compliance](standards/18-privacy-compliance.md) | Every site | A privacy policy and claims that keep regulators and ad platforms happy.<br><sub>Privacy policy contents, banned claims, testimonial consent, sensitive data</sub> |
 | 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Measure your marketing without the lawsuits, and lose little data doing it.<br><sub>Consent Mode v2 (Basic), consent-gated GA4 and Clarity, CIPA, UTMs on leads, AI channel</sub> |
 | 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Automatic checks so an edit never quietly undoes any of this.<br><sub>`check-site.mjs`, owner decisions as tests, CI, exit codes, live checks</sub> |
+| 21 | [Search and answer-engine research](standards/21-search-research.md) | Every site | Know what buyers type and ask, give each question one page, and improve monthly from real data.<br><sub>Free tool limits, clusters and owning pages, search log, Search Console decision table, cadence</sub> |
+| 22 | [Backlinks](standards/22-backlinks.md) | Every live site | A few links a quarter from places buyers and AI assistants actually look.<br><sub>Directories and map profiles, partner pages, local citations, HARO, link-spam rules, Links report</sub> |
 
 ## What are you building?
-Not every site needs all 20. Find your goal, start with the first link, then add the rest. Every site should end up with the **baseline**: everything except 12 Booking and 13 Payments, which depend on how you make money.
+Not every site needs all 22. Find your goal, start with the first link, then add the rest. Every site should end up with the **baseline**: everything except 12 Booking and 13 Payments, which depend on how you make money.
 
 | If you want to… | Start with | Then add |
 |---|---|---|
 | **Launch a site that looks like a serious company** | [CHECKLIST.md](CHECKLIST.md), the one-page version | The baseline, in order |
-| **Be the business ChatGPT, Claude and Perplexity recommend** | [03 Win the comparison](standards/03-win-the-comparison.md) | [07 AI visibility](standards/07-ai-visibility.md), [06 Structured data](standards/06-structured-data.md), [05 Search](standards/05-search.md) |
-| **Find out what your buyers search for and ask AI** | [03 Win the comparison](standards/03-win-the-comparison.md), the "Before" steps | [05 Search](standards/05-search.md) for Search Console data |
+| **Be the business ChatGPT, Claude and Perplexity recommend** | [03 Win the comparison](standards/03-win-the-comparison.md) | [07 AI visibility](standards/07-ai-visibility.md), [06 Structured data](standards/06-structured-data.md), [05 Search](standards/05-search.md), [22 Backlinks](standards/22-backlinks.md) |
+| **Find out what your buyers search for and ask AI** | [03 Win the comparison](standards/03-win-the-comparison.md), the "Before" steps | [21 Search research](standards/21-search-research.md) for the full toolkit and the monthly Search Console loop |
+| **Get other sites to link to you** | [22 Backlinks](standards/22-backlinks.md) | [03 Win the comparison](standards/03-win-the-comparison.md), to see which directories and lists assistants cite |
 | **Turn visits into booked calls** | [12 Booking](standards/12-booking.md) | [19 Analytics](standards/19-analytics-consent.md), to see which page and campaign booked each one |
 | **Get paid online** (consultations, deposits, courses) | [13 Payments](standards/13-payments.md) | [12 Booking](standards/12-booking.md) for paid calls, [18 Privacy](standards/18-privacy-compliance.md) for terms and refunds |
 | **Collect leads with a form that never drops one** | [11 Forms and email](standards/11-forms-email.md) | [19 Analytics](standards/19-analytics-consent.md), so every lead keeps its source |

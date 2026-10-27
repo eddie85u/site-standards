@@ -10,6 +10,8 @@ The numbers behind the shift:
 
 Fewer clicks overall, better visitors from the answers: the business the answer names takes the click.
 
+This standard covers the buying questions and the AI prompt runs. The full free research toolkit, clustering queries into pages and the monthly Search Console loop are in [21 Search and answer-engine research](21-search-research.md); getting listed on the sites the answers cite is [22 Backlinks](22-backlinks.md).
+
 We have seen it work. A US company looking for a bookkeeper asked ChatGPT to compare remote accounting services in the Philippines and Latin America on cost against quality. ChatGPT included an accounting firm built on these standards, before it had Search Console or llms.txt. What it had: a name that matched the search, one page per service and per role with plain titles, monthly prices on each role page, location, hours and quality controls in plain text, and all text readable without scripts.
 
 ## Before: find the questions
@@ -62,7 +64,7 @@ Every quarter, rerun the prompt list from Before step 6:
    *Why:* answers vary run to run; one screenshot proves nothing.
 2. Add two control prompts: your brand name (you should always appear) and an unrelated category (you never should).
 3. When an answer is wrong, log the prompt, engine, date, claim and the page it probably came from. Fix your own page first, then your profiles and directories, then ask third parties for factual corrections. Retest in 4 to 8 weeks.
-4. Improve in this order: striking-distance queries (strengthen that page), prompts where competitors are named and you are not (fix the owning page or get listed on the cited source), then new questions from leads.
+4. Improve in this order: striking-distance queries (strengthen that page, [21](21-search-research.md) rule 9), prompts where competitors are named and you are not (fix the owning page or get listed on the cited source, [22](22-backlinks.md)), then new questions from leads.
 
 A scheduled tracker (for example Cloudflare's ai-brand-visibility-template) is worth it only once the site has many prompts to watch and the monthly routine above feels slow.
 

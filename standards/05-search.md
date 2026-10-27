@@ -2,7 +2,7 @@
 **Applies to:** every site.
 
 ## Why
-Google, Bing and the AI answer engines built on them start from the same basics: a clear title on every page, one official address per page (the "canonical"), a map of your pages (the sitemap), and a verified owner who can see errors. Get these wrong and nothing else in this guide gets found. Most mistakes here are invisible on the page and only show up weeks later in Search Console, Google's free dashboard for site owners.
+Google, Bing and the AI answer engines built on them start from the same basics: a clear title on every page, one official address per page (the "canonical"), a map of your pages (the sitemap), and a verified owner who can see errors. Get these wrong and nothing else in this guide gets found. Most mistakes here are invisible on the page and only show up weeks later in Search Console, Google's free dashboard for site owners. What to write on each page, and how to improve it from Search Console data, is [21 Search and answer-engine research](21-search-research.md).
 
 For scale: 96.55% of the 14 billion pages in one large study get no Google traffic at all ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). The basics below do not guarantee traffic, but skipping them nearly guarantees none.
 
@@ -26,7 +26,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 6. **Moves are 301s.** When anything moves, the old URL 301s to the new one. In Pages `_redirects`, always write the status (a line without one is a 302), and remember sources cannot match a query string.
    *Why:* a 302 tells engines the move is temporary, so the old URL keeps the ranking.
 7. **Verified owners:** Google Search Console (Domain property via DNS TXT) and Bing Webmaster Tools (import from Search Console). Submit the sitemap in both.
-   *Why:* they are the only place you see indexing errors, real queries, and now AI-feature data (rule 8). Bing also feeds Copilot and several other assistants.
+   *Why:* they are the only place you see indexing errors, real queries, and now AI-feature data (rule 8). Bing also feeds Copilot and several other assistants. Once there is data, run the monthly loop in [21](21-search-research.md) rule 9.
 8. **AI features are switched on and watched.**
    - Search Console → Settings: the property is **included** in Search generative AI features. An exclusion removes the site from AI Overviews and AI Mode.
    - Search Console's *Generative AI* performance report and Bing's *AI Performance* report show where you appear in AI answers (standard 03, After).
