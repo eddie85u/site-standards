@@ -20,7 +20,7 @@ Limits checked 2026-10; vendors change them often.
 
 | Tool | What it gives | Free limit |
 |---|---|---|
-| Google autocomplete, People Also Ask, Related searches | Seed plus `vs`, `cost`, `for`, `near`, `alternative`, a to z, in a private window; which page type ranks | No limit |
+| Google autocomplete, People Also Ask, Related searches | Seed plus `vs`, `cost`, `for`, `near`, `alternative`, a to z, in a private window; which page type ranks | No fixed quota; a few hundred scripted calls from one IP get a robot check (2026) |
 | Google Trends | Relative interest over time and by region; compares 2 or 3 phrasings; seasons | No limit. An index from 0 to 100, not volumes |
 | Google Search Console → Performance | Real queries that already show the site: impressions, clicks, CTR (click-through rate), position; filters by page, country and query | 16 months of data; the screen exports 1,000 rows ([Google](https://developers.google.com/search/blog/2022/10/performance-data-deep-dive)); the Search Analytics API returns up to 25,000 rows per request ([Google](https://developers.google.com/webmaster-tools/v1/searchanalytics/query)) |
 | Bing Webmaster Tools → Keyword Research | Bing impressions by country and language, plus the site's own Bing queries, and the top 10 URLs ranking for each keyword ([Practical Ecommerce](https://www.practicalecommerce.com/using-bings-keyword-research-tool)): the results-page check an agent can run (rule 4). Bing grounds Copilot answers | Free with a verified site. Volumes are small for niche B2B terms |
