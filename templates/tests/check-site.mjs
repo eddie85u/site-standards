@@ -198,6 +198,14 @@ for (const file of indexableFiles) {
   if (!linkedFrom.has(file)) warn(rel, "orphan page: no other indexable page links to it");
 }
 
+// Sitemap (standard 05 rule 5): every URL carries a <lastmod>.
+const sitemapFile = join(ROOT, "sitemap.xml");
+if (existsSync(sitemapFile)) {
+  const urls = [...readFileSync(sitemapFile, "utf8").matchAll(/<url>([\s\S]*?)<\/url>/g)].map((m) => m[1]);
+  const missing = urls.filter((u) => !/<lastmod>[^<]+<\/lastmod>/.test(u)).length;
+  if (missing) warn("sitemap.xml", `${missing} of ${urls.length} URLs have no <lastmod>`);
+}
+
 // Root-served sites: repo-only entries must be guarded by _routes.json.
 const routesFile = join(ROOT, "_routes.json");
 if (existsSync(routesFile)) {

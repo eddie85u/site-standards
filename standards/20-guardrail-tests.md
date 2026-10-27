@@ -12,7 +12,7 @@ Every standard here can be broken by one careless edit, very often by an AI agen
    - internal links and asset references point to files that exist
    - every JSON-LD block parses
    - hreflang alternates are reciprocal
-   - warning only: indexable pages that no other indexable page links to (orphans, standard 05 rule 10)
+   - warning only: indexable pages that no other indexable page links to (orphans, standard 05 rule 10), and sitemap URLs without `lastmod` (05 rule 5)
    - forbidden terms (`forbidden-terms.txt`) and the shared slop list (standard 04) do not appear in visible copy
    - no leftover placeholders (`lorem ipsum`, `{{`, `example.com`, `[NEED:`)
    - root-served sites: every root entry is site content or listed in `_routes.json`
@@ -24,7 +24,7 @@ Every standard here can be broken by one careless edit, very often by an AI agen
    *Why:* the check must run without anyone remembering; the Pages check is skipped on skipped builds and would block merges.
 4. **Builds fail loudly.** Pages decides success only by the build command's exit code; a script that prints errors and exits 0 deploys anyway. Any build step exits non-zero on failure.
    *Why:* otherwise a broken generator ships a broken site with a green tick.
-5. **Live checks** (optional, run when you like or weekly): 200 on key pages, 404 on a fake path and on repo-only files, and a future `Expires` in security.txt.
+5. **Live checks** (optional, run when you like or weekly): 200 on key pages, 404 on a fake path and on repo-only files, and a future `Expires` in security.txt. `templates/tests/check-live.mjs https://example.com` crawls the live site from its sitemap and fails on non-200 sitemap URLs, links to redirects, wrong canonicals, missing H1s, duplicate titles and orphans.
    *Why:* some failures only exist live (zone settings, old deployments, expired files).
 
 ## How to build it

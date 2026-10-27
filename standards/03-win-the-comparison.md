@@ -29,12 +29,13 @@ We have seen it work. A US company looking for a bookkeeper asked ChatGPT to com
 
    *Why:* these are real searches that already reach you, and the only free first-party volumes.
 3. **Autocomplete, People Also Ask and Related searches.** Type each seed followed by `vs`, `for`, `cost`, `near`, `alternative` and a to z, in a private window set to the target country. Note which kind of page ranks for each (service page, list, comparison).
+   An agent reads the top ten from Bing Webmaster → Keyword Research instead: engines block scripted result pages ([21](21-search-research.md) Avoid).
    *Why:* if most of the top ten are one page type, that is the type to build. A great page of the wrong type does not rank.
 4. **Google Trends and Keyword Planner** (free with a Google Ads account) to compare phrasings and seasons ("bookkeeper" or "accountant", "remote" or "offshore").
    *Why:* the word your buyers use beats the word your industry uses.
 5. **The voice of the customer.** Read Reddit and forum threads (`site:reddit.com <seed>`), 3- and 4-star reviews of competitors, sales-call notes and lead-form answers. Copy exact phrases.
    *Why:* the "almost happy" reviews list the objections your page must answer.
-6. **Ask the assistants.** In ChatGPT, Perplexity, Gemini, Copilot and Claude (logged out or temporary chat, search on), ask 10 to 20 prompts covering discover, shortlist, compare, validate and price. Include "alternatives to <competitor>", "<brand> vs <competitor>" and "<brand> reviews". Record who is named and which pages are cited, and label each citation: your site, a competitor, a list article, a forum, a directory. Bilingual sites run the list in each language, written the way those buyers ask, not translated.
+6. **Ask the assistants.** In ChatGPT, Perplexity, Gemini, Copilot and Claude (logged out or temporary chat, search on), ask 10 to 20 prompts. Checked 2026-10: ChatGPT (`https://chatgpt.com/?q=<prompt>&hints=search`) and Gemini answer logged out; Perplexity, Copilot and Claude ask to sign in, so use a separate account the owner provides or record the engine as not run. The prompts cover discover, shortlist, compare, validate and price. Include "alternatives to <competitor>", "<brand> vs <competitor>" and "<brand> reviews". Record who is named and which pages are cited, and label each citation: your site, a competitor, a list article, a forum, a directory. Bilingual sites run the list in each language, written the way those buyers ask, not translated.
    *Why:* the cited pages are what the assistant trusts for this category. They show the facts it needs and the third-party sites worth being listed on. The alternatives and review prompts are where buyers who already know a competitor decide.
 
 ## During: answer them
@@ -69,6 +70,8 @@ Every quarter, rerun the prompt list from Before step 6:
    *Why:* answers vary run to run; one screenshot proves nothing. Being named with a wrong price or a lukewarm description can cost more than not being named.
 2. Add two control prompts: your brand name (you should always appear) and an unrelated category (you never should).
 3. When an answer is wrong, log the prompt, engine, date, claim and the page it probably came from. Fix your own page first, then your profiles and directories, then ask third parties for factual corrections. Retest in 4 to 8 weeks.
+   The same applies after you change a fact yourself (a price, who you serve, a claim you dropped): assistants keep quoting the old page until their index refreshes. Submit the changed URLs (Bing Webmaster → URL Submission or IndexNow, which also feed Copilot and other Bing-grounded answers; Search Console → URL inspection → Request indexing) and put the brand prompts on the retest list.
+   *Why:* in one run, an assistant quoted a fact removed from the site the day before in every answer that named the business; Bing lets a verified site submit URLs for recrawl directly ([Bing, 2019](https://blogs.bing.com/webmaster/january-2019/bingbot-Series-Get-your-content-indexed-fast-by-now-submitting-up-to-10,000-URLs-per-day-to-Bing)).
 4. Improve in this order: striking-distance queries (strengthen that page, [21](21-search-research.md) rule 9), prompts where competitors are named and you are not (fix the owning page or get listed on the cited source, [22](22-backlinks.md)), then new questions from leads.
 
 A scheduled tracker (for example Cloudflare's ai-brand-visibility-template) is worth it only once the site has many prompts to watch and the monthly routine above feels slow.

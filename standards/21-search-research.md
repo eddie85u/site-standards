@@ -23,14 +23,14 @@ Limits checked 2026-10; vendors change them often.
 | Google autocomplete, People Also Ask, Related searches | Seed plus `vs`, `cost`, `for`, `near`, `alternative`, a to z, in a private window; which page type ranks | No limit |
 | Google Trends | Relative interest over time and by region; compares 2 or 3 phrasings; seasons | No limit. An index from 0 to 100, not volumes |
 | Google Search Console → Performance | Real queries that already show the site: impressions, clicks, CTR (click-through rate), position; filters by page, country and query | 16 months of data; the screen exports 1,000 rows ([Google](https://developers.google.com/search/blog/2022/10/performance-data-deep-dive)); the Search Analytics API returns up to 25,000 rows per request ([Google](https://developers.google.com/webmaster-tools/v1/searchanalytics/query)) |
-| Bing Webmaster Tools → Keyword Research | Bing volumes by country and language, plus the site's own Bing queries. Bing grounds Copilot answers | Free with a verified site |
-| Google Keyword Planner | Volume ranges and related terms from Ads data, per language and location | Free with a Google Ads account, no campaign needed. Low-spend accounts see ranges ("1K–10K"), not numbers ([Search Engine Land](https://searchengineland.com/google-officially-throttling-keyword-planner-data-low-spending-adwords-accounts-255795), 2016). "Competition" means advertiser bidding, not ranking difficulty |
+| Bing Webmaster Tools → Keyword Research | Bing impressions by country and language, plus the site's own Bing queries, and the top 10 URLs ranking for each keyword ([Practical Ecommerce](https://www.practicalecommerce.com/using-bings-keyword-research-tool)): the results-page check an agent can run (rule 4). Bing grounds Copilot answers | Free with a verified site. Volumes are small for niche B2B terms |
+| Google Keyword Planner | Volume ranges and related terms from Ads data, per language and location | Free with a Google Ads account, no campaign needed; an agent cannot create the account, so the owner sets it up first. Low-spend accounts see ranges ("1K–10K"), not numbers ([Search Engine Land](https://searchengineland.com/google-officially-throttling-keyword-planner-data-low-spending-adwords-accounts-255795), 2016). "Competition" means advertiser bidding, not ranking difficulty |
 | AlsoAsked | People Also Ask questions as a tree | 3 searches a day, no account ([AlsoAsked](https://help.alsoasked.com/en/articles/6577966-how-can-i-get-free-searches)) |
 | Semrush free account | Keyword Overview, Keyword Magic Tool | 10 reports a day across all tools ([Semrush](https://www.semrush.com/kb/856-subscription-plans-comparison)) |
 | Ahrefs free tools | Keyword Generator (Google, Bing, YouTube, Amazon); for your own verified sites, Site Audit and Site Explorer | Site Audit 5,000 crawl credits per project a month; Site Explorer shows the top 1,000 backlinks ([Ahrefs](https://ahrefs.com/webmaster-tools)) |
-| Screaming Frog SEO Spider | Desktop crawl of the live site: status codes, redirect chains, titles, canonicals, hreflang, inlinks per page | 500 URLs per crawl ([Screaming Frog](https://www.screamingfrog.co.uk/seo-spider/pricing/)), enough for a site of tens of pages |
+| `check-live.mjs` (this repo) | Crawl of the live site from its sitemap: status codes, redirect hops, titles, descriptions, canonicals, one H1, robots, pages missing from the sitemap, inlinks per page and orphans | Free; one URL at a time, for sites of tens to a few hundred pages |
 | lychee | Broken internal, external and `#fragment` links in the built HTML | Free, open source, MIT or Apache 2.0 ([lychee](https://github.com/lycheeverse/lychee)) |
-| `check-site.mjs` (this repo) | Titles, descriptions, canonicals, one H1, hreflang, alt, broken internal links, orphan pages | Free ([20](20-guardrail-tests.md)) |
+| `check-site.mjs` (this repo) | Titles, descriptions, canonicals, one H1, hreflang, alt, broken internal links, orphan pages, sitemap URLs without `lastmod` | Free ([20](20-guardrail-tests.md)) |
 
 ## Rules
 1. **Start from 5 to 10 short seeds per site and per language:** the service, the problem, the buyer, the place. Research each language on its own, in the country you sell to:
@@ -43,13 +43,13 @@ Limits checked 2026-10; vendors change them often.
    - Buyers in another language use different words, not translations; a translated keyword list targets searches nobody makes.
    - The owning page for a cluster can differ by language, and some clusters exist in one language only.
    - Google's spam policies list pages generated from other content through automated transformations, translating included, with little value added, as scaled content abuse ([Google, 2026](https://developers.google.com/search/docs/essentials/spam-policies)). A reviewed page written for the local buyer is the opposite of that.
-2. **Collect the voice of the customer:** sales-call notes, email and chat questions, lead-form answers, Reddit and forum threads where buyers ask for a recommendation, and 3- and 4-star competitor reviews. Copy exact words.
+2. **Collect the voice of the customer:** sales-call notes, email and chat questions, lead-form answers, Reddit and forum threads where buyers ask for a recommendation, and 3- and 4-star competitor reviews. Copy exact words. Agents usually cannot fetch Reddit or forums, and web search returns vendor blogs instead, so the owner supplies call notes, objections and form answers at step 0.
    *Why:* these phrases are what buyers actually type and ask an assistant, and the "almost happy" reviews list the objections a page must answer.
 3. **Keep one search log per site** (a private sheet): query, language, source, intent, cluster, owning page, change made, date, recheck date. Never in the public repo.
    *Why:* without the log nobody can tell which change moved which number, and the next session repeats work.
 4. **Cluster, then give each cluster one owner.**
    - Group queries that one answer satisfies ("bookkeeper cost", "how much is outsourced bookkeeping").
-   - When unsure, search both queries in a private window in the target country. If most of the top 10 results are the same pages, they share an owner; if the results differ, they are two clusters.
+   - When unsure, search both queries in a private window in the target country. If most of the top 10 results are the same pages, they share an owner; if the results differ, they are two clusters. An agent uses Bing Webmaster → Keyword Research instead, which lists the top 10 URLs per keyword: search engines block scripted and automated result pages (Avoid).
    - A big cluster (a service, role or location) gets a page; a small one gets an H2 section or a FAQ group on the closest page. Never one page per phrasing.
    - Comparison queries ("X vs Y", "alternatives to X") get their own owner under [03](03-win-the-comparison.md) During rule 8. Branded queries are tracked apart from the rest.
 
@@ -107,17 +107,17 @@ Limits checked 2026-10; vendors change them often.
 ## How to build it
 The playbook. An agent can run it on any site, in this order, with nothing but the free tools above, a browser and a shell. Steps 1 to 10 change nothing on the live site; all copy changes wait for the owner's approval (rule 8).
 
-0. **Prepare.** Read the site's AGENTS.md and TODO.md: languages, approval rule, banned-terms list, published folder, deploy rule. Work on a branch. Open the private search log (rule 3) and check access to Search Console, Bing Webmaster and GA4.
+0. **Prepare.** Read the site's AGENTS.md and TODO.md: languages, approval rule, banned-terms list, published folder, deploy rule. Work on a branch. Open the private search log (rule 3) and check access to Search Console, Bing Webmaster and GA4. Ask the owner up front for what an agent cannot get alone: a Google Ads account for Keyword Planner, dashboard access where there is no API, and the voice-of-the-customer material in rule 2.
 1. **Baseline crawl.**
-   - `node tests/check-site.mjs --root <published folder> --domain <domain>` (failures, then orphan warnings).
+   - `node tests/check-site.mjs --root <published folder> --domain <domain>` (failures, then orphan and sitemap warnings).
+   - `node tests/check-live.mjs https://<domain>`: status codes, redirect hops, titles, descriptions, canonicals, H1s and orphans on the live site.
    - The Check commands of [05](05-search.md), [07](07-ai-visibility.md) and [14](14-publishing-hygiene.md) against the live domain.
-   - Screaming Frog free on the live domain: response codes, redirect chains, duplicate or missing titles, canonicals, hreflang.
-   - Search Console → Pages: why each page is not indexed.
+   - Search Console → Pages (or URL inspection through the API): why each page is not indexed.
 
    Output: technical fixes, listed in TODO.md before any copy work.
 2. **Research per language** (rules 1 and 2), with the tools in the table: seeds, autocomplete and People Also Ask, Trends, Keyword Planner, the voice of the customer.
-3. **Search Console and Bing pass** once there are about 3 months of data: export Queries and Pages for the last 3 months, per language, and apply the table in rule 9.
-4. **AI prompt runs** per language ([03](03-win-the-comparison.md) Before step 6). Copy every cited outside page into the log; they feed step 12.
+3. **Search Console and Bing pass** once there are about 3 months of data: export Queries and Pages for the last 3 months, per language, and apply the table in rule 9. With less data, add the queries to the log as seeds for step 2 and skip the table.
+4. **AI prompt runs** per language ([03](03-win-the-comparison.md) Before step 6). Copy every cited outside page into the log; they feed step 12. Log every wrong fact an assistant states about the business; step 13 handles them.
 5. **Competitor check** (rule 13).
 6. **Cluster and assign owners** (rule 4, including the results-page test), then put them in order (rule 11).
 7. **Brief each owner** before writing it. One block per owning page, in the log:
@@ -141,11 +141,11 @@ The playbook. An agent can run it on any site, in this order, with nothing but t
 8. **Write or fix the owners** (rules 5 to 8 and 12). For the second language, write from that language's brief and research. A fluent person reviews every translated page, and [05](05-search.md) rule 4 holds (own URL, own canonical, hreflang both ways). Every heading, title, description and FAQ change goes to the owner as before and after, in both languages.
 9. **Structured data** per [06](06-structured-data.md): Service, FAQPage with visible matching text, Article with author, BreadcrumbList. Check with the Rich Results Test and validator.schema.org.
 10. **Links.**
-    - Internal: fix every orphan from step 1 and add the cluster links from rule 7 (Screaming Frog's Inlinks tab shows who links to each page).
-    - Broken: `lychee --root-dir "$(pwd)/<published folder>" --include-fragments "<published folder>/**/*.html"` checks internal, external and `#fragment` links; fix or remove each failure.
+    - Internal: fix every orphan from step 1 and add the cluster links from rule 7 (`check-live.mjs` prints the inlinks count for each page).
+    - Broken: `lychee --root-dir "$(pwd)/<published folder>" --include-fragments --fallback-extensions html --index-files index.html "<published folder>/**/*.html"` checks internal, external and `#fragment` links; fix or remove each failure. The two fallback flags resolve clean URLs (`/contact` served from `contact.html`, `/roles/` from `roles/index.html`); without them every clean internal link is reported missing.
 11. **llms.txt:** one line per owning page, in each language file ([07](07-ai-visibility.md) rule 5), matching the page and the JSON-LD.
 12. **Backlinks:** [22](22-backlinks.md) How to build it, starting from the cited pages logged in step 4, plus link reclaiming (22 rule 8).
-13. **Ship and log:** merge after approval and checks; in the log, record each change with its date and a recheck date 4 to 6 weeks out.
+13. **Ship and log:** merge after approval and checks; in the log, record each change with its date and a recheck date 4 to 6 weeks out. Then ask the engines to recrawl the changed URLs: Bing Webmaster → URL Submission (or IndexNow) and Search Console URL inspection → Request indexing ([03](03-win-the-comparison.md) After step 3).
 14. **Close the run:** in the site's private notes, write for each step what it found, what changed, how long it took, and whether it was worth it. The next run, and any update to this standard, starts from that note.
 
 Measure in the same sheet: Search Console clicks and impressions per query and page, branded against non-branded queries over time, the *Generative AI* report; Bing's *AI Performance* report (Copilot citations and the grounding queries the AI ran, [Search Engine Land](https://searchengineland.com/bing-webmaster-tools-ai-performance-report-468751)); GA4 key events and the AI assistants channel ([19](19-analytics-consent.md)); the lead-form "how did you find us" answers.
@@ -169,6 +169,7 @@ Measure in the same sheet: Search Console clicks and impressions per query and p
 - **One-number SEO scores** from audit tools as the goal. Fix the specific failures; a score invites tuning the score.
 - **Changing title, content and links on one page in the same week.** You will not know which one worked.
 - **Judging after a few days.** Rankings move for weeks after a change; wait 4 to 6 weeks.
+- **Scripting search result pages** (Google, Bing or their front ends) to read the top 10. Engines answer with a robot check, unrelated results or a rate limit, and it is against their terms; use Bing Webmaster Keyword Research or a person's browser.
 - **Paid keyword tools before the free ones and Search Console are in use.** For a site of tens of pages, the free limits above are enough.
 - **Expected-CTR tables treated as targets.** AI Overviews lower clicks for every position; compare a page against your own pages first.
 - **Copying a competitor's page list.** Their pages show which questions exist, not which ones your buyers ask.
