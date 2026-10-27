@@ -5,7 +5,13 @@
 ## Why
 Taking payment on the site removes a step between "yes" and "paid". With hosted checkout it also keeps card data off your site, so there is little security or compliance burden.
 
-Checkout is where most buyers drop: documented cart abandonment averages 70%, and the top reasons after "just browsing" are surprise costs (40%), not trusting the site with card details (19%), forced account creation (18%) and a long checkout (17%) ([Baymard Institute](https://baymard.com/lists/cart-abandonment-rate)). Hosted checkout and full prices up front address three of the four.
+Checkout is where most buyers drop: documented cart abandonment averages 70% ([Baymard Institute](https://baymard.com/lists/cart-abandonment-rate)). The top reasons after "just browsing":
+- surprise costs (40%);
+- not trusting the site with card details (19%);
+- forced account creation (18%);
+- a long checkout (17%).
+
+Hosted checkout and full prices up front address three of the four.
 
 ## Choose a gateway
 Pick by three things: where the business is registered and banks, where the customers are, and which payment methods they expect. Fees and coverage as of 2026-10; check each pricing page.

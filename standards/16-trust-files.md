@@ -2,7 +2,12 @@
 **Applies to:** every site.
 
 ## Why
-Small files that real companies have and hobby sites do not: a page that tells security researchers how to report a problem to you (security.txt), a proper icon for every browser, phone home screen and Google result, and a small file that describes the site to phones (the web app manifest). Scanners and security-minded buyers look for them, and an expired or bouncing contact looks worse than none.
+Small files that real companies have and hobby sites do not:
+- a page that tells security researchers how to report a problem to you (security.txt);
+- a proper icon for every browser, phone home screen and Google result;
+- a small file that describes the site to phones (the web app manifest).
+
+Scanners and security-minded buyers look for them, and an expired or bouncing contact looks worse than none.
 
 Only about 1% of websites publish a security.txt ([Web Almanac, 2024](https://almanac.httparchive.org/en/2024/security)), and at least a quarter of those are invalid ([Web Almanac, 2025](https://almanac.httparchive.org/en/2025/security)). A valid one is a cheap way to look more careful than almost everyone.
 

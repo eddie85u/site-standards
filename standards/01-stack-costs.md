@@ -4,7 +4,11 @@
 ## Why
 Most owners assume a professional website costs thousands up front and hundreds a month. A fast, secure, well-measured marketing site can run for the price of its domain name. The money goes into the work (your time, or a coding agent), not into hosting. Our own three live sites pay only for their domains and, for two of them, a mailbox.
 
-Free does not mean flimsy. The free plans below run on the same networks big companies pay for: your site is copied to data centers around the world, gets HTTPS automatically, and is shielded from floods of fake traffic. Every version of the site is kept, so nothing is lost when a laptop dies.
+Free does not mean flimsy. The free plans below run on the same networks big companies pay for:
+- your site is copied to data centers around the world, so it loads fast everywhere;
+- it gets HTTPS automatically;
+- it is shielded from floods of fake traffic;
+- every version of the site is kept, so nothing is lost when a laptop dies.
 
 Fewer moving parts also means less to break into. A static site is plain files: no server code, no admin login, no plugins to patch. That difference decides who has a bad week when the next big flaw lands:
 - In October 2026 ("Black October"), two critical flaws in PHP itself, nicknamed PHP2Shell, let anyone take over a PHP website without logging in. Every PHP installation serving web pages was affected, over 5 million servers were exposed, and emergency patches had to go out on 2026-10-21 ([BleepingComputer, 2026](https://bleepingcomputer.com/news/security/php-ships-emergency-patches-for-critical-php2shell-flaws)). PHP runs WordPress, Drupal, Joomla and most shared hosting. A static site had nothing to patch.

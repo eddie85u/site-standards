@@ -12,7 +12,12 @@ Fewer clicks overall, better visitors from the answers: the business the answer 
 
 This standard covers the buying questions and the AI prompt runs. The full free research toolkit, clustering queries into pages and the monthly Search Console loop are in [21 Search and answer-engine research](21-search-research.md); getting listed on the sites the answers cite is [22 Backlinks](22-backlinks.md).
 
-We have seen it work. A US company looking for a bookkeeper asked ChatGPT to compare remote accounting services in the Philippines and Latin America on cost against quality. ChatGPT included an accounting firm built on these standards, before it had Search Console or llms.txt. What it had: a name that matched the search, one page per service and per role with plain titles, monthly prices on each role page, location, hours and quality controls in plain text, and all text readable without scripts.
+We have seen it work. A US company looking for a bookkeeper asked ChatGPT to compare remote accounting services in the Philippines and Latin America on cost against quality. ChatGPT included an accounting firm built on these standards, before it had Search Console or llms.txt. What it had:
+- a name that matched the search;
+- one page per service and per role, with plain titles;
+- monthly prices on each role page;
+- location, hours and quality controls in plain text;
+- all text readable without scripts.
 
 ## Before: find the questions
 1. **Seed list.** Write 5 to 10 short head terms: the service, the problem, the audience, the place ("remote bookkeeper", "longevity Medellín").

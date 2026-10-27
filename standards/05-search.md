@@ -2,7 +2,13 @@
 **Applies to:** every site.
 
 ## Why
-Google, Bing and the AI answer engines built on them start from the same basics: a clear title on every page, one official address per page (the "canonical"), a map of your pages (the sitemap), and a verified owner who can see errors. Get these wrong and nothing else in this guide gets found. Most mistakes here are invisible on the page and only show up weeks later in Search Console, Google's free dashboard for site owners. What to write on each page, and how to improve it from Search Console data, is [21 Search and answer-engine research](21-search-research.md).
+Google, Bing and the AI answer engines built on them start from the same basics:
+- a clear title on every page;
+- one official address per page (the "canonical");
+- a map of your pages (the sitemap);
+- a verified owner who can see errors.
+
+Get these wrong and nothing else in this guide gets found. Most mistakes here are invisible on the page and only show up weeks later in Search Console, Google's free dashboard for site owners. What to write on each page, and how to improve it from Search Console data, is [21 Search and answer-engine research](21-search-research.md).
 
 For scale: 96.55% of the 14 billion pages in one large study get no Google traffic at all ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). The basics below do not guarantee traffic, but skipping them nearly guarantees none.
 

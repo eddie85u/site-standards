@@ -4,7 +4,10 @@
 ## Why
 One routine works for Google, Bing and the AI assistants (ChatGPT, Claude, Perplexity, Copilot, Gemini): find what buyers type and ask, give each question one page or section that answers it, then read Search Console to see what worked and change one thing at a time. It costs nothing but time. [03 Win the comparison](03-win-the-comparison.md) covers the buying questions and AI prompt runs; this standard is the full research toolkit and the monthly loop that keeps pages improving after launch.
 
-Most pages never get a single visit from Google: 96.55% of 14 billion pages in one study. The three reasons it found are the ones this routine fixes: nobody searches for the topic, no other site links to the page, or the page is the wrong kind of answer for the search ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). Research fixes the first and third; [22 Backlinks](22-backlinks.md) the second.
+Most pages never get a single visit from Google: 96.55% of 14 billion pages in one study ([Ahrefs, 2023](https://ahrefs.com/blog/search-traffic-study/)). The three reasons it found are the ones this routine fixes:
+- nobody searches for the topic (research fixes it);
+- no other site links to the page ([22 Backlinks](22-backlinks.md) fixes it);
+- the page is the wrong kind of answer for the search (research fixes it).
 
 Position alone is not the goal either. In one large study the first result got 27.6% of clicks, about ten times the tenth ([Backlinko with Semrush data](https://backlinko.com/google-ctr-stats), data from about 2022, before AI Overviews), and when Google shows an AI summary, clicks on results roughly halve ([Pew, 2025](https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/)). So the loop also rewrites titles that rank but do not get clicked.
 

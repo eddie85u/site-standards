@@ -4,7 +4,9 @@
 ## Why
 A privacy policy, an honest banner and disciplined claims keep the business clear of regulators, ad platforms and the lawsuits described in standard 19. Ad platforms reject ads and suspend accounts over a missing policy or a banned word long before any regulator calls. They are also part of looking established.
 
-Enforcement reaches small and mid-size businesses, not just big tech: GoodRx paid a $1.5 million FTC penalty for sharing health data with ad platforms through tracking code ([TechCrunch, 2023](https://techcrunch.com/2023/02/01/ftc-slaps-online-pharmacy-goodrx-for-sharing-users-health-data-with-facebook-and-google)), and France's regulator issued €486.8 million in fines in 2025 with cookies among its main targets ([CNIL](https://www.cnil.fr/en/tag/Order+to+comply)).
+Enforcement reaches small and mid-size businesses, not just big tech:
+- GoodRx paid a $1.5 million FTC penalty for sharing health data with ad platforms through tracking code ([TechCrunch, 2023](https://techcrunch.com/2023/02/01/ftc-slaps-online-pharmacy-goodrx-for-sharing-users-health-data-with-facebook-and-google)).
+- France's regulator issued €486.8 million in fines in 2025, with cookies among its main targets ([CNIL](https://www.cnil.fr/en/tag/Order+to+comply)).
 
 ## Rules
 1. **Privacy policy** page, linked from every footer: the controller, what is collected (forms, bookings, analytics, cookies), why, the legal basis, the processors (hosting, analytics, email, payment, scheduling), retention, the visitor's rights and how to use them, and a contact. Name the law that applies (GDPR, Colombia's Ley 1581 de 2012, CCPA).
