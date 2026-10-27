@@ -45,5 +45,8 @@ The evidence:
 - Animation libraries loaded for one effect that CSS can do.
 - Unused JS and CSS from templates or earlier designs. Detect: DevTools → Coverage.
 - Layout shift from banners (cookie consent, announcement bars) that push content down. Overlay them instead.
+- Starting the tag manager and session recorder with the page. Even async and cookieless, their few hundred KB sit in the critical path: one of our sites scored 68-75 on mobile with LCP near 6 s, against 97-99 for the same page without them. Start them on the `load` event (rule 4). Detect: PageSpeed on the live domain scores far below a preview that skips the tags.
+- Loading the page stylesheet asynchronously (`rel=preload` plus `onload`, rule 5). It flashes an unstyled page and, on one of our sites, gave a desktop layout shift of 1.0.
+- `html{scroll-behavior:smooth}` when pages are linked to a `#section`: the browser glides there on arrival instead of opening at it. Smooth-scroll in-page links from script instead.
 - Full-screen popups on arrival (newsletter, offers, app install) that hide the page, especially on phones. Google counts them as intrusive interstitials. Banners a law requires are exempt, but should still overlay the content, never redirect to a separate consent page ([Google, 2025](https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials)).
 
