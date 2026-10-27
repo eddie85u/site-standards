@@ -30,18 +30,25 @@ For a small service business the goal is a handful of good links a quarter, from
    *Why:* the first sources are free, fast and the ones assistants and map results read; the later ones take effort but earn links that last.
 7. **Regulated businesses list only in matching categories.** A wellness or longevity business uses wellness and lifestyle listings, never medical-provider directories, unless it is licensed as one.
    *Why:* a listing in the wrong category is a public claim the business cannot back.
+8. **Reclaim links to pages that no longer exist.** Each quarter, list the pages other sites link to and check each one still answers 200. Any that 404s gets a 301 to the closest current page ([05](05-search.md) rule 6), or ask the linking site to update the URL.
+   *Why:* a link you already earned is kept with one redirect line, and it is the cheapest link you will ever get.
+9. **Bilingual sites list in both languages.** Spanish-language directories, chambers and partner pages link to the Spanish URL; English ones to the English URL. The approved description exists in both languages, each checked against the banned-terms list.
+   *Why:* a Spanish listing that links the English page sends Spanish buyers to the wrong language and strengthens the wrong owning page.
 
 ## How to build it
 1. Copy the outside pages that your prompt runs cited (03, Before step 6) into the search log as targets.
 2. Claim the map profiles and the directories in rule 6.1 first, with the approved description and the same facts as the JSON-LD.
 3. Each quarter pick 3 to 5 targets from rules 6.2 to 6.6, log the outreach, and recheck the AI prompt runs to see whether the new sources appear.
-4. Measure: Search Console → Links (top linking sites and top linked pages, a sample rather than every link, [Google](https://support.google.com/webmasters/answer/9049606)); Bing Webmaster → Backlinks; Ahrefs Webmaster Tools, free for your own verified sites ([Ahrefs](https://ahrefs.com/free)); GA4 referral traffic per linking site.
+4. Measure: Search Console → Links (top linking sites and top linked pages, a sample rather than every link, [Google](https://support.google.com/webmasters/answer/9049606)); Bing Webmaster → Backlinks; Ahrefs free (formerly Webmaster Tools), Site Explorer for your verified sites with the top 1,000 backlinks ([Ahrefs](https://ahrefs.com/webmaster-tools), 2026); GA4 referral traffic per linking site.
+5. Reclaim (rule 8): export Search Console → Links → Top linked pages (and Ahrefs' backlinks list), then run the status check under Check on every URL in it.
 
 ## Check
 - Every listing in the log links to the URL the log names: `curl -sL https://listing.example/your-business | grep -o 'href="https://example.com[^"]*"'` returns that URL.
 - The phone and address on each listing match the site's JSON-LD: `grep -o '"telephone": *"[^"]*"' site/index.html`.
 - Search Console → Links → Top linking text: no single keyword phrase dominates apart from the brand name.
 - The log shows 3 to 5 new relevant linking domains in the last quarter, each with its target page.
+- Every linked page still works: with the exported URLs in `linked.txt`, `while read u; do curl -s -o /dev/null -w "%{http_code} $u\n" "$u"; done < linked.txt | grep -v "^200"` prints nothing, or only 301s that land on a 200.
+- Bilingual sites: each Spanish listing in the log links a Spanish URL, and each English one an English URL.
 
 ## Avoid
 - **Buying links**, link packages, private blog networks (sites built only to link out) and paid "guest post" marketplaces. All link spam under Google's policies.

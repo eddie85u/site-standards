@@ -45,4 +45,5 @@ The evidence:
 - Animation libraries loaded for one effect that CSS can do.
 - Unused JS and CSS from templates or earlier designs. Detect: DevTools → Coverage.
 - Layout shift from banners (cookie consent, announcement bars) that push content down. Overlay them instead.
+- Full-screen popups on arrival (newsletter, offers, app install) that hide the page, especially on phones. Google counts them as intrusive interstitials. Banners a law requires are exempt, but should still overlay the content, never redirect to a separate consent page ([Google, 2025](https://developers.google.com/search/docs/appearance/avoid-intrusive-interstitials)).
 

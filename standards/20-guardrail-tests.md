@@ -12,6 +12,7 @@ Every standard here can be broken by one careless edit, very often by an AI agen
    - internal links and asset references point to files that exist
    - every JSON-LD block parses
    - hreflang alternates are reciprocal
+   - warning only: indexable pages that no other indexable page links to (orphans, standard 05 rule 10)
    - forbidden terms (`forbidden-terms.txt`) and the shared slop list (standard 04) do not appear in visible copy
    - no leftover placeholders (`lorem ipsum`, `{{`, `example.com`, `[NEED:`)
    - root-served sites: every root entry is site content or listed in `_routes.json`

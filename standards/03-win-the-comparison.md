@@ -34,8 +34,8 @@ We have seen it work. A US company looking for a bookkeeper asked ChatGPT to com
    *Why:* the word your buyers use beats the word your industry uses.
 5. **The voice of the customer.** Read Reddit and forum threads (`site:reddit.com <seed>`), 3- and 4-star reviews of competitors, sales-call notes and lead-form answers. Copy exact phrases.
    *Why:* the "almost happy" reviews list the objections your page must answer.
-6. **Ask the assistants.** In ChatGPT, Perplexity, Gemini, Copilot and Claude (logged out or temporary chat, search on), ask 10 to 20 prompts covering discover, shortlist, compare, validate and price. Record who is named and which pages are cited, and label each citation: your site, a competitor, a list article, a forum, a directory.
-   *Why:* the cited pages are what the assistant trusts for this category. They show the facts it needs and the third-party sites worth being listed on.
+6. **Ask the assistants.** In ChatGPT, Perplexity, Gemini, Copilot and Claude (logged out or temporary chat, search on), ask 10 to 20 prompts covering discover, shortlist, compare, validate and price. Include "alternatives to <competitor>", "<brand> vs <competitor>" and "<brand> reviews". Record who is named and which pages are cited, and label each citation: your site, a competitor, a list article, a forum, a directory. Bilingual sites run the list in each language, written the way those buyers ask, not translated.
+   *Why:* the cited pages are what the assistant trusts for this category. They show the facts it needs and the third-party sites worth being listed on. The alternatives and review prompts are where buyers who already know a competitor decide.
 
 ## During: answer them
 1. **Group prompts by intent** (learning, choosing, doing, branded) and start with choosing. *Why:* that is where buyers decide and where small firms can beat big ones on specifics.
@@ -65,8 +65,8 @@ No scheduled job is needed. Once a month (about 30 minutes), note in a sheet:
 *Why:* most people an assistant introduces arrive later by typing your name, with no AI referrer. Branded searches and the lead-form answer show the effect that referral numbers miss.
 
 Every quarter, rerun the prompt list from Before step 6:
-1. Run each prompt 3 times per engine, same country, logged out, and record a rate ("named 2 of 3", "recommended 1 of 3", "cited").
-   *Why:* answers vary run to run; one screenshot proves nothing.
+1. Run each prompt 3 times per engine, same country, logged out, and record a rate ("named 2 of 3", "recommended 1 of 3", "cited"), whether what it says about you is accurate, and its tone (positive, neutral, negative).
+   *Why:* answers vary run to run; one screenshot proves nothing. Being named with a wrong price or a lukewarm description can cost more than not being named.
 2. Add two control prompts: your brand name (you should always appear) and an unrelated category (you never should).
 3. When an answer is wrong, log the prompt, engine, date, claim and the page it probably came from. Fix your own page first, then your profiles and directories, then ask third parties for factual corrections. Retest in 4 to 8 weeks.
 4. Improve in this order: striking-distance queries (strengthen that page, [21](21-search-research.md) rule 9), prompts where competitors are named and you are not (fix the owning page or get listed on the cited source, [22](22-backlinks.md)), then new questions from leads.

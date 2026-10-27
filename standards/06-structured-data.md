@@ -29,6 +29,12 @@ Google's own published results ([Google Search Central](https://developers.googl
    *Why:* markup that says more than the page is a spam signal and can cost rich results for the whole site.
 6. **Pick the type your compliance allows.** Regulated businesses check their compliance list before using types like `MedicalBusiness` or `FinancialService`; a generic `Organization` or `ProfessionalService` is always safe.
    *Why:* a type is a claim; some ad platforms and regulators read "medical" or "financial" as a statement about licensing.
+7. **Articles and guides add `Article` (or `BlogPosting`)** with `headline`, `image`, `datePublished`, `dateModified` (with time zone, changed only when the content changes) and `publisher` → the Organization `@id`. `author` is a `Person` whose `name` holds only the name, with `url` to an author page or `sameAs` to a real profile. The visible byline says the same ([21](21-search-research.md) rule 12).
+   *Why:* Google requires none of these but recommends them, uses `url` or `sameAs` to tell authors apart, and assumes its own time zone when none is given ([Google, 2026](https://developers.google.com/search/docs/appearance/structured-data/article)).
+8. **A page with your own video adds `VideoObject`** with at least `name`, `thumbnailUrl` and `uploadDate`.
+   *Why:* those three are required for video results ([Google, 2026](https://developers.google.com/search/docs/appearance/structured-data/video)).
+9. **Bilingual sites:** each language version's JSON-LD is written in that language, with `inLanguage` on the WebPage, while the Organization and WebSite keep the same `@id` in both languages.
+   *Why:* one business in two languages is still one entity. A second Organization `@id` per language describes two businesses.
 
 ## How to build it
 Copy the template, fill the placeholders, and keep the Organization block identical on every page (a shared snippet or build step helps).
@@ -42,4 +48,7 @@ Copy the template, fill the placeholders, and keep the Organization block identi
 - Expecting FAQ rich results: since 2023 Google shows them only for authoritative government and health sites. Keep FAQPage anyway; AI assistants read it.
 - `HowTo` markup: Google dropped those rich results.
 - Empty `sameAs: []`. Leave the property out until there are real profiles.
+- `dateModified` set to the build time on every deploy: fake freshness. Take it from the content's last real change.
+- Job titles or "Dr." inside `author.name`. Google wants only the name there; credentials go on the page and the author page.
+- Generator templates that add `AggregateRating` to a product or service, `Review` for your own testimonials, or `HowTo`. See the first three entries above.
 

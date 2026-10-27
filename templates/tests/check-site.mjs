@@ -95,7 +95,8 @@ function resolveTarget(fromFile, ref) {
   const base = url.startsWith("/") ? ROOT : dirname(fromFile);
   const p = join(base, url);
   const candidates = url.endsWith("/") ? [join(p, "index.html")] : [p, p + ".html", join(p, "index.html")];
-  return { ok: candidates.some((c) => existsSync(c) && statSync(c).isFile()), path: url };
+  const hit = candidates.find((c) => existsSync(c) && statSync(c).isFile());
+  return { ok: !!hit, path: url, file: hit };
 }
 
 const files = walk(ROOT);
@@ -106,6 +107,8 @@ const slopFile = [resolve("slop-terms.txt"), join(here, "slop-terms.txt"), join(
 const slop = SLOP && slopFile ? readList(slopFile) : [];
 
 const pages = new Map(); // canonical URL -> { file, alternates }
+const indexableFiles = [];
+const linkedFrom = new Map(); // target file -> files that link to it with <a href>
 
 for (const file of htmlFiles) {
   const rel = relative(ROOT, file).split(sep).join("/");
@@ -118,6 +121,7 @@ for (const file of htmlFiles) {
   if (!title || !title.trim()) fail(rel, "missing <title>");
 
   if (indexable) {
+    indexableFiles.push(file);
     const desc = metaContent(html, "description");
     if (!desc) fail(rel, "missing meta description");
     else if (desc.length < 50 || desc.length > 170) warn(rel, `meta description is ${desc.length} characters (aim for 140-160)`);
@@ -153,6 +157,10 @@ for (const file of htmlFiles) {
       if (!ref || ref.includes("${") || ref.includes("{{")) continue;
       const r = resolveTarget(file, ref);
       if (!r.skip && !r.ok) fail(rel, `broken reference: ${ref}`);
+      if (indexable && r.file && r.file !== file && /^<a\b/i.test(t)) {
+        if (!linkedFrom.has(r.file)) linkedFrom.set(r.file, new Set());
+        linkedFrom.get(r.file).add(file);
+      }
     }
   }
 
@@ -179,6 +187,15 @@ for (const [url, page] of pages) {
     const other = pages.get(a.href);
     if (other && other !== page && !other.alternates.some((b) => b.href === url)) fail(page.rel, `hreflang ${a.lang} → ${a.href} does not link back`);
   }
+}
+
+// Orphans (standard 05 rule 10): every indexable page except the home page
+// needs an <a href> from another indexable page. Links built by JavaScript
+// are not counted, so a JS-rendered nav shows up here as orphans.
+for (const file of indexableFiles) {
+  const rel = relative(ROOT, file).split(sep).join("/");
+  if (rel === "index.html") continue;
+  if (!linkedFrom.has(file)) warn(rel, "orphan page: no other indexable page links to it");
 }
 
 // Root-served sites: repo-only entries must be guarded by _routes.json.
