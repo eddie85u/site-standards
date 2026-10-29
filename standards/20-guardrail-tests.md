@@ -26,6 +26,8 @@ Every standard here can be broken by one careless edit, very often by an AI agen
    *Why:* otherwise a broken generator ships a broken site with a green tick.
 5. **Live checks** (optional, run when you like or weekly): 200 on key pages, 404 on a fake path and on repo-only files, and a future `Expires` in security.txt. `templates/tests/check-live.mjs https://example.com` crawls the live site from its sitemap and fails on non-200 sitemap URLs, links to redirects, wrong canonicals, missing H1s, duplicate titles and orphans.
    *Why:* some failures only exist live (zone settings, old deployments, expired files).
+6. **Every Worker has its own tests.** Form, booking and payment-webhook Workers get a test file run with Vitest and `@cloudflare/vitest-pool-workers`, which runs the code in the real Workers runtime with its bindings, in CI next to the site checks. At least: a valid request, a rejected Turnstile token, a missing or invalid field, the rate limit, and for webhooks a bad signature and a repeated event. Cloudflare's own template repo requires at least 5 tests per Worker template ([cloudflare/templates](https://github.com/cloudflare/templates/blob/main/AGENTS.md)).
+   *Why:* `check-site.mjs` never reads Worker code, and the Worker is where the leads and payments go. When it breaks, a real visitor finds out first and the business never does.
 
 ## How to build it
 ```sh
@@ -33,6 +35,8 @@ mkdir -p tests && cp <site-standards>/templates/tests/check-site.mjs tests/
 node tests/check-site.mjs --root site --domain example.com
 ```
 Add `forbidden-terms.txt` at the repo root and the workflow at `.github/workflows/checks.yml`.
+
+For each Worker: `npm i -D vitest @cloudflare/vitest-pool-workers`, a `vitest.config.ts` that points `defineWorkersProject` at the Worker's wrangler config, and tests that call the Worker with `SELF.fetch()`. Mock outside APIs (Turnstile, the booking tool, the payment gateway) so tests never hit them.
 
 ## Check
 The script exits non-zero and prints each failure with file and reason.

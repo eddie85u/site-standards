@@ -22,10 +22,13 @@ A site is maintained by many sessions, people and AI tools over years. An agent 
    *Why:* otherwise the next agent "fixes" the exception, or an audit reports it as a gap every time.
 9. **Permanent choices are made once, carefully:** the `<project>.pages.dev` name cannot be renamed, a Git-connected project cannot switch to direct upload, and the Cloudflare GitHub app should see only the repos it deploys. Deploy hook URLs are secrets: anyone holding one can trigger builds.
    *Why:* these are the settings people discover they cannot undo.
+10. **A failed production deploy alerts someone.** In Cloudflare *Notifications*, add a Pages alert (type `pages_event_alert`) for failed deployments of the production branch, sent to an inbox someone reads. Workers deployed by Workers Builds publish build events to a Queue instead; `workers-builds-notifications-template` in [cloudflare/templates](https://github.com/cloudflare/templates/tree/main/workers-builds-notifications-template) forwards them to email, Slack or Discord.
+   *Why:* when a merged build fails, the live site quietly stays on the previous version. Git says the change shipped, and nobody finds out until a visitor or an audit sees the old page.
 
 ## Check
 ```sh
 curl -s -o /dev/null -w "%{http_code}\n" https://example.com/AGENTS.md   # 404
 curl -s -o /dev/null -w "%{http_code}\n" https://example.com/TODO.md     # 404
 ```
+- `GET /accounts/{account_id}/alerting/v3/policies` lists a `pages_event_alert` policy covering each production project.
 

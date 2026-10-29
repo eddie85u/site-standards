@@ -16,7 +16,7 @@ One line per standard. Tick on the live domain, not on a preview. Details and co
 - [ ] Consent banner and consent-gated analytics, live host only; UTMs captured (19)
 - [ ] Privacy policy; `forbidden-terms.txt` with the site's banned claims (18)
 - [ ] Copy read against the slop list and out loud (04)
-- [ ] `check-site.mjs` passes and runs in CI (20)
+- [ ] `check-site.mjs` passes and runs in CI; each Worker has its own tests (20)
 
 ## Right after launch
 - [ ] Unknown path and AGENTS.md return 404; `*.pages.dev` sends noindex (14)
@@ -27,7 +27,8 @@ One line per standard. Tick on the live domain, not on a preview. Details and co
 - [ ] AI bots get 200 (curl with GPTBot, ClaudeBot, PerplexityBot); CDN bot settings match robots.txt (07)
 - [ ] Consent test: no trackers or embeds before Accept, none after Reject, including on the next page (19)
 - [ ] GA4 key events, Clarity linked, AI-assistants channel group, internal-traffic filter Active (19)
-- [ ] Form test end to end; SPF, DKIM, DMARC pass (11)
+- [ ] Form test end to end, mail only to the configured inbox; SPF, DKIM, DMARC pass (11)
+- [ ] A failed production deploy sends an alert to an inbox someone reads (02)
 - [ ] No `Access-Control-Allow-Origin: *`; preview bots (LinkedInBot, facebookexternalhit) get 200 (15, 08)
 - [ ] DNSSEC, Crawler Hints, Always Use HTTPS, www redirect keeps path and query (14, 17)
 - [ ] Old deployments with anything private deleted (14)
