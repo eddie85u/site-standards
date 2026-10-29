@@ -45,7 +45,8 @@ We have seen it work. A US company looking for a bookkeeper asked ChatGPT to com
 3. **Say who you are for, and who you are not for.** "We are not the cheapest; if price is the priority, A or B costs less. Companies choose us when they want C."
    *Why:* assistants repeat clear fit statements, and buyers who self-select convert better.
 4. **Name the trade-off you win** (quality against price, speed against cost, local against offshore) in one plain sentence.
-5. **Publish prices, or how pricing works.** *Why:* a comparison without your number leaves you out or guesses.
+5. **Publish prices, or how pricing works.** Say what the entry offer includes (time, format, what you leave with, what costs extra), and tell one price story everywhere: a "from" price plus what sets the final one.
+   *Why:* a comparison without your number leaves you out or guesses. In one run the assistant recommended the competitor that listed what its entry price included, and a FAQ answer saying "quoted after the first meeting", next to pages that showed "from" prices, was read as "no public prices".
 6. **Show how quality is controlled:** who supervises, credentials, process, retention. Real numbers with a date ("4.8 on Google, Oct 2026"), never invented proof (standard 04).
 7. **Being cited is not being recommended.** A self-ranked "best X" list tends to get cited while the assistant recommends the other names on it. Instead, name the category leader, say honestly what it does well, then show where you go further.
    *Why:* an honest comparison is the version an assistant will repeat in your favour.

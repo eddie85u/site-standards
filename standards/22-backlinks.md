@@ -29,7 +29,7 @@ For a small service business the goal is a handful of good links a quarter, from
 
    *Why:* the first sources are free, fast and the ones assistants and map results read; the later ones take effort but earn links that last.
 7. **Regulated businesses list only in matching categories.** A wellness or longevity business uses wellness and lifestyle listings, never medical-provider directories, unless it is licensed as one.
-   *Why:* a listing in the wrong category is a public claim the business cannot back.
+   *Why:* a listing in the wrong category is a public claim the business cannot back. It holds even when assistants cite those directories for the category: in one run an assistant's answer leaned on three directories in a category the business could not claim; the listings went to matching categories instead.
 8. **Reclaim links to pages that no longer exist.** Each quarter, list the pages other sites link to and check each one still answers 200. Any that 404s gets a 301 to the closest current page ([05](05-search.md) rule 6), or ask the linking site to update the URL.
    *Why:* a link you already earned is kept with one redirect line, and it is the cheapest link you will ever get.
 9. **Bilingual sites list in both languages.** Spanish-language directories, chambers and partner pages link to the Spanish URL; English ones to the English URL. The approved description exists in both languages, each checked against the banned-terms list.
