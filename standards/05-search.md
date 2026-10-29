@@ -47,6 +47,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
    - When a page moves again, point the older lines at the final URL too. No chains.
    - Keep redirects at least a year; forever is simpler.
    - A deleted page with no replacement returns 404. Never redirect it to the home page. When several pages merge into one, all of them redirect to that page.
+   - Every other form of the domain (`http://`, `http://www.`, `https://www.`) reaches the canonical `https://` host in one hop. Three sites in a row took two (an HTTPS upgrade, then a host redirect): one redirect rule that matches both schemes fixes it.
 
    *Why:* a 302 tells engines the move is temporary, so the old URL keeps the ranking. Google follows up to 10 hops but asks for a direct redirect, a year or more of keeping it, and warns that sending old URLs to the home page may be treated as a soft 404, an error page in disguise ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes)). Google treats 404 and 410 the same ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/http-network-errors)), so the host's default 404 is enough.
 7. **Verified owners:** Google Search Console (Domain property via DNS TXT) and Bing Webmaster Tools (import from Search Console). Submit the sitemap in both.
@@ -77,6 +78,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - Search Console → Pages: no "Duplicate without user-selected canonical", "Soft 404" or "Page with redirect" on URLs you link to.
 - `curl -sI https://example.com/contact.html | grep -i location` shows the extensionless URL, and no page, canonical or sitemap entry uses the `.html` form.
 - Redirects are one hop: for each source in `_redirects`, `curl -sIL -o /dev/null -w "%{num_redirects} %{url_effective}\n" https://example.com/old-path` prints `1` and the final URL.
+- Host forms are one hop: `for u in http://example.com http://www.example.com https://www.example.com; do curl -sIL -o /dev/null -w "%{num_redirects} %{url_effective}\n" "$u/"; done` prints `1 https://example.com/` three times.
 - A removed URL: `curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" https://example.com/removed-page` prints `404` with no redirect to `/`.
 - hreflang codes: `grep -rhoE 'hreflang="[^"]+"' site | sort -u` lists only `xx`, `xx-yy` and `x-default` codes, with no `419`, `LA` or `UK`.
 - Search Console → Settings → generative AI features: included.
@@ -90,6 +92,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - `noindex` used to steer which URL becomes canonical. Google advises against it; use `rel="canonical"` ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)).
 - `rel="next"` and `rel="prev"` for Google: it no longer uses them ([Google](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading)).
 - Redirect chains left behind by a second move, and deleted pages redirected to the home page.
+- A sitemap `lastmod` taken from git in CI with a shallow clone. `actions/checkout` fetches one commit by default, so every file gets the same date; set `fetch-depth: 0` ([GitHub actions/checkout](https://github.com/actions/checkout), 2026). A `--check` that compares the sitemap with git fails or passes for the wrong reason without it.
 - Moving a site to a new DNS zone without re-verifying Search Console: the TXT record must exist in the new zone.
 - Setting `document.title` from JavaScript on a static site: it silently replaces the approved title.
 - Near-identical pages per city or per service variant, or footers listing dozens of cities: Google treats them as doorway pages. Each page needs its own real facts.

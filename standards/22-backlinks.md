@@ -37,7 +37,7 @@ For a small service business the goal is a handful of good links a quarter, from
 
 ## How to build it
 1. Copy the outside pages that your prompt runs cited (03, Before step 6) into the search log as targets.
-2. Claim the map profiles and the directories in rule 6.1 first, with the approved description and the same facts as the JSON-LD.
+2. Claim the map profiles and the directories in rule 6.1 first, with the approved description and the same facts as the JSON-LD. This is the owner's work: it needs their accounts, real reviews, current certifications and a public address. The agent hands over one list with, for each target, what it needs first, the link target, the approved description in each language and any outreach draft. In three runs every target waited on one of those.
 3. Each quarter pick 3 to 5 targets from rules 6.2 to 6.6, log the outreach, and recheck the AI prompt runs to see whether the new sources appear.
 4. Measure: Search Console → Links (top linking sites and top linked pages, a sample rather than every link, [Google](https://support.google.com/webmasters/answer/9049606)); Bing Webmaster → Backlinks; Ahrefs free (formerly Webmaster Tools), Site Explorer for your verified sites with the top 1,000 backlinks ([Ahrefs](https://ahrefs.com/webmaster-tools), 2026); GA4 referral traffic per linking site.
 5. Reclaim (rule 8): export Search Console → Links → Top linked pages (and Ahrefs' backlinks list), then run the status check under Check on every URL in it.

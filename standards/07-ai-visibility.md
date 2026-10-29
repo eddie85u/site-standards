@@ -45,7 +45,7 @@ How common the accidental block is: since July 2025, new sites on Cloudflare blo
 ## How to build it
 1. Copy `templates/robots.txt` and `templates/llms.txt`; fill the placeholders from the site's real copy.
 2. Check the Cloudflare zone bot settings match.
-3. If the site renders text from JSON with JavaScript, pre-render it into the HTML, or at least generate llms-full.txt from the data files.
+3. If the site renders text from JSON with JavaScript, pre-render it into the HTML with the same markup function the browser uses, and give the script a `--check` mode that fails in CI when the HTML is out of date with the data. Two sites fixed it this way without changing how the pages look. Generating llms-full.txt from the data files helps but does not replace it: an assistant fetches the page the buyer asked about.
 
 ## Check
 ```sh
@@ -58,7 +58,9 @@ curl -s https://example.com/some-page | grep -c "<p"                            
 # The selling text without JS: strip scripts and styles, then look for what buyers ask about
 curl -s https://example.com/ | perl -0pe 's/<(script|style)\b.*?<\/\1>//gis; s/<[^>]+>/ /g' | grep -o '\$[0-9][0-9,]*' | sort -u   # every published price; none means they need JS
 ```
-- The no-JavaScript text holds the prices, the services and the FAQ answers, not just a hero and a footer. A paragraph count passes on a page whose selling sections are empty containers filled by a script; read the stripped text or look for the prices themselves.
+- The no-JavaScript text holds the prices, the services and the FAQ answers, not just a hero and a footer. A paragraph count passes on a page whose selling sections are empty containers filled by a script; read the stripped text or look for the prices themselves. Change the price pattern to the site's currency (`COP`, `€`).
+- Run it on one page of each template (home, a service page, the FAQ, reviews). One site pre-rendered its service pages while its FAQ page delivered none of its questions.
+- Text inside fade-in ("reveal") elements is visible without JavaScript: a `<noscript>` style or a class the script adds, never `opacity: 0` in the base CSS alone.
 - Cloudflare → AI Crawl Control: the bots you allow show 200s, not 403s.
 - Ask two or three assistants "What does <brand> do and who is it for?" and compare the answer with the site.
 

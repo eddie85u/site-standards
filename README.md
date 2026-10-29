@@ -95,16 +95,16 @@ Free public graders, run on your live site, tell you when you are there:
 
 ## Most costly mistakes
 Found while running the search playbook ([21](standards/21-search-research.md)) on the live examples, ranked by what they cost: lost leads and wrong answers first, then hours.
-1. **Prices and services that only appear after JavaScript runs.** Assistants then tell buyers you publish no prices, and the competitor whose page they can read gets the shortlist. Prevented by [07](standards/07-ai-visibility.md) rule 7 and its no-JavaScript check, and [21](standards/21-search-research.md) step 1.
-2. **No price and no honest "who we're for".** A buyer comparing in an assistant sees a $300 option next to a blank, and the answer goes to whoever states a number. [03](standards/03-win-the-comparison.md) During 3 to 5.
-3. **Writing in your own terms instead of the buyer's.** A page about your branded method answers a search nobody makes. [21](standards/21-search-research.md) rule 5.
+1. **Prices, services or FAQ answers that only appear after JavaScript runs, on any page type.** Assistants then tell buyers you publish no prices, and the competitor whose page they can read gets the shortlist. One site had its service pages pre-rendered and its FAQ page empty. Prevented by [07](standards/07-ai-visibility.md) rule 7 and its no-JavaScript check, and [21](standards/21-search-research.md) step 1.
+2. **No price, two price stories, or no word on what the entry price includes.** A buyer comparing in an assistant sees a $300 option next to a blank. A FAQ that says "quoted on request" next to pages with "from" prices reads as "no public prices". The answer goes to whoever states a number and what it buys. [03](standards/03-win-the-comparison.md) During 3 to 5.
+3. **Writing in your own terms instead of the buyer's,** or using a translated term that means another product in the second language. The page answers a search nobody makes, or ranks for software or staffing the business doesn't sell. [21](standards/21-search-research.md) rule 5 and Avoid.
 4. **Changing a fact without asking the engines to recrawl.** Assistants keep quoting the old price or claim for weeks. [03](standards/03-win-the-comparison.md) After 3, [21](standards/21-search-research.md) step 13.
-5. **Claims you can't source.** An assistant repeats "unverified marketing claim" next to your name; numbers from an earlier job belong to the person, on their profile. [04](standards/04-content-quality.md) rule 5.
-6. **A translated keyword that means something else there.** The second-language page ranks for software or staffing the business doesn't sell. [21](standards/21-search-research.md) Avoid.
-7. **A year-long cache on files without a version.** Visitors who came before keep seeing the old text after you fix it. [15](standards/15-security-headers.md) rule 9 and Avoid.
-8. **A partner-directory listing without a current certification or the service it implies.** A public claim the business can't back. [22](standards/22-backlinks.md) rule 6.
-9. **A sitemap date that changes on every deploy, or never.** Engines learn to ignore it and recrawl changed pages late. [05](standards/05-search.md) rule 5.
-10. **Scripting search result pages.** Robot checks, blocked tools and an afternoon lost; use Bing's top 10 or a person's browser. [21](standards/21-search-research.md) Avoid.
+5. **Chasing a search with a word the site may not use.** In a regulated category the biggest search often uses a banned word; putting it on a page may win a ranking and risks an ad review or a regulator. Answer the need in allowed words. [21](standards/21-search-research.md) rule 8 and Avoid.
+6. **Claims you can't source.** An assistant repeats "unverified marketing claim" next to your name; numbers from an earlier job belong to the person, on their profile. [04](standards/04-content-quality.md) rule 5.
+7. **Nothing that tells you apart from a similarly named business.** Assistants mix the two and repeat the other one's facts. State the location, the founder and your profile links in plain text and in JSON-LD. [03](standards/03-win-the-comparison.md) Before 6, [06](standards/06-structured-data.md).
+8. **A listing that claims what you can't back:** a lapsed certification, a service you don't sell, or a directory category you're not licensed for. [22](standards/22-backlinks.md) rules 6 and 7.
+9. **A year-long cache on files without a version.** Visitors who came before keep seeing the old text after you fix it. [15](standards/15-security-headers.md) rule 9 and Avoid.
+10. **A sitemap date that is missing, stale, or the build time.** Engines learn to ignore it and recrawl changed pages late. [05](standards/05-search.md) rule 5.
 
 ## Live examples
 These sites run on this stack and are being brought up to every standard. What breaks or works on them is written back into the standards.

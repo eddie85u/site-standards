@@ -39,9 +39,12 @@ Google's own published results ([Google Search Central](https://developers.googl
 ## How to build it
 Copy the template, fill the placeholders, and keep the Organization block identical on every page (a shared snippet or build step helps).
 
+Generate FAQPage from the same data that renders the visible FAQ, in the build step, never as a hand-kept copy next to it. Two sites in a row had a hand-kept block; on one it matched only because both had been edited the same day.
+
 ## Check
-- Rich Results Test (search.google.com/test/rich-results) and validator.schema.org: no errors.
 - `check-site.mjs` fails if any JSON-LD block does not parse.
+- Once a page is indexed, the Search Console URL Inspection API (`index.inspect`) returns `richResultsResult` with the items Google detected and any errors or warnings ([Google, 2026](https://developers.google.com/webmaster-tools/v1/urlInspection.index/UrlInspectionResult)). No errors.
+- Rich Results Test (search.google.com/test/rich-results) and validator.schema.org, in a browser, when a page gets a new type: no errors. Neither has an API.
 
 ## Avoid
 - `AggregateRating` or `Review` markup for the business's own testimonials: against Google's guidelines (self-serving reviews) and a manual-action risk.
