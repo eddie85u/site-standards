@@ -1,0 +1,177 @@
+# Machine-sounding writing patterns, English and Spanish (standard 04).
+#
+# Read by tests/check-writing.mjs. A hit is a WARNING, never a failure: some hits
+# are fine on purpose. Each one should be a choice, not a habit. This list is
+# separate from a site's forbidden-terms.txt, whose hits (compliance, banned
+# claims) fail the build.
+#
+# Format, one pattern per line:
+#   en: <regex>    English pages and English text only
+#   es: <regex>    Spanish pages and Spanish text only
+#   <regex>        every language
+# Regexes are JavaScript, matched case-insensitively with the u flag against the
+# visible text (title, description, share metas, body), whitespace collapsed.
+# "## Name" starts a group; the group name is printed with each hit.
+# Lines starting with "#" (and a space or nothing) are comments.
+#
+# Note on \b: in JavaScript it only knows ASCII letters, so never put \b next to
+# an accented letter (á, é, ñ...). Use (?<!\p{L}) and (?!\p{L}) there instead.
+#
+# Sources: the banned.md thread (x.com/VibeMarketer_/status/2121625654949187602,
+# 2026-11-14), Wikipedia's "Signs of AI writing" field guide
+# (en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), petergyang/no-ai-slop,
+# and our own review of three sites' copy in both languages (2026-10 to 2026-11).
+
+## Em dash
+# Many sites ban it outright. In Spanish the raya is correct for dialogue, which
+# business pages almost never have.
+—
+
+## Fake build-up
+# "No fluff. No jargon. Just results." Short negatives stacked before a payoff.
+en: (?:^|[.!?] )(?:no|not|zero) [^.!?]{1,30}[.!?] (?:no|not|zero) [^.!?]{1,30}[.!?](?: (?:just|only|simply|all)\b[^.!?]{0,40}[.!?])?
+es: (?:^|[.!?] )(?:sin|ni|nada de|cero) [^.!?]{1,30}[.!?] (?:sin|ni|nada de|cero) [^.!?]{1,30}[.!?](?: (?:solo|sólo|simplemente|únicamente)(?!\p{L})[^.!?]{0,40}[.!?])?
+
+## Not X but Y
+en: \bit'?s not (?:just|only|merely|about)\b[^.!?]{1,60}[,;.] (?:it'?s|but)\b
+en: \b(?:isn'?t|is not|aren'?t|are not|wasn'?t)\b(?: just| only| about)? [^.!?]{1,50}\. (?:it|this|that|they)(?:'s|'re| is| are)\b
+en: \bnot because [^.!?]{1,60}, but because\b
+es: \bno (?:solo|sólo|solamente|únicamente)(?!\p{L})[^.!?]{1,80}\bsino(?: también| que)?\b
+es: \bno (?:es|se trata de) [^.!?]{1,50}[.,;] (?:es|se trata de)\b
+es: \bno porque [^.!?]{1,60}, sino porque\b
+
+## Self-answered question
+en: \b(?:the|and the|so the) (?:result|results|catch|answer|best part|kicker|secret|truth|reason|difference|twist|problem|goal|outcome|upshot|fix)\?
+en: \b(?:why|how) does (?:this|that|it) matter\?
+en: \bwhat does (?:this|that) mean(?: for you)?\?
+en: \bsound familiar\?
+en: \b(?:want|ready) to know (?:the secret|why|how)\?
+es: ¿(?:y )?(?:el|la|los|las) (?:resultado|resultados|clave|respuesta|diferencia|truco|secreto|problema|mejor parte|razón|motivo)\?
+es: ¿por qué (?:importa|es importante)(?: esto)?\?
+es: ¿qué significa (?:esto|eso)(?: para ti| para usted)?\?
+es: ¿te suena(?: familiar)?\?
+es: ¿(?:quieres|quiere) saber (?:el secreto|por qué|cómo)\?
+
+## Colon reveal
+en: \b(?:here'?s|here is) (?:the thing|why|how|what|the truth|the catch|the kicker|the deal|the secret)\b[^.!?:]{0,20}:
+en: \b(?:the )?(?:bottom line|truth is|reality|kicker|secret|takeaway|catch|twist|best part|short answer|spoiler)\s*:
+en: \b(?:one|two|three) words?:
+es: \b(?:la clave|el secreto|la verdad|el resultado|la diferencia|en pocas palabras|la respuesta corta|spoiler|el truco)\s*:
+es: \b(?:aquí|he aquí) (?:está )?(?:la clave|el truco|el porqué|por qué|lo importante)\b[^.!?:]{0,20}:
+es: \b(?:una|dos|tres) palabras?:
+
+## -ing tail
+# ", ensuring smooth operations" bolted onto the end of a sentence.
+en: , (?:ensuring|enabling|empowering|highlighting|underscoring|reflecting|fostering|showcasing|emphasizing|solidifying|cementing|contributing to|paving the way|allowing you to|making it (?:easier|possible|simple))\b
+es: , (?:garantizando|asegurando|permitiendo|potenciando|impulsando|fomentando|promoviendo|destacando|subrayando|reflejando|consolidando|brindando|optimizando|logrando|posicionando)(?!\p{L})
+
+## Fake range
+# "From startups to enterprises": a span with no real ends, meant to sound broad.
+en: \bfrom (?:small |early-stage |growing )?(?:startups?|solopreneurs?|freelancers?|small businesses|beginners|individuals|day one|strategy|planning|ideation|concept|seed)\b[^.!?]{0,40}\bto (?:enterprises?|large (?:companies|corporations)|fortune 500|experts|execution|launch|scale|global brands|pros?)\b
+en: \band everything in between\b
+es: \bdesde (?:los |las |el |la )?(?:startups?|emprendedor(?:es|as)?|pequeñas empresas|pymes|principiantes|freelancers?|la (?:estrategia|planeación|planificación|idea))(?!\p{L})[^.!?]{0,50}\bhasta (?:grandes|las grandes|la ejecución|el lanzamiento|expertos|multinacionales|corporaciones)(?!\p{L})
+es: \by todo lo que hay en medio\b
+
+## Inflated significance
+en: \b(?:serves|stands) as an? (?:testament|reminder|beacon|cornerstone)\b
+en: \ba testament to\b
+en: \bplays? an? (?:vital|crucial|pivotal|key|significant|important) role\b
+en: \b(?:pivotal|watershed|defining) moment\b
+en: \bunderscor(?:es|ing) the (?:importance|significance)\b
+en: \b(?:indelible|lasting) (?:mark|legacy)\b
+en: \bnestled\b
+en: \bin the heart of\b
+en: \bboasts\b
+en: \bvibrant\b
+es: \b(?:es|se erige como|se posiciona como|constituye) (?:un|una) (?:testimonio|referente|pilar|faro)\b
+es: \b(?:juega|desempeña) un papel (?:fundamental|crucial|clave|vital|esencial|importante)\b
+es: \bmarca un antes y un después\b
+es: \bsin precedentes\b
+es: \bde vanguardia\b
+es: \bde (?:primer nivel|clase mundial|talla mundial)\b
+es: \ben el corazón de\b
+
+## Closing moral
+en: (?:^|[.!?] )(?:at the end of the day|in the end|ultimately|in conclusion|in summary|to sum up|all in all)\b
+en: \b(?:and )?that(?:'s| is| makes) (?:all the difference|what matters|the power of|the real win)\b
+en: \bbecause (?:in the end|at the end of the day)\b
+es: (?:^|[.!?] )(?:en definitiva|al fin y al cabo|en conclusión|en resumen|al final del día|en última instancia)\b
+es: \b(?:eso|esto) (?:marca|hace) (?:toda )?la diferencia\b
+es: \bporque al final(?: del día)?\b
+
+## Filler opener
+en: \bin today'?s (?:fast-paced|digital|competitive|ever-changing)\b
+en: \bever-evolving landscape\b
+en: \bin a world where\b
+en: \blook no further\b
+en: \bwhether you'?re an? [^.!?]{1,40} or an?\b
+en: \b(?:let'?s|let us) (?:dive|delve) in\b
+en: \bit'?s worth noting\b
+es: \ben el mundo (?:actual|de hoy|moderno)\b
+es: \ben la era (?:digital|actual|moderna)\b
+es: \ben un mundo (?:cada vez más|en constante|donde)\b
+es: \ben el panorama actual\b
+es: \ben constante (?:evolución|cambio)\b
+es: \bhoy más que nunca\b
+es: \bno busques más\b
+es: \bya sea(?:s)? (?:un|una) [^.!?]{1,40} o (?:un|una)\b
+es: \bcabe (?:destacar|mencionar|señalar|resaltar)\b
+es: \bes importante (?:destacar|señalar|mencionar|resaltar)\b
+
+## Hype verb
+en: \bunlock(?:s|ing)? (?:the|your)\b
+en: \bunleash
+en: \belevate (?:your|the)\b
+en: \bempower(?:s|ing)?\b
+en: \bsupercharge
+en: \brevolutioni[sz]e
+en: \bharness(?:ing)? the power
+en: \bleverag(?:e|ing) (?:our|your|the)\b
+en: \bdelve
+en: \btake (?:it|your [^.!?]{1,25}) to the next level\b
+es: (?<!\p{L})sumérge(?:te|se)(?!\p{L})
+es: (?<!\p{L})adéntra(?:te|se)(?!\p{L})
+es: (?:^|[.!?¡] )descubr(?:e|a|an)\b
+es: \bpotenci(?:ar|a|an|amos|ando|e|en|ador|adora)\b
+es: \bdesbloque(?:ar|a|an)\b
+es: \bdesata(?:r)?\b
+es: \bliberar? (?:todo )?(?:tu|su|el) potencial\b
+es: \bal (?:siguiente|próximo|otro) nivel\b
+es: \brevolucion(?:ar|a|amos)\b
+es: \belev(?:a|ar) (?:tu|su|el)\b
+
+## Empty adjective
+en: \bseamless(?:ly)?\b
+en: \brobust\b
+en: \bcutting-edge\b
+en: \bstate-of-the-art\b
+en: \bworld-class\b
+en: \bbest-in-class\b
+en: \bnext-level\b
+en: \bgame-?chang(?:er|ing)\b
+en: \bsynerg(?:y|ies)\b
+en: \bholistic\b
+en: \bbespoke\b
+es: \bsin (?:fisuras|complicaciones)\b
+es: \bsinergias?\b
+es: \bhol(?:í|i)stic(?:o|a|os|as)\b
+es: \binnovador(?:a|es|as)?\b
+es: \bexperiencia (?:única|inolvidable|transformadora)\b
+
+## Metaphor cliché
+en: \btapestry\b
+en: \bsymphony\b
+en: \bnavigate the complexit
+en: \bat the forefront\b
+en: \bin the realm of\b
+en: \bevery step of the way\b
+en: \byour (?:wellness |health |growth )?journey\b
+es: \b(?:tu|su) (?:viaje|camino) (?:hacia|de)\b
+es: \ben cada paso del camino\b
+es: \ba la vanguardia\b
+es: \ben el ámbito de\b
+es: \bla mejor versión de (?:ti|usted|sí)\b
+
+## Placeholder
+lorem ipsum
+your company name

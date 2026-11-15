@@ -1,31 +1,27 @@
 #!/usr/bin/env node
 // Static guardrail checks for a site (site-standards 20). No dependencies.
 //
-//   node tests/check-site.mjs --root site --domain example.com [--slop] [--strict-slop]
+//   node tests/check-site.mjs --root site --domain example.com
 //
 // --root    folder that is published (default ".")
 // --domain  production domain, used to resolve absolute links and og:image
-// --slop    also report hits from slop-terms.txt (warnings)
-// --strict-slop  slop hits fail the run
 //
 // Reads, if present, from the current directory:
 //   forbidden-terms.txt  one term or regex per line; any hit fails
-//   slop-terms.txt       shared slop list (falls back to the copy next to this file)
 //   _routes.json         (root-served sites) repo-only paths guarded by a 404
+//
+// Machine-sounding writing (standard 04) is a separate, warning-only script:
+// tests/check-writing.mjs with slop-patterns.txt.
 
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 
 const args = process.argv.slice(2);
 const opt = (name, dflt) => { const i = args.indexOf("--" + name); return i >= 0 && args[i + 1] && !args[i + 1].startsWith("--") ? args[i + 1] : dflt; };
-const flag = (name) => args.includes("--" + name);
 
 const ROOT = resolve(opt("root", "."));
 const DOMAIN = opt("domain", "");
-const SLOP = flag("slop") || flag("strict-slop");
-const STRICT_SLOP = flag("strict-slop");
 const SKIP_DIRS = new Set(["node_modules", ".git", ".wrangler", "lab", "_lab", "_private", "dist", "tests", "scripts", "worker", "functions", "archive"]);
 
 const failures = [];
@@ -102,9 +98,6 @@ function resolveTarget(fromFile, ref) {
 const files = walk(ROOT);
 const htmlFiles = files.filter((f) => f.endsWith(".html") && !/(^|[\\/])(og-image-template|review)\.html$/.test(f));
 const forbidden = readList(resolve("forbidden-terms.txt"));
-const here = dirname(fileURLToPath(import.meta.url));
-const slopFile = [resolve("slop-terms.txt"), join(here, "slop-terms.txt"), join(here, "..", "slop-terms.txt")].find(existsSync);
-const slop = SLOP && slopFile ? readList(slopFile) : [];
 
 const pages = new Map(); // canonical URL -> { file, alternates }
 const indexableFiles = [];
@@ -173,10 +166,6 @@ for (const file of htmlFiles) {
     const hit = text.match(re); if (hit) fail(rel, `placeholder text: "${hit[0]}"`);
   }
   for (const re of forbidden) { const hit = text.match(re); if (hit) fail(rel, `forbidden term: "${hit[0]}"`); }
-  for (const re of slop) {
-    const hit = text.match(re);
-    if (hit) (STRICT_SLOP ? fail : warn)(rel, `slop: "${hit[0]}"`);
-  }
 }
 
 // hreflang: every alternate that is one of our pages must point back.

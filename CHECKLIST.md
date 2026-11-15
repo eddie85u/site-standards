@@ -15,7 +15,7 @@ One line per standard. Tick on the live domain, not on a preview. Details and co
 - [ ] JSON-LD Organization + WebSite on every page; Service, FAQ, Breadcrumb where they fit (06)
 - [ ] Consent banner and consent-gated analytics, live host only; UTMs captured (19)
 - [ ] Privacy policy; `forbidden-terms.txt` with the site's banned claims (18)
-- [ ] Copy read against the slop list and out loud (04)
+- [ ] Copy read against the writing-pattern list in its language, self-check prompt run, and read out loud (04)
 - [ ] `check-site.mjs` passes and runs in CI; each Worker has its own tests (20)
 
 ## Right after launch
