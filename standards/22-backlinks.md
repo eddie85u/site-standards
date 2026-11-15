@@ -24,23 +24,31 @@ For a small service business the goal is a handful of good links a quarter, from
    2. *Partner and vendor pages:* tools you are certified in, clients and referral partners with a "partners" or "resources" page. Ask after a project goes well.
    3. *Local citations* (businesses with a location): each location on the three map profiles above with its own address and hours; the local chamber of commerce member directory; city guides; local businesses that refer clients, each linking the location page.
    4. *Guest posts and podcasts:* one specific, useful article for a newsletter or blog the buyer already reads, with the link in the author bio; podcast show notes. One a quarter is plenty.
-   5. *Your own data:* one small, real, dated data point a year (what clients pay, how long a task takes, what buyers ask most), anonymized, with the method stated, updated yearly on the same URL.
+   5. *Your own data, or a page of sourced statistics:* one small, real, dated data point a year (what clients pay, how long a task takes, what buyers ask most), anonymized, with the method stated, updated yearly on the same URL. A business with no data of its own yet can publish a statistics page about its field instead: 20 to 40 figures buyers and journalists look for, each with its source, a link and the year, grouped by question, dated, and refreshed on the same URL. On a regulated site every line passes the banned-terms list. It is the earned-link route: writers and assistants cite a figure and link where they found it, with no outreach.
    6. *Journalist requests:* answer only where you have real expertise, fast and short, with your title and one line of proof. HARO, relaunched free by Featured.com in April 2025 ([Octiv Digital](https://www.octivdigital.com/ideas-and-advice/featured-acquires-haro-rolls-it-back-to-version-users-love/)); Qwoted (free plan, 2 pitches a month, [Qwoted](https://app.qwoted.com/pricing_plans)); `#journorequest` on X, Bluesky and LinkedIn. A few placements a year is a normal result.
 
-   *Why:* the first sources are free, fast and the ones assistants and map results read; the later ones take effort but earn links that last.
+   *Why:* the first sources are free, fast and the ones assistants and map results read; the later ones take effort but earn links that last. For the statistics page: in a Princeton-led study, adding statistics to a page raised its visibility in generative engine answers by roughly 30 to 40%, among the best of the methods tested ([Aggarwal et al., GEO, 2023](https://arxiv.org/abs/2311.09735)).
 7. **Regulated businesses list only in matching categories.** A wellness or longevity business uses wellness and lifestyle listings, never medical-provider directories, unless it is licensed as one.
    *Why:* a listing in the wrong category is a public claim the business cannot back. It holds even when assistants cite those directories for the category: in one run an assistant's answer leaned on three directories in a category the business could not claim; the listings went to matching categories instead.
 8. **Reclaim links to pages that no longer exist.** Each quarter, list the pages other sites link to and check each one still answers 200. Any that 404s gets a 301 to the closest current page ([05](05-search.md) rule 6), or ask the linking site to update the URL.
    *Why:* a link you already earned is kept with one redirect line, and it is the cheapest link you will ever get.
 9. **Bilingual sites list in both languages.** Spanish-language directories, chambers and partner pages link to the Spanish URL; English ones to the English URL. The approved description exists in both languages, each checked against the banned-terms list.
    *Why:* a Spanish listing that links the English page sends Spanish buyers to the wrong language and strengthens the wrong owning page.
+10. **One price per profile: the lowest real "from" price.** A profile or listing (Business Profile, directories, a company page's About text) names one price, the lowest thing a buyer can actually buy, written as "from" (for a center, its entry assessment; for a service firm, its smallest plan). No other price appears anywhere in it. The one exception is a list where each service is its own entry with its own price field, such as LinkedIn's Services section: each entry may show that service's own "from" price.
+    *Why:* every price on a page you do not control goes stale on its own schedule, and assistants repeat whichever version they read first. One "from" price stays true when prices change above it, and it matches the site's JSON-LD and llms.txt (rule 1).
+11. **Profile and listing descriptions come in short paragraphs.** Two to four sentences each, a blank line between them, in the order a buyer asks: what it is, for whom, what is included, how to start. Never one block of text.
+    *Why:* most listing boxes keep line breaks, and buyers read profiles on a phone, where one block of 700 characters reads as a wall and the first line is all they see.
+12. **On the Business Profile, the primary category is the most important field.** Pick the category buyers actually search, checked against the categories of the profiles in the top 3 map results for the main query, and on regulated sites one the business can claim (rule 7). Add secondary categories only for services sold today.
+    *Why:* local search practitioners rank the primary category as the strongest single factor for the map results ([Whitespark Local Search Ranking Factors](https://whitespark.ca/local-search-ranking-factors/), a yearly expert survey, not Google data); Google says relevance, distance and prominence decide local results, and the category is what tells it relevance ([Google](https://support.google.com/business/answer/7091)). A category that cannot be claimed is the same false claim as the wrong directory.
+13. **Claim unlinked mentions.** Each quarter, search `"Business Name" -site:example.com` (and the owner's name with the business) in Google and Bing. Where a page names the business without a link, ask the author for one to the owning page, with the exact URL and the approved description.
+    *Why:* the writer already chose to mention you, so it is the easiest yes there is; a mention without a link gives the site nothing to find you by.
 
 ## How to build it
 1. Copy the outside pages that your prompt runs cited (03, Before step 6) into the search log as targets.
 2. Claim the map profiles and the directories in rule 6.1 first, with the approved description and the same facts as the JSON-LD. This is the owner's work: it needs their accounts, real reviews, current certifications and a public address. The agent hands over one list with, for each target, what it needs first, the link target, the approved description in each language and any outreach draft. In three runs every target waited on one of those.
 3. Each quarter pick 3 to 5 targets from rules 6.2 to 6.6, log the outreach, and recheck the AI prompt runs to see whether the new sources appear.
 4. Measure: Search Console → Links (top linking sites and top linked pages, a sample rather than every link, [Google](https://support.google.com/webmasters/answer/9049606)); Bing Webmaster → Backlinks; Ahrefs free (formerly Webmaster Tools), Site Explorer for your verified sites with the top 1,000 backlinks ([Ahrefs](https://ahrefs.com/webmaster-tools), 2026); GA4 referral traffic per linking site.
-5. Reclaim (rule 8): export Search Console → Links → Top linked pages (and Ahrefs' backlinks list), then run the status check under Check on every URL in it.
+5. Reclaim (rule 8): export Search Console → Links → Top linked pages (and Ahrefs' backlinks list), then run the status check under Check on every URL in it. In the same pass, run the unlinked-mention search (rule 13) and log each page found.
 
 ## Check
 - Every listing in the log links to the URL the log names: `curl -sL https://listing.example/your-business | grep -o 'href="https://example.com[^"]*"'` returns that URL.
@@ -49,6 +57,9 @@ For a small service business the goal is a handful of good links a quarter, from
 - The log shows 3 to 5 new relevant linking domains in the last quarter, each with its target page.
 - Every linked page still works: with the exported URLs in `linked.txt`, `while read u; do curl -s -o /dev/null -w "%{http_code} $u\n" "$u"; done < linked.txt | grep -v "^200"` prints nothing, or only 301s that land on a 200.
 - Bilingual sites: each Spanish listing in the log links a Spanish URL, and each English one an English URL.
+- Each profile text in the log shows one price (rule 10): `grep -oE '\$ ?[0-9][0-9.,]*' profile.txt | sort -u` prints one value, the site's lowest "from" price; and it has a blank line between paragraphs (rule 11).
+- The Business Profile's primary category is written in the log with the date it was checked against the top 3 map results (rule 12).
+- The log has an unlinked-mention search dated this quarter (rule 13).
 
 ## Avoid
 - **Buying links**, link packages, private blog networks (sites built only to link out) and paid "guest post" marketplaces. All link spam under Google's policies.
@@ -57,3 +68,5 @@ For a small service business the goal is a handful of good links a quarter, from
 - **Expired-domain redirects** and "link insertion" offers in cold emails.
 - **A review-site profile with no reviews.** It does little; get 2 or 3 real reviews or skip it.
 - **Listing or PR text with banned terms** or results claims for a regulated business.
+- **A price list in a profile**, or a price that is not the lowest real one ("from" the price of a bundle). It breaks rule 10 the first time one price changes.
+- **A statistics page with figures nobody can trace.** One untraceable number discredits the page; every figure keeps its source link and year, or it comes out ([04](04-content-quality.md) rule 5).

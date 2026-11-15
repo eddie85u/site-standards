@@ -65,7 +65,7 @@ They are numbered in the order you would build a site: **Plan** (01–03: stack,
 | 19 | [Analytics and consent](standards/19-analytics-consent.md) | Every site | Measure your marketing without the lawsuits, and lose little data doing it.<br><sub>Consent Mode v2 (Basic), consent-gated GA4 and Clarity, CIPA, UTMs on leads, AI channel</sub> |
 | 20 | [Guardrail tests](standards/20-guardrail-tests.md) | Every site | Automatic checks so an edit never quietly undoes any of this.<br><sub>`check-site.mjs`, owner decisions as tests, CI, exit codes, live checks</sub> |
 | 21 | [Search and answer-engine research](standards/21-search-research.md) | Every site | Know what buyers type and ask, in each language, give each question one page, and improve monthly from real data.<br><sub>Free-tool playbook, clusters and owner briefs, bilingual research, competitor sitemaps, Search Console decision table, cadence</sub> |
-| 22 | [Backlinks](standards/22-backlinks.md) | Every live site | A few links a quarter from places buyers and AI assistants actually look.<br><sub>Directories and map profiles, partner pages, local citations, HARO, link-spam rules, Links report</sub> |
+| 22 | [Backlinks](standards/22-backlinks.md) | Every live site | A few links a quarter from places buyers and AI assistants actually look.<br><sub>Directories and map profiles, partner pages, local citations, HARO, statistics page, one "from" price per profile, primary category, unlinked mentions, link-spam rules, Links report</sub> |
 
 ## What are you building?
 Not every site needs all 22. Find your goal, start with the first link, then add the rest. Every site should end up with the **baseline**: everything except 12 Booking and 13 Payments, which depend on how you make money.
