@@ -42,7 +42,7 @@ The evidence:
 - PageSpeed Insights (pagespeed.web.dev) on the home page and one inner page, mobile.
 - Search Console → Core Web Vitals once traffic exists.
 - Lighthouse CI on pull requests (see standard 20) to catch regressions.
-- Early Hints (rule 8): `curl -sI https://example.com/ | grep -i '^link:'` lists the main font with `rel=preload` and `crossorigin`, and `curl -sv -o /dev/null https://example.com/ 2>&1 | grep -c '< HTTP/[0-9.]* 103'` prints `1` once the edge has cached the hints (run it twice).
+- Early Hints (rule 8): `curl -sI https://example.com/ | grep -i '^link:'` lists the main font with `rel=preload` and `crossorigin`. Pages sends the 103 only over HTTP/2 or 3, so confirm it in Chrome: load the page twice, then in the console `performance.getEntriesByType("navigation")[0].firstInterimResponseStart` is above 0. On three of our sites (2026-11) it was above 0 only on the one with the `Link` header; the two that preload fonts with `crossorigin` in HTML alone got no Early Hints.
 - Looping animations (rule 10): `grep -nE '@keyframes' -A6 <css>` shows only `transform`, `opacity`, `filter` (or `translate`, `scale`, `rotate`) inside each looping keyframe; Lighthouse shows no "Avoid non-composited animations" entry.
 - Newer features (rule 11): each feature the site uses that is not Baseline widely available sits inside `@supports` or a script check; see 20 for the `legacy-scan` that lists the rest.
 

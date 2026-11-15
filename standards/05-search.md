@@ -89,7 +89,9 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - A removed URL: `curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" https://example.com/removed-page` prints `404` with no redirect to `/`.
 - hreflang codes: `grep -rhoE 'hreflang="[^"]+"' site | sort -u` lists only `xx`, `xx-yy` and `x-default` codes, with no `419`, `LA` or `UK`.
 - Search Console → Settings → generative AI features: included.
-- Rendered head equals the file (rule 12): for one page of each template, `chrome --headless=new --dump-dom https://example.com/page | grep -oE '<(title|meta name="description")[^>]*>[^<]*'` prints the same title and description as the same `grep` on the HTML file.
+- Rendered head equals the file (rule 12): for one page of each template, `chrome --headless=new --virtual-time-budget=8000 --dump-dom https://example.com/page | tr -d '
+' | grep -oE '<(title|meta name="description")[^>]*>[^<]*'` prints the same title and description as `tr -d '
+' < page.html | grep -oE '...'` (same pattern). The `tr` joins tags written over two lines.
 - Language redirect, if the site has one (rule 4): a headless browser with an English locale and a Googlebot user agent stays on the default-language home; the same browser with a normal user agent and `?lang=es` stays too.
 
 ## Avoid
