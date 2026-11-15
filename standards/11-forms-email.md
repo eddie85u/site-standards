@@ -29,11 +29,17 @@ Gmail requires them from anyone sending over 5,000 messages a day, and after it 
    *Why:* otherwise anyone can send mail as that domain, and parked domains are a favourite for phishing.
 8. **The form Worker mails only addresses in its own config.** Sender and recipient come from the Worker's settings, never from the request. With Cloudflare's `send_email` binding, lock it in `wrangler` config with `destination_address` (one address) or `allowed_destination_addresses` ([Cloudflare](https://developers.cloudflare.com/email-routing/email-workers/send-email-workers/)). A copy to the visitor, if any, is a fixed template sent only after Turnstile passes and within the rate limit. Sending to verified destination addresses is free on every plan; mail to any address goes through Email Service, which needs Workers Paid ([Cloudflare](https://developers.cloudflare.com/email-service/api/send-emails/workers-api/), 2026).
    *Why:* an endpoint that mails whatever address it is handed is an open relay. Spammers send through your domain, its reputation drops, and your own lead notifications start landing in spam.
+9. **Every Worker gets an independent security review,** not only the payment ones ([13](13-payments.md)): contact, booking and webhook Workers too, before they go live and after any change to how they handle input, secrets or email. Use Cloudflare's [security-audit skill](https://github.com/cloudflare/security-audit-skill), run in a sandbox since it executes code, and fix or write down each finding.
+   *Why:* a form Worker is a public endpoint that holds secrets and sends mail as your domain. Two of our contact Workers served a public diagnostics page that showed details of their setup until late 2026; neither was a payment Worker, so neither had been through the audit 13 asks for.
+10. **A test copy of a Worker never holds a live key between tests.** A test Worker (a copy under another name, used to try a booking or payment path) holds the gateway's test keys. When a test must use a live account, set the live key for that run and delete it right after (`wrangler secret delete`). Name secrets by mode (`GATEWAY_KEY_TEST`, `GATEWAY_KEY_LIVE`), so `wrangler secret list` shows which mode a Worker holds without reading any value.
+    *Why:* a forgotten test Worker with a live key is a second production endpoint that nobody watches: it can confirm bookings, charge or refund through the real account, and its logs and debug routes get none of the care the real one does.
 
 ## Check
 - Submit the form on the live site: email arrives, lead shows the UTMs, Turnstile token is verified (test with an invalid token: rejected).
 - Post to the endpoint with an extra `to` or `email` field set to another address: the notification still goes only to the configured inbox.
 - mail-tester.com or MXToolbox: SPF, DKIM and DMARC pass.
+- Each Worker has a dated security-audit run in its TODO.md or AGENTS.md, after its last change to input, secrets or email handling (rule 9).
+- `wrangler secret list --name <test-worker>` shows no `*_LIVE` secret outside a test run (rule 10).
 - `dig TXT example.com +short | grep spf` returns one record.
 
 ## Avoid
@@ -41,4 +47,6 @@ Gmail requires them from anyone sending over 5,000 messages a day, and after it 
 - SPF still including a service you stopped using (for example an old email-routing setup).
 - Forms that `mailto:`: unreliable and expose the address to scrapers.
 - Deploying Workers from a laptop with settings that exist only in the dashboard. Capture them first, test on a separate Worker name, then switch.
+- Debug or diagnostics routes (`/diag`, `/health` with config) left open on a public Worker. Gate them behind a secret token or remove them.
+- A test Worker left deployed with a live key after the test (rule 10).
 
