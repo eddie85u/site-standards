@@ -92,6 +92,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - `noindex` used to steer which URL becomes canonical. Google advises against it; use `rel="canonical"` ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)).
 - `rel="next"` and `rel="prev"` for Google: it no longer uses them ([Google](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading)).
 - Redirect chains left behind by a second move, and deleted pages redirected to the home page.
+- A www → apex rule that matches only `https://www.`. Then `http://www.` takes two hops: the host's force-HTTPS setting answers first, then the www rule. On Cloudflare, Single Redirects run before Always Use HTTPS, so match both schemes (`http.request.full_uri wildcard r"*://www.*"`, target `https://${2}`) and every host form lands in one hop (tested on two of our zones, 2026-11). Detect: the host-forms check in Check prints `2` for `http://www.`.
 - A sitemap `lastmod` taken from git in CI with a shallow clone. `actions/checkout` fetches one commit by default, so every file gets the same date; set `fetch-depth: 0` ([GitHub actions/checkout](https://github.com/actions/checkout), 2026). A `--check` that compares the sitemap with git fails or passes for the wrong reason without it.
 - Moving a site to a new DNS zone without re-verifying Search Console: the TXT record must exist in the new zone.
 - Setting `document.title` from JavaScript on a static site: it silently replaces the approved title.
