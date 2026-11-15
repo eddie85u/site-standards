@@ -88,6 +88,9 @@ Limits checked 2026-10; vendors change them often. The first rows did the work o
    | Position 1 to 3, CTR on par | Leave it |
 
    *Why:* one change per page, then 4 to 6 weeks of waiting, is the only way to know what worked. Compare the 28 days before with the 28 days after; changing several things at once makes the result unreadable.
+
+   **Per page, for the pages with the most impressions:** Performance → Search results → filter Page = the URL → Queries tab, last 3 months → export. Group the queries by the question behind them, then list the groups the page does not answer yet. Each becomes a section or a FAQ entry on that page (the first two rows of the table), in the buyers' words (rule 5). Skip pages changed in the last 60 days: their queries still reflect the old page.
+   *Why:* the queries a page already shows for are what Google already thinks it is about; the groups it does not answer are the sections that most often lift it, and they come from real searches rather than a tool's guess.
 10. **Cadence:**
     - Monthly, 30 minutes: rule 9.
     - Quarterly, 2 to 3 hours: redo the research (rule 1), refresh clusters, rerun the AI prompt list from [03](03-win-the-comparison.md), the competitor check (rule 13), the page inventory (rule 14), the link check (How to build it, steps 1 and 10) and link reclaiming ([22](22-backlinks.md) rule 8).
@@ -105,6 +108,10 @@ Limits checked 2026-10; vendors change them often. The first rows did the work o
     *Why:* a competitor's sitemap is its own page inventory, free and complete, and shows which questions it found worth a page.
 14. **Inventory your own pages every quarter.** Each indexable page maps to one cluster in the log. A page with no impressions in Search Console's 16 months and no cluster is merged into the closest owner with a 301 ([05](05-search.md) rule 6), or rewritten for a cluster that has no owner.
     *Why:* weak pages that overlap an owner split its signals (rule 4), and 16 months is the longest window of free data there is.
+15. **One keyword baseline file per site, written before any recheck.** In the site's private workspace, `search/keywords-baseline-YYYY-MM.md`: each tracked query per language, its volume with the tool, location, language filter and date it came from, the site's position and the top competitors on that date, and the bid range where the tool shows one. The recheck compares against this file, so it is written before the change it will measure and never edited afterwards; the next baseline is a new file.
+    *Why:* a recheck can only say what changed if "before" was written down the same way for every site. In one review, one site had a baseline file and two had only the search log, so their results could not be compared on volumes or competitors.
+16. **Never write a search volume no tool returned.** Every number in the log and the baseline names its source (Keyword Planner range, Bing Keyword Research, Search Console impressions). Where no tool gives one, write "no data", never an estimate or a "typical" figure.
+    *Why:* language models produce plausible volumes on request, and a guessed number in a sheet looks exactly like a measured one. Pages then get built for searches nobody makes.
 
 ## How to build it
 The playbook. An agent can run it on any site, in this order, with nothing but the free tools above, a browser and a shell. Steps 1 to 10 change nothing on the live site; all copy changes wait for the owner's approval (rule 8).
@@ -120,8 +127,8 @@ The playbook. An agent can run it on any site, in this order, with nothing but t
    - Run it on one page of each template (home, a service page, the FAQ, reviews), not one page per site. In another run the service pages were pre-rendered and passed, while the FAQ page delivered none of its 21 questions and the home page none of its service cards. Text inside fade-in ("reveal") elements also needs a `<noscript>` style, or it is in the HTML but invisible to anyone without JavaScript.
 
    Output: technical fixes, listed in TODO.md before any copy work.
-2. **Research per language** (rules 1 and 2), with the tools in the table: seeds, autocomplete and People Also Ask, Trends, Keyword Planner, the voice of the customer.
-3. **Search Console and Bing pass** once there are about 3 months of data: export Queries and Pages for the last 3 months, per language, and apply the table in rule 9. With less data, add the queries to the log as seeds for step 2 and skip the table.
+2. **Research per language** (rules 1 and 2). Before a recheck, write the baseline file first (rule 15), with the tools in the table: seeds, autocomplete and People Also Ask, Trends, Keyword Planner, the voice of the customer.
+3. **Search Console and Bing pass** once there are about 3 months of data: export Queries and Pages for the last 3 months, per language, apply the table in rule 9, and run the per-page export (rule 9) on the pages with the most impressions. With less data, add the queries to the log as seeds for step 2 and skip the table.
 4. **AI prompt runs** per language ([03](03-win-the-comparison.md) Before step 6). Copy every cited outside page into the log; they feed step 12. Log every wrong fact an assistant states about the business; step 13 handles them. Run the brand prompt with the price question (03 Before step 6) in at least one engine that renders JavaScript and one that does not: if only the rendering one finds the prices, step 1's no-JavaScript check failed.
 5. **Competitor check** (rule 13).
 6. **Cluster and assign owners** (rule 4, including the results-page test), then put them in order (rule 11).
@@ -159,6 +166,8 @@ Measure in the same sheet: Search Console clicks and impressions per query and p
 - Bilingual sites: each language has its own seeds and clusters in the log (language column filled).
 - Search Console → Performance → Query filter, Custom (regex) `^(how|what|why|which|who|is|are|can|does|should|best)\b|\bvs\b|alternative|cost|price`: each question query with 100+ impressions maps to a section in the log. Bilingual sites add `^(cómo|qué|cuál|cuánto|cuanto|dónde|por qué|es|son|puedo|mejor)\b|\bvs\b|precio|costo|alternativa`.
 - For a sample of top queries, Performance → the query → Pages tab shows one of your URLs, not two, and in the query's language.
+- Long questions: Performance → Query filter, Custom (regex) `^(?:\S+\s+){7,}\S+$` lists queries of 8 words or more, the full questions buyers type before they find you. Log them in the baseline (rule 15) and map each with 10+ impressions to a section, like the question regex above.
+- The site's latest `search/keywords-baseline-YYYY-MM.md` predates the last recheck, and every volume in it names its tool and filters (rules 15 and 16).
 - Every FAQ entry on the site is visible text that matches its FAQPage JSON-LD, generated from the same data; URL Inspection shows no rich-result errors on indexed pages.
 - `check-site.mjs` reports no orphan pages, and lychee exits 0.
 - The last log entry is less than two months old; the last competitor check and page inventory are less than four months old.
@@ -179,6 +188,7 @@ Measure in the same sheet: Search Console clicks and impressions per query and p
 - **Paid keyword tools before the free ones and Search Console are in use.** For a site of tens of pages, the free limits above are enough.
 - **Expected-CTR tables treated as targets.** AI Overviews lower clicks for every position; compare a page against your own pages first.
 - **Copying a competitor's page list.** Their pages show which questions exist, not which ones your buyers ask.
+- **A volume from a model's memory.** "About 1,200 searches a month" with no tool behind it (rule 16). Detect: a number in the log or baseline with no source column filled.
 
 ## Sources
 Ideas adapted, not copied, from SearchFit's [searchfit-seo](https://github.com/searchfit/searchfit-seo) plugin (MIT): the results-page clustering test, the owner brief, the competitor and page-inventory checks, orphan and broken-link checks, and the multilingual checklist behind [05](05-search.md) rule 4 and [22](22-backlinks.md) rules 8 and 9. Every rule here is checked against Google's own documentation, linked where it is used.
