@@ -95,6 +95,63 @@ function resolveTarget(fromFile, ref) {
   return { ok: !!hit, path: url, file: hit };
 }
 
+// Structured data contents (standard 06 rules 1, 2 and 4). Parsing alone let
+// sites with no Organization @id or no home-page WebSite pass.
+const ORG_TYPE = /^(?!Service$)(Organization|Corporation|NGO|LocalBusiness|ProfessionalService|.*Business|.*Service|.*Clinic|.*Store|.*Agency)$/;
+const nodesOf = (v, out = []) => {
+  if (Array.isArray(v)) v.forEach((x) => nodesOf(x, out));
+  else if (v && typeof v === "object") { out.push(v); for (const [k, x] of Object.entries(v)) if (k !== "@context") nodesOf(x, out); }
+  return out;
+};
+const typesOf = (n) => [].concat(n["@type"] || []);
+const orgNodes = new Map(); // @id -> full node (one with a name)
+const orgRefs = new Set(); // every #organization @id any page uses
+function checkJsonLd(rel, docs) {
+  const nodes = nodesOf(docs);
+  // Per-page coverage warns; the site-wide entity checks below fail.
+  if (!docs.length) { warn(rel, "no JSON-LD (standard 06 rule 1)"); return; }
+  const ids = nodes.map((n) => n["@id"]).filter((x) => typeof x === "string");
+  const org = ids.filter((id) => /#organization$/i.test(id));
+  if (!org.length) warn(rel, "JSON-LD does not reference an Organization @id ending in #organization (06 rule 1)");
+  org.forEach((id) => orgRefs.add(id));
+  // A provider reference may repeat name and url; merge every copy so the full node's fields count.
+  for (const n of nodes) if (typesOf(n).some((t) => ORG_TYPE.test(t)) && n.name && typeof n["@id"] === "string") orgNodes.set(n["@id"], { ...n, ...(orgNodes.get(n["@id"]) || {}) });
+  for (const n of nodes) if (typesOf(n).some((t) => ORG_TYPE.test(t)) && n.name && !n["@id"]) fail(rel, `${typesOf(n).join("/")} node "${n.name}" has no @id (06 rule 4)`);
+  if (/^(index\.html|[a-z]{2}\/index\.html)$/.test(rel)) {
+    const ws = nodes.find((n) => typesOf(n).includes("WebSite"));
+    if (!ws) fail(rel, "home page JSON-LD has no WebSite node (06 rule 2)");
+    else if (!ws.name || !ws.url) fail(rel, "home page WebSite node lacks name or url (06 rule 2)");
+  }
+}
+
+// Security headers list (standard 15 rules 1, 4 and 6), read from _headers.
+function checkHeadersFile() {
+  const file = join(ROOT, "_headers");
+  if (!existsSync(file)) { warn("_headers", "no _headers file (standard 15); skip if the host sets headers elsewhere"); return; }
+  const rules = new Map(); let cur = null;
+  for (const raw of readFileSync(file, "utf8").split(/\r?\n/)) {
+    if (!raw.trim() || raw.trim().startsWith("#")) continue;
+    if (!/^\s/.test(raw)) { cur = raw.trim(); if (!rules.has(cur)) rules.set(cur, []); continue; }
+    if (cur) rules.get(cur).push(raw.trim());
+  }
+  const all = rules.get("/*") || [];
+  if (!all.length) { fail("_headers", "no /* rule with the security headers (15 rule 1)"); return; }
+  const has = (name) => all.find((l) => l.toLowerCase().startsWith(name.toLowerCase() + ":"));
+  for (const h of ["Strict-Transport-Security", "Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy", "X-Frame-Options", "Cross-Origin-Opener-Policy"]) {
+    if (!has(h)) fail("_headers", `/* is missing ${h} (15 rule 1)`);
+  }
+  if (!all.some((l) => /^!\s*Access-Control-Allow-Origin\b/i.test(l))) fail("_headers", "/* does not remove Access-Control-Allow-Origin (15 rule 6)");
+  const csp = has("Content-Security-Policy");
+  if (csp) {
+    for (const d of ["base-uri", "object-src 'none'", "frame-ancestors", "form-action"]) if (!csp.includes(d)) fail("_headers", `CSP lacks ${d} (15 rule 4)`);
+    const script = (csp.match(/script-src([^;]*)/) || [])[1] || "";
+    if (/'unsafe-inline'/.test(script)) warn("_headers", "script-src allows 'unsafe-inline' (15 rule 5)");
+  }
+  const hsts = has("Strict-Transport-Security");
+  if (hsts && !/max-age=(\d+)/.test(hsts)) fail("_headers", "HSTS has no max-age");
+  else if (hsts && +hsts.match(/max-age=(\d+)/)[1] < 31536000) fail("_headers", "HSTS max-age below one year (15 rule 1)");
+}
+
 const files = walk(ROOT);
 const htmlFiles = files.filter((f) => f.endsWith(".html") && !/(^|[\\/])(og-image-template|review)\.html$/.test(f));
 const forbidden = readList(resolve("forbidden-terms.txt"));
@@ -157,9 +214,12 @@ for (const file of htmlFiles) {
     }
   }
 
+  const ld = [];
   for (const m of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
-    try { JSON.parse(m[1]); } catch (e) { fail(rel, `JSON-LD does not parse: ${e.message}`); }
+    try { ld.push(JSON.parse(m[1])); } catch (e) { fail(rel, `JSON-LD does not parse: ${e.message}`); }
   }
+  if (indexable) checkJsonLd(rel, ld);
+  if (/<meta[^>]+http-equiv=["']content-security-policy["']/i.test(html)) fail(rel, "CSP in a <meta> tag (standard 15 rule 2: header only)");
 
   const text = visibleText(html);
   for (const re of [/lorem ipsum/i, /\{\{[^}]*\}\}/, /\bexample\.com\b/i, /\[NEED:[^\]]*\]/]) {
@@ -186,6 +246,22 @@ for (const file of indexableFiles) {
   if (rel === "index.html") continue;
   if (!linkedFrom.has(file)) warn(rel, "orphan page: no other indexable page links to it");
 }
+
+// Structured data, site-wide: one Organization with a full node, and sameAs.
+if (indexableFiles.length) {
+  if (!orgRefs.size) fail("JSON-LD", "no page references an Organization @id (06 rule 1)");
+  if (orgRefs.size > 1) warn("JSON-LD", `several Organization @ids: ${[...orgRefs].join(", ")} (06 rule 9: one entity in every language)`);
+  for (const id of orgRefs) {
+    const n = orgNodes.get(id);
+    if (!n) { fail("JSON-LD", `${id} is referenced but no page holds the full node with a name`); continue; }
+    if (!n.url) fail("JSON-LD", `${id} has no url (06 rule 1)`);
+    if (!n.logo) fail("JSON-LD", `${id} has no logo (06 rule 1)`);
+    if (![].concat(n.sameAs || []).length) fail("JSON-LD", `${id} has no sameAs (06 rule 1: the business's real profiles)`);
+  }
+}
+
+// Security headers (standard 15).
+checkHeadersFile();
 
 // Sitemap (standard 05 rule 5): every URL carries a <lastmod>.
 const sitemapFile = join(ROOT, "sitemap.xml");

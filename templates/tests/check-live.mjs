@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 // Live crawl of a small site (site-standards 21, How to build it, step 1). No dependencies.
 //
-//   node tests/check-live.mjs https://example.com
+//   node tests/check-live.mjs https://example.com [--local-sitemap site/sitemap.xml]
+//
+// --local-sitemap  after a deploy (standard 20 rule 7): every URL in the built
+//                  sitemap must be in the live one, so the newest page is live and listed.
 //
 // Starts from /sitemap.xml and follows every internal <a href> on the pages it finds.
 // For each URL: status, redirect hops, <title>, meta description, canonical, H1 count,
@@ -10,9 +13,17 @@
 // link that points at a redirect, an indexable page missing from the sitemap, a sitemap
 // URL marked noindex, a canonical that differs from the URL, a missing canonical, not
 // exactly one H1, a duplicate title or description, and a sitemap URL no page links to.
+// On the home page it also checks the live security headers (standard 15 rule 1;
+// zone settings and Functions can differ from _headers) and that the JSON-LD
+// holds an Organization @id and a WebSite node (06 rules 1 and 2).
 // Meant for sites of tens to a few hundred pages; it fetches one URL at a time.
 
-const base = new URL(process.argv[2] || "");
+import { existsSync, readFileSync } from "node:fs";
+
+const argv = process.argv.slice(2);
+const base = new URL(argv.find((a) => /^https?:\/\//.test(a)) || "");
+const localIdx = argv.indexOf("--local-sitemap");
+const localSitemap = localIdx >= 0 ? argv[localIdx + 1] : null;
 const UA = "Mozilla/5.0 (compatible; check-live/1.0)";
 const ASSET = /\.(css|js|mjs|png|jpe?g|webp|avif|svg|gif|ico|txt|xml|json|webmanifest|woff2?|pdf|mp4|webm)$/i;
 
@@ -32,6 +43,26 @@ const decode = (s) => s && s.replace(/&amp;/g, "&").replace(/&#39;|&apos;/g, "'"
 const sm = await (await fetch(new URL("/sitemap.xml", base), { headers: { "user-agent": UA } })).text();
 const sitemap = [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
 const queue = [...sitemap], seen = new Set(), rows = [], inlinks = new Map();
+const early = []; // problems found before the crawl report
+if (localSitemap) {
+  if (!existsSync(localSitemap)) early.push(`--local-sitemap file not found: ${localSitemap}`);
+  else for (const m of readFileSync(localSitemap, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)) {
+    if (!sitemap.includes(m[1].trim())) early.push(`in the built sitemap but not the live one (deploy not live yet?): ${m[1].trim()}`);
+  }
+}
+{
+  const home = new URL("/", base).href;
+  const r = await fetch(home, { headers: { "user-agent": UA } });
+  const h = (n) => r.headers.get(n);
+  for (const n of ["strict-transport-security", "content-security-policy", "x-content-type-options", "referrer-policy", "permissions-policy", "x-frame-options", "cross-origin-opener-policy"]) {
+    if (!h(n)) early.push(`home page response has no ${n} header (15 rule 1)`);
+  }
+  if (h("access-control-allow-origin") === "*") early.push("home page sends Access-Control-Allow-Origin: * (15 rule 6)");
+  const html = await r.text();
+  const ld = [...html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)].map((m) => m[1]).join(" ");
+  if (!/"@id"\s*:\s*"[^"]*#organization"/i.test(ld)) early.push("home page JSON-LD has no Organization @id ending in #organization (06 rule 1)");
+  if (!/"@type"\s*:\s*(\[[^\]]*)?"WebSite"/.test(ld)) early.push("home page JSON-LD has no WebSite node (06 rule 2)");
+}
 
 while (queue.length) {
   const url = queue.shift();
@@ -65,6 +96,7 @@ const count = (key) => rows.reduce((m, r) => (r[key] ? m.set(r[key], (m.get(r[ke
 const titles = count("title"), descs = count("desc");
 let problems = 0;
 const flag = (msg) => { problems++; console.log("  FAIL " + msg); };
+for (const msg of early) flag(msg);
 for (const r of rows) {
   console.log(`${r.status} ${r.url}${r.hops ? ` (${r.hops} hop${r.hops > 1 ? "s" : ""} to ${r.final})` : ""}`);
   if (r.status !== 200) {
