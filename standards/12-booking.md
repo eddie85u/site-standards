@@ -48,4 +48,5 @@ Pick the simplest pattern that fits:
 - A third-party booking page as the only option (`cal.com/yourname` with nothing on your site): you lose measurement and brand.
 - Pop-up booking widgets loaded on every page: they slow every page for the few who book.
 - Long intake forms before the time slots.
+- A button named for one call type that opens another (a sticky phone CTA is where it slips through): one name per call type on every button that opens it.
 

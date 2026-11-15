@@ -36,4 +36,7 @@ Meeting the floors below puts a site ahead of almost every competitor.
 - Placeholder text instead of labels.
 - Scroll-jacking that breaks the keyboard, find-in-page or the back button.
 - Accessibility overlay widgets: they do not fix the underlying code, and an overlay does not make a site compliant.
+- Nav links hidden below a breakpoint with no menu in their place: phone and tablet visitors can then only scroll or book. A native `popover` menu behind one button gives Escape, outside-click closing and focus handling with no script (close it on in-page link clicks).
+- `display:flex` on list items that hold a link plus trailing text: each piece becomes a column, and on a phone the sentence splits into two narrow columns. Keep the text inline and position the marker absolutely.
+- Wide letter-spacing on small uppercase labels in a multi-column row: at phone width it breaks two-word labels into four lines. Cut the tracking under about 640 px.
 
