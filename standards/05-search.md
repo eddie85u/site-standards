@@ -32,7 +32,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
    - Slugs use the page's language (`/en/pricing`, `/precios`).
    - One language per page: navigation, buttons, footer and JSON-LD included.
    - The language switcher links to the same page in the other language, not to the home page, and internal links stay in the page's language.
-   - No automatic redirect by IP address or browser language.
+   - No automatic redirect by IP address, ever. A redirect by browser language is an exception the owner decides and the site's AGENTS.md records, acceptable only when all of these hold: it runs only on the `x-default` home page; only when the visitor has no saved language choice, and a choice made with the switcher always wins; crawlers are never redirected; the switcher's link to the default language carries a parameter (`?lang=es`) that stops it; canonicals and hreflang stay exactly as in this rule. Anything short of that: no redirect, offer the switcher.
    - Both versions are in the sitemap.
 
    *Why:*
@@ -40,6 +40,7 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
    - Google decides a page's language from its visible text, not from `lang` or the URL, and asks for one language per page and no automatic language redirects ([Google, 2025](https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites)). Its default crawler comes from US addresses ([Google, 2025](https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages)), so a redirect by location can hide the Spanish version from it.
    - Google asks for words in the audience's language in the URL ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/url-structure)).
    - `<html lang>` (rule 1) still matters for screen readers ([09](09-accessibility.md)).
+   - The redirect exception: one of our sites sends a first visit to its Spanish root from an English-first browser to `/en/`, by script. Googlebot sends no language preference and crawls from US addresses ([Google, 2025](https://developers.google.com/search/docs/specialty/international/locale-adaptive-pages)), so without the crawler exclusion the renderer would likely be sent away from the Spanish home, the page the rest of the site and every hreflang set points to.
 5. **`sitemap.xml`** lists every indexable URL in its canonical form, with a `lastmod` that changes only when the content does (ISO 8601 with time). Leave out `priority` and `changefreq`. Thank-you, 404 and confirmation pages are excluded and carry `noindex`.
    *Why:* Google ignores `priority` and `changefreq` and trusts `lastmod` only while it is accurate; stamping every URL with the build time teaches both engines to ignore it.
 6. **Moves are 301s, straight to the final URL.**
@@ -67,6 +68,12 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
     *Why:* Google says every page you care about should have a link from at least one other page on the site ([Google, 2025](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)). A page found only through the sitemap (an "orphan") gets no anchor text telling engines what it is about, and a dead end loses the visitor just when they were ready to act.
 11. **Image file names describe the image:** short, hyphenated, in the page's language (`remote-bookkeeper-dashboard.webp`, not `IMG_0412.webp`). On bilingual sites, a localized image gets a translated file name. Alt text ([09](09-accessibility.md)) matters more.
     *Why:* Google says file names give only light clues and alt text is the most important image attribute, and asks for translated file names on localized images ([Google, 2026](https://developers.google.com/search/docs/appearance/google-images)).
+12. **Scripts never change a page's title, meta description, canonical or `og:` tags after load.** The HTML file holds the approved ones. A page built from data gets them written into the file at build time. The only script that may touch them is an in-place language switch, and it sets the other language's approved values, generated from that page's own file.
+    *Why:* Google runs the page's scripts before indexing it ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics)), so it can index what a script wrote instead of the approved text. On one of our sites a page script replaced the approved description of every program page with a one-line bridge sentence; each check that read the files passed, while the rendered pages carried the wrong description on the pages a search recheck measured. The fix moved the text into the build.
+13. **Fix problems at the template, not page by page.** When a check flags the same problem on several pages, group the pages by what generates them (template, page script, data file, build step) and fix that once. Then rerun the check on one page of each template.
+    *Why:* most problems on a small site come from a shared source: the description above came from one script on ten pages. A page-by-page fix misses the next page made from the same template and is undone by the next build.
+14. **Pages at Google positions 11 to 20 get links from pages that already rank.** In Search Console → Pages, list the pages with an average position of 11 to 20 for a query that matters, and add a descriptive link (rule 9) to each from one or two of your pages that already get clicks for a related query.
+    *Why:* these pages are one step from the first page of results, and an internal link is the one change you can make today without new copy. Google uses links to find pages and understand what they are about ([Google, 2025](https://developers.google.com/search/docs/crawling-indexing/links-crawlable)); a link from a page Google already trusts for the topic says the most. Then wait 4 to 6 weeks before judging ([21](21-search-research.md) rule 9).
 
 ## How to build it
 - Start each page from `templates/head.html`.
@@ -82,19 +89,21 @@ For scale: 96.55% of the 14 billion pages in one large study get no Google traff
 - A removed URL: `curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" https://example.com/removed-page` prints `404` with no redirect to `/`.
 - hreflang codes: `grep -rhoE 'hreflang="[^"]+"' site | sort -u` lists only `xx`, `xx-yy` and `x-default` codes, with no `419`, `LA` or `UK`.
 - Search Console → Settings → generative AI features: included.
+- Rendered head equals the file (rule 12): for one page of each template, `chrome --headless=new --dump-dom https://example.com/page | grep -oE '<(title|meta name="description")[^>]*>[^<]*'` prints the same title and description as the same `grep` on the HTML file.
+- Language redirect, if the site has one (rule 4): a headless browser with an English locale and a Googlebot user agent stays on the default-language home; the same browser with a normal user agent and `?lang=es` stays too.
 
 ## Avoid
 - `<meta name="keywords">`: ignored for years; it only tells competitors your keywords.
 - Canonicals pointing to another page, to the `pages.dev` host, or to a URL that redirects.
 - Hreflang without the self-reference, or with a code Google does not support: `es-LA`, `es-419`, `en-UK`. Use `es`, `es-co`, `en-gb`.
 - A Spanish page whose canonical points to the English one: it asks Google to drop the Spanish page. Google wants the canonical in the same language.
-- Redirecting visitors to a language by IP address or browser setting. Offer the switcher instead.
+- Redirecting visitors to a language by IP address, or by browser setting outside the narrow exception in rule 4. Offer the switcher instead.
 - `noindex` used to steer which URL becomes canonical. Google advises against it; use `rel="canonical"` ([Google, 2026](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)).
 - `rel="next"` and `rel="prev"` for Google: it no longer uses them ([Google](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading)).
 - Redirect chains left behind by a second move, and deleted pages redirected to the home page.
 - A www → apex rule that matches only `https://www.`. Then `http://www.` takes two hops: the host's force-HTTPS setting answers first, then the www rule. On Cloudflare, Single Redirects run before Always Use HTTPS, so match both schemes (`http.request.full_uri wildcard r"*://www.*"`, target `https://${2}`) and every host form lands in one hop (tested on two of our zones, 2026-11). Detect: the host-forms check in Check prints `2` for `http://www.`.
 - A sitemap `lastmod` taken from git in CI with a shallow clone. `actions/checkout` fetches one commit by default, so every file gets the same date; set `fetch-depth: 0` ([GitHub actions/checkout](https://github.com/actions/checkout), 2026). A `--check` that compares the sitemap with git fails or passes for the wrong reason without it.
 - Moving a site to a new DNS zone without re-verifying Search Console: the TXT record must exist in the new zone.
-- Setting `document.title` from JavaScript on a static site: it silently replaces the approved title.
+- Setting `document.title` or the meta description from JavaScript on a static site: it silently replaces the approved text (rule 12). Detect: `grep -rnE 'document\.title *=|description.*setAttribute' --include=*.js .` finds no line outside the language switch.
 - Near-identical pages per city or per service variant, or footers listing dozens of cities: Google treats them as doorway pages. Each page needs its own real facts.
 
