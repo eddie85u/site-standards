@@ -27,16 +27,24 @@ The evidence:
    *Why:* the browser can start fetching the font while the server is still sending HTML, a free win most sites never get.
 9. **Third-party budget:** each one (analytics, chat widget, embed) earns its place and is listed in the site's AGENTS.md.
    *Why:* third parties are the usual cause of a site that was fast at launch and slow a year later.
+10. **Looping and scroll-linked animations change only `transform`, `opacity` or `filter`.** A glow is a `filter: drop-shadow()`, a grow is `transform: scale()`, a slide is `translate`; never `box-shadow`, `text-shadow`, `width`, `top`, `margin` or colours in a loop.
+    *Why:* the browser can hand those three properties to the graphics card and skip redrawing the page; any other property is repainted on the main thread every frame, for as long as the loop runs, and competes with taps (INP). One of our sites pulsed its key numbers with a `text-shadow` glow; the same look as `filter: drop-shadow()` runs composited ([Chrome](https://developer.chrome.com/docs/lighthouse/performance/non-composited-animations)).
+11. **Use features that are "Baseline widely available"; a newer one only behind a feature check, with a fallback that works.** Baseline is the shared label from the browser makers and MDN: "widely available" means the feature has worked in Chrome, Edge, Firefox and Safari for at least 30 months ([web.dev Baseline](https://web.dev/baseline)). A newer feature goes inside `@supports` (CSS) or an `if ("x" in window)` check (JavaScript), and the page without it is complete, only plainer.
+    *Why:* the modern way to build an effect is often newer than the browsers a small business must still serve. On one of our sites a scroll effect rebuilt with CSS scroll-driven animations sits inside `@supports`, so browsers without it show a still layout instead of a broken one. A scan of three sites found six older patterns whose modern replacement reached every browser only between December 2025 and August 2026; all six were kept ([20](20-guardrail-tests.md) rule 8).
 
 ## How to build it
 - Convert images with `sharp`, `squoosh` or `cwebp`; keep originals outside the published folder.
 - Subset fonts with `pyftsubset` or google-webfonts-helper.
 - Measure on a throttled mobile profile (Lighthouse "Mobile") before and after every visual feature.
+- Before new front-end work (an animation, a dialog, a menu, a form control), have the agent read Chrome's Modern Web Guidance for it: `npx modern-web-guidance@1.0.0 search "parallax on scroll"`, then `retrieve <guide-id>`. It is a set of reviewed guides from the Chrome, Edge, Firefox and MDN teams, each with browser support and a fallback (Apache-2.0, [GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance)). Pin the version you checked and apply rule 11 to what it suggests. Agents otherwise default to the older patterns that dominate their training data, usually more JavaScript than the job needs.
 
 ## Check
 - PageSpeed Insights (pagespeed.web.dev) on the home page and one inner page, mobile.
 - Search Console → Core Web Vitals once traffic exists.
 - Lighthouse CI on pull requests (see standard 20) to catch regressions.
+- Early Hints (rule 8): `curl -sI https://example.com/ | grep -i '^link:'` lists the main font with `rel=preload` and `crossorigin`, and `curl -sv -o /dev/null https://example.com/ 2>&1 | grep -c '< HTTP/[0-9.]* 103'` prints `1` once the edge has cached the hints (run it twice).
+- Looping animations (rule 10): `grep -nE '@keyframes' -A6 <css>` shows only `transform`, `opacity`, `filter` (or `translate`, `scale`, `rotate`) inside each looping keyframe; Lighthouse shows no "Avoid non-composited animations" entry.
+- Newer features (rule 11): each feature the site uses that is not Baseline widely available sits inside `@supports` or a script check; see 20 for the `legacy-scan` that lists the rest.
 
 ## Avoid
 - Quoting "53% of visitors leave after 3 seconds". The 2016 source says visits are "likely to be abandoned", based on benchmark data with no published definition; use the Deloitte or Vodafone numbers instead.
