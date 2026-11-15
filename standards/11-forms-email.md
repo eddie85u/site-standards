@@ -47,6 +47,8 @@ Gmail requires them from anyone sending over 5,000 messages a day, and after it 
 - SPF still including a service you stopped using (for example an old email-routing setup).
 - Forms that `mailto:`: unreliable and expose the address to scrapers.
 - Deploying Workers from a laptop with settings that exist only in the dashboard. Capture them first, test on a separate Worker name, then switch.
+- Loading the Turnstile script with the page. On two contact pages it raised mobile LCP by 1.2 to 1.6 s (PageSpeed, 2026-11-15) while TBT stayed 0: the script and its iframe compete with the hero for bandwidth. Load it when the form comes within about 200px of the screen or the visitor touches it, and let a submit wait a few seconds for the token. Reserve the widget's 65px with `min-height` and `line-height: 0` (on a text line it renders 7 to 10px taller and shifts what's below).
+- Turning on server-side token checks before visitors have the new form script. If the site caches JS (for example 4 hours), a cached old script posts without a token and loses the lead: ship the form first, deploy the Worker that requires the token after the cache has expired. If siteverify itself is unreachable, send the message tagged as unverified rather than dropping it.
 - Debug or diagnostics routes (`/diag`, `/health` with config) left open on a public Worker. Gate them behind a secret token or remove them.
 - A test Worker left deployed with a live key after the test (rule 10).
 
